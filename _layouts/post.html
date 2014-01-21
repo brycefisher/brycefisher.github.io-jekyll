@@ -1,0 +1,29 @@
+---
+layout: default
+---
+<article class="node-article">
+  <header class="article-header">
+    <h1>{{ page.title }}</h1>
+    <datetime>Written on {{ page.date | date_to_string }}</datetime>
+    <img src="http://bryceadamfisher.com/sites/default/files/styles/large/public/field/image/2642532691_c806d4591e.jpg?itok=Z2MRhQTn" alt="" class="article-image">
+  </header>
+
+  <div class="article-body">
+  {{ content }}
+  </div>
+
+  <footer class="article-footer">
+    <div class="article-call-to-action">
+      <p>Was it good for you? Great! Please</p>
+      
+      <a href="#" class="primary-cta">
+        <strong>Follow Me!</strong>
+        on twitter
+      </a>
+      
+      <p>or <a href="#" class="secondary-cta">RSS</a> to read my next post <strong>first!</strong></p>
+    </div>
+
+    <div class="comments"></div>
+  </footer>
+</article>
