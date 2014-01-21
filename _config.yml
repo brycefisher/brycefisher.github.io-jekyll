@@ -12,3 +12,5 @@ include:
 
 permalink: /blog/:title
 pygments: true
+paginate: 10
+paginate_path: "blog/:num"
