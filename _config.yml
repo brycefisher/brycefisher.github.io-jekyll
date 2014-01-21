@@ -4,7 +4,7 @@ encoding: utf-8
 exclude: 
 - sass
 - README.md
-- LICENSE.md
+- LICENSE
 - config.rb
 
 include:
