@@ -39,7 +39,7 @@ There's two parts to optimizing your images. The (more) obvious part is that you
 
 **UPDATE October, 2013**: I now recommend the incredible (and currently free) service from [kraken.io](http://kraken.io) to shrink images an exta 10-25% on average. Kraken does this without sacrificing any image quality. You can drag and drop dozens of files and download the optimized images as a single zip file once Kraken has worked it's magic.
 
-The somewhat less obvious part is to crop your images in your photo-editing software (or in Drupal or Wordpress) so that the browser won't have to resize the image on fly. Setting a size in the `<img />` tag that is different the size of image stored in the server will force the browser to do extra work to resize the image. While is this really cool, it is slower. [Of course, if you're using a responsive design, you'll have to weigh this carefully, and probably disregard my advice. Responsive images have a whole host of other puzzles to untangle that requires several posts to tease out.]
+The somewhat less obvious part is to crop your images in your photo-editing software (or in Drupal or Wordpress) so that the browser won't have to resize the image on fly. Setting a size in the `<img />` tag that is different the size of image stored in the server will force the browser to do extra work to resize the image. While is this really cool, it is slower. Of course, if you're using a responsive design, you'll have to weigh this carefully, and probably disregard my advice. Responsive images have a whole host of other puzzles to untangle that requires several posts to tease out.
 
 ## 5. Make the Page Beautiful Without JavaScript
 

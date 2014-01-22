@@ -83,9 +83,11 @@ Next you'll need to install the command line mail client:
 
 Try sending yourself a test email now like this:
 
-   $ mail -s "Testing" root@localhost
-   Cc: [ENTER]
-   [CTRL-D]
+{% highlight bash %}
+$ mail -s "Testing" root@localhost
+Cc: [ENTER]
+[CTRL-D]
+{% endhighlight %}
 
 Pressing CTRL + D ends the message body and sends the message. You should be able to see that message was sent (`Null message body; hope that's ok`). You should be good to go!
 

@@ -7,7 +7,7 @@ In this tutorial, I'm going walk you through how to setup PHP 5.3 and PHP 5.2 on
 
 ##Why???
 
-I'm running [Drupal](http://drupal.org) as the CMS on my personal shared hosting account, and I've been playing with around with (Fat Free Framework)[http://github.com/bcosca/fatfree] for building a lightweight backend and RESTful API to a mobile app. Before dishing out the whopping $50/month to rollout my app on a dedicated server, I just wanted to do some basic user testing early on in the process. So, to save some money, I'm using my personal shared hosting account (with HostGator). 
+I'm running [Drupal](http://drupal.org) as the CMS on my personal shared hosting account, and I've been playing with around with [Fat Free Framework](http://github.com/bcosca/fatfree) for building a lightweight backend and RESTful API to a mobile app. Before dishing out the whopping $50/month to rollout my app on a dedicated server, I just wanted to do some basic user testing early on in the process. So, to save some money, I'm using my personal shared hosting account (with HostGator). 
 
 Unfortunately, Fat Free Framework requires PHP 5.3+ to work it's magic, but HostGator by default uses PHP 5.2. After puttering through their documentation, I discovered that PHP 5.3 comes pre-installed on all shared hosting. Hooray! However, none of the Zend extensions are compatible with HostGator's PHP 5.3 setup, such as PDO, sqlite, pdo_mysql, and others. Here's the rub -- Drupal __depends__ on these modules being loaded. So how can we escape this from this most heart-rending dilemma ever seen???
 
@@ -43,7 +43,7 @@ __NOTE:__ You'll need to change the path to point to the directory where you're 
 
 By default, HostGator puts a php.ini for you in your home directory. Copy that file into the directory where you want to use PHP 5.3; for this example that would be `/home/user/php53`. Open this file in your favorite text editor, and comment out all the lines underneath `[Zend]`. For me, this happens starting on line 1125, but it may be different for you. To comment out a line, simply put a semicolon `;` in front of it.  
 
-Also, PHP 5.3 seems to require a timezone to be set in the php.ini file. Simply add this code to the very bottom (substituting the "`America/Los_Angeles`" with your (time zone)[http://php.net/manual/en/timezones.php]):
+Also, PHP 5.3 seems to require a timezone to be set in the php.ini file. Simply add this code to the very bottom (substituting the "`America/Los_Angeles`" with your [time zone](http://php.net/manual/en/timezones.php)):
 
     [Date]
     date.timezone="America/Los_Angeles"
@@ -80,6 +80,6 @@ Once you've uploaded your custom .htaccess and php.ini to the proper folder, cre
 
 ## Further Reading:
 
-* [http://stackoverflow.com/questions/2271910/edit-htaccess-to-load-php-extension]
-* [http://support.hostgator.com/articles/specialized-help/technical/what-is-php-ini]
-* [http://support.hostgator.com/articles/hosting-guide/hardware-software/php-5-3]
+* [http://stackoverflow.com/questions/2271910/edit-htaccess-to-load-php-extension](http://stackoverflow.com/questions/2271910/edit-htaccess-to-load-php-extension)
+* [http://support.hostgator.com/articles/specialized-help/technical/what-is-php-ini](http://support.hostgator.com/articles/specialized-help/technical/what-is-php-ini)
+* [http://support.hostgator.com/articles/hosting-guide/hardware-software/php-5-3](http://support.hostgator.com/articles/hosting-guide/hardware-software/php-5-3)

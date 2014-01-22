@@ -11,7 +11,7 @@ We've been using [the Domain Access the module](https://drupal.org/project/domai
 
 According to the module's project page, Domain Access (emphasis mine)
 
-> provide[s] tools for running a group of **affiliated sites** from one Drupal installation and a single shared database. The module allows you to share users, **content,** and configurations.
+> provides tools for running a group of **affiliated sites** from one Drupal installation and a single shared database. The module allows you to share users, **content,** and configurations.
 
 The problem this module aims to solve is allowing multiple domains to have **identical content**. If you're trying to build multiple sites with **substantial amounts of identical content**, definitely use the Domain Access module. It's fantastic at making the very same information available on different subdomains (one.example.com and two.example.com) and different top level domains as well (one.com and two.com). One of the best features of Domain Access is the ability to share users and passwords across different sites using the same Drupal authentication system you already know. Awesome!
 

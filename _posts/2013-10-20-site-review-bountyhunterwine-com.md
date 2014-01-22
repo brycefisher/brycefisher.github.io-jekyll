@@ -1,9 +1,9 @@
 ---
 title: "Site Review: BountyHunterWine.com"
 layout: "post"
-excerpt: "BountyHunterWine.com offers a wide selection of wine for purchase online, but their user experience leaves something(s) to be desired. Rather than bailing on their site, I decided to articulate the problems that I encountered and try to suggest constructive alternatives to the current implementations. This post is simply the contents of that letter."
+excerpt: "BountyHunterWine.com offers a wide selection of wine for purchase online, but their user experience leaves something to be desired. Rather than bailing on their site, I decided to articulate the problems that I encountered and try to suggest constructive alternatives to the current implementations. This post is simply the contents of that letter."
 ---
-BountyHunterWine.com offers a wide selection of wine for purchase online, but their user experience leaves something(s) to be desired. Rather than bailing on their site, I decided to articulate the problems that I encountered and try to suggest constructive alternatives to the current implementations. This post is simply the contents of that letter.
+BountyHunterWine.com offers a wide selection of wine for purchase online, but their user experience leaves something to be desired. Rather than bailing on their site, I decided to articulate the problems that I encountered and try to suggest constructive alternatives to the current implementations. This post is simply the contents of that letter.
 
 --------------------------------
 

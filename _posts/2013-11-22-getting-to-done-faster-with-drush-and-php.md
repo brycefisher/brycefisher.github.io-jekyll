@@ -1,7 +1,7 @@
 ---
 title: "Getting to Done Faster with Drush and PHP"
 layout: "post"
-excerpt: "Drush and PHP have several commands that let you "play" with your code much faster than you can traditionally in the browser. I only recently noticed them, and I wanted to summarize how to use three separate but related techniques to write bug free code faster on the command line."
+excerpt: "Drush and PHP have several commands that let you 'play' with your code much faster than you can traditionally in the browser. I only recently noticed them, and I wanted to summarize how to use three separate but related techniques to write bug free code faster on the command line."
 ---
 If you're like me, you've been using Drush ("DRUsh SHell") for a while to make several tasks less tedious: downloading and enabling modules, running database updates, backing up the database, clearing the drupal cache, running drupal cron, and resetting the admin password. Drush does all those things really well for drupal 6 and 7. It just works!
 
