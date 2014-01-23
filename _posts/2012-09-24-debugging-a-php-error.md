@@ -1,7 +1,7 @@
 ---
-title: "Debugging A PHP Error"
+title: Debugging A PHP Error
 layout: "post"
-excerpt: "Guide understanding and fixing many a common php error, and php tools to that help."
+excerpt: "Guide to understanding and fixing many a common php error, and php tools that help."
 category: php
 tags:
 - debugging

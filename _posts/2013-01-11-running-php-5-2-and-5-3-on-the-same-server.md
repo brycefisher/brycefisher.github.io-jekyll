@@ -2,6 +2,7 @@
 title: "Running PHP 5.2 and 5.3 on the Same Server"
 layout: "post"
 excerpt: "A quick tutorial on setting up two versions of php (5.2 and 5.3) on the same HostGator shared hosting account"
+category: php
 ---
 In this tutorial, I'm going walk you through how to setup PHP 5.3 and PHP 5.2 on the same shared hosting account with HostGator. Obviously, having two separate servers would be the ideal scenario, but when budgets don't allow for that, it is possible to run different PHP versions on the same server and even account. Onward!
 

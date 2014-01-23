@@ -2,6 +2,7 @@
 title: "Quick Drupal - Lessons Learned While Whipping Up a Fresh Drupal Instance"
 layout: "post"
 excerpt: "I've recently started experimenting with using drush core-quick-drupal to create drupal sites strictly for creating patches to share on drupal.org. I'll walk you through my several pitfalls on the road to making this command work on Ubuntu 12.04. Hopefully, with this advice in hand, you'll be able to spin up fresh drupal instances in no time!"
+category: planet_drupal
 ---
 I've recently migrated to Ubuntu 12.04 from Windows, and I ran into some issues getting the drush core-quick-drupal command. As a quick refresher, the "quick drupal" command will download, install, and even login to a new drupal instance on your local machine. It's really hand for debugging and also contributing patches back to drupal.org because you eliminate any side effects from bizarre customizations. Coming from a Windows background there were quite a few hurdles I had to figure out -- so I thought I'd record my experiences here for other poor souls trying to use quick drupal on Ubuntu. Some of these tips will doubtless be helpful on Mac or Windows as well.
 

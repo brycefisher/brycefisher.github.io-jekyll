@@ -2,6 +2,7 @@
 title: "Using hook_menu to capture custom menus in code"
 layout: "post"
 excerpt: "A how-to guide on creating a public-facing menu using hook_menu(). We'll also talk about why hook_menu is so bad, 2 techniques for nesting menu items, and how to put a menu item into the menu of your choosing."
+category: planet_drupal
 ---
 Every time I use `hook_menu()`, I get an awful headache. Why? Drupal has overloaded this hook to handle both the menu system and the routing system, which seems like an architectural mistake to me. As a result, `hook_menu()` has many confusing and poorly documented features in the [very lengthy api documentation](https://api.drupal.org/api/drupal/developer!hooks!core.php/function/hook_menu/6). I'm going to walk you through some rather simple steps to using `hook_menu()` to create public-facing menu items. I won't get into the complexities of the routing system.
 

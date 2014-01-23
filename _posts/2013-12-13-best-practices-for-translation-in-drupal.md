@@ -2,6 +2,7 @@
 title: "Best Practices for Translation in Drupal"
 layout: "post"
 excerpt: "I'm sharing lessons learned from my experience using Drupal 6 and i18n for translation. The long story short: Make translation easier by keeping things simple. Don't use the t() when you can keep translatable strings fully in the database, and don't break up individual strings into multiple t()."
+category: planet_drupal
 ---
 One of the biggest reasons my company decided to use Drupal for their [marketing website](http://www.brightcove.com/) is the capacity to translate and "localize" content. Drupal has a series of APIs going back at least to Drupal 4.6 that make it possible to have different paths for various pieces content. Drupal also has the ability to import and export translations of strings stored in code as well as content stored in nodes, taxonomy terms, and more. Most translation vendors can accommodate the exported content into their software and ship back a "localized" version of that content.
 

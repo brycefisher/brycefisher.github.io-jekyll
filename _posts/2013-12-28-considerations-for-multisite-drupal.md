@@ -2,6 +2,7 @@
 title: "Considerations for Multisite Drupal"
 layout: "post"
 excerpt: "At my day job, we've been using the Domain Access module with Drupal 6 for 5 years. Recently, we've decided it's time to rethink our approach to Drupal multisite. In this article, I'll share some of ideal use cases and pitfalls for the Domain module and some alternatives for you to consider."
+category: planet_drupal
 ---
 We've been using [the Domain Access the module](https://drupal.org/project/domain) at my day job for about 5 years with Drupal 6. Recently, we've decided Domain Access is not the right solution for our use case. 
 

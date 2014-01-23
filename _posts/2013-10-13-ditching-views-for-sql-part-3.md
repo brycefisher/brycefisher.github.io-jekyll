@@ -2,6 +2,7 @@
 title: "Ditching Views For SQL, Part 3"
 layout: "post"
 excerpt: "In this third and final installment, I'll walk you through some basic Drupal theme hooks that you can use to create memorable template names and inject all the data just as you need it into that template."
+category: planet_drupal
 ---
 In part one of this series, I discussed [the reasons not to use Views](/blog/ditching-views-sql) including the difficulty in debugging Views and the fact that Views is only in Drupal (whereas SQL is everywhere online). In part two, I walk you through some [simple SQL queries and tools](/blog/ditching-views-sql-part-2) that you'd use to find the data for a sample project. In this post, I'll connect the results of that SQL query to the Drupal theme layer so that we can actually use that dynamic content in our Drupal site without relying on Views. For today's lesson, you should at least be comfortable with some basic Drupal theming already.
 

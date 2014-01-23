@@ -2,6 +2,7 @@
 title: "Settings.php Hack: Keep Credentials out of Your Code"
 layout: "post"
 excerpt: "I'll walk you through how to setup your environment and Drupal settings.php file to keep your credentials out of your code. This makes your settings.php file easier to work with in Git across multiple environments by allowing you to have different credentials for work laptop than the server. You can also keep your settings.php file under source control and even try daring schemes like chmod 644 settings.php! Read on to learn more of this trickery."
+category: planet_drupal
 ---
 Over my three year Drupal career, I've seen several interesting server setups for running Drupal. One technique I've been gravitating toward is storing the environment specific configuration settings **in the environment**. 
 
