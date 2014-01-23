@@ -2,16 +2,20 @@
 title: "Debugging A PHP Error"
 layout: "post"
 excerpt: "Guide understanding and fixing many a common php error, and php tools to that help."
+category: php
+tags:
+- debugging
+- xdebug
 ---
 I classify any PHP error in two flavors: coding errors and design errors. Firstly, I'll discuss what a coding error is, why it might occur, how to find the error, and common fixes. Secondly, I'll compare and contrast with design errors, since they can be more subtle and complex.
 
 ##Coding Errors
 
-Coding errors involved a problem with the actual code written -- for example a misspelled word, a missing semicolon at the end of a line, etc. When configured to do so, PHP can provide error messages when it encounters a coding error, but often times error messages are turned off. However, in order to solve coding errors, you will need to configure PHP to provide you with these error messages.</p>
+Coding errors involved a problem with the actual code written -- for example a misspelled word, a missing semicolon at the end of a line, etc. When configured to do so, PHP can provide error messages when it encounters a coding error, but often times error messages are turned off. However, in order to solve coding errors, you will need to configure PHP to provide you with these error messages.
 
 ### Why Are Error Messages Turned Off?
 
-For security. PHP error messages often display part of the PHP code used to operate your website, or provide detailed information about the inner workings of your code or your webserver. Online predators could use this information to infect your server, gain unauthorized access, do other unpleasant things with your web server. You can make your website considerable more secure from these kinds of risks by keeping PHP error messages hidden from view on any publicly available websites. 
+For security. PHP error messages often display part of the PHP code used to operate your website, or provide detailed information about the inner workings of your code or your webserver. Online predators could use this information to infect your server, gain unauthorized access, do other unpleasant things. You can make your website considerable more secure from these kinds of risks by keeping PHP error messages hidden from view on any publicly available websites. 
 
 ### Finding Error Messages
 
@@ -23,7 +27,11 @@ Typically, you'll have a "development" server on your personal computer or a com
 
 To display error messages for a single file, include this code at the beginning of your code, right after &lt;?php 
 
-    ini_set('display_errors','On');
+{% highlight php %}
+ini_set('display_errors','On');
+
+// Your existing code below here
+{% endhighlight %}
 
 #### 2. Log Error Messages on a Public Website
 
@@ -45,28 +53,28 @@ There are several kinds of errors that you will run into if you work with PHP fo
 
 #### Syntax Errors
 
-The most common errors are syntax errors, and the most common among these are missing semicolons from the end of the previous line, or missing brackets, or missing parentheses. Here is a list of all tokens that might occur in an error message:
-
-<a href="http://us2.php.net/tokens">http://us2.php.net/tokens</a>.</p>
+The most common errors are syntax errors, and the most common among these are missing semicolons from the end of the previous line, or missing brackets, or missing parentheses. Here is a list of [all tokens that might occur in an error message](http://us2.php.net/tokens).
 
 ##### Fixing Common Syntax Errors
 
 PHP error messages always include a file name and a line number. Syntax usually occur on the previous line. Open the file name in error message, go to the line number, and look carefully at the previous line, making sure:
 
-* There is a semicolon at the end of the line (if necessary)</li>
-* All parentheses and brackets open and close properly</li>
-* All single quotes and double quotes have a matching pair</li>
-* Every if statement has a closing bracket</li>
-* Every function has a closing bracket</li>
-* Every class has a closing bracket</li>
-* Every for, while, foreach, and switch statement has a closing bracket</li>
-* Every part of an if statement has an opening and closing parenthesis</li>
+* There is a semicolon at the end of the line (if necessary)
+* All parentheses and brackets open and close properly
+* All single quotes and double quotes have a matching pair
+* Every if statement has a closing bracket
+* Every function has a closing bracket
+* Every class has a closing bracket
+* Every for, while, foreach, and switch statement has a closing bracket
+* Every part of an if statement has an opening and closing parenthesis
 
 If that list didn't solve your problem, try commenting out the entire file, and uncomment line by line until you figure where the error is occurring.
 
 ##### Preventing Syntax Errors
 
-Over time, you are unlikely to stop making this mistake. Therefore, most programmers like to use a text editor that has syntax highlighting so that you'll see visual cues about syntax problems as you type. This way, you can notice these problems right away, instead of spending minutes or hours looking for them on your own. This kind of help will save you hours and hours of time, and make your coding experience much more enjoyable. Some tools automatically create matching pairs of brackets, parentheses, and quotation marks for you as you type. Other programs beep if you type a syntax error. No tool is perfect, but most text editors will help you spot 99% of these kind of syntax errors.
+Over time, you are unlikely to stop making this mistake. Therefore, most programmers like to use a text editor that has syntax highlighting so that you'll see visual cues about syntax problems as you type. This way, you can notice these problems right away, instead of spending minutes or hours looking for them on your own. This kind of help will save you hours and hours of time, and make your coding experience much more enjoyable. Some tools automatically create matching pairs of brackets, parentheses, and quotation marks for you as you type. Other programs beep if you type a syntax error. 
+
+Personally, I've been VIm for years because it's free to download and use, it's crossplatform, it's on every linux machine ever, and it has a very healthy ecosystem of users and plugins. Have a look at [my php syntax checking trick for vim]({% post_url 2013-04-06-simple-check-for-php-syntax-errors-in-vim %}) if you decide to give VIm a spin. No tool is perfect, but most text editors will help you spot 99% of these kind of syntax errors.
 
 ## Design Errors
 
@@ -88,6 +96,6 @@ Sometimes you just have to get something very specific to work a certain way. In
 
 Use the `var_dump()` or `exit()` function to see what's happening at critical moments in your code, such as checking what arguments were passed to your function, or if a function is being called at all. This is best way to get familiar with a small section of code that is doing something strange. The trick is to _figure out where you STOP understanding_ what's going on, and try to test different variables and values in the code to understand what's happening there. **Don't assume anything!** Keep finding and figuring out roadblocks _one at a time_ until you've worked through the problem.
 
-There are several tools that can help you "step" through the code to check variables at point in the execution of a script. Perhaps the most popular tool is xdebug (<a href="http://xdebug.org/index.php">http://xdebug.org/index.php</a>).
+There are several tools that can help you "step" through the code to check variables at point in the execution of a script. Perhaps the most popular tool is [xdebug](http://xdebug.org/index.php).
 
 While this is a great way to understand code, it's very time consuming if you're working with a large piece of software like WordPress, Joomla, or Drupal. However, if you're a novice programmer or a PHP newbie, this is the best guide to learning PHP there is.

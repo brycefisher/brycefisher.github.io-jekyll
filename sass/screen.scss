@@ -55,7 +55,9 @@ blockquote { border-left: solid 6px #666; color: #666; padding-left: 6px; }
   }
 
   .article-body {
-    p { margin-bottom: 1em; }
+    ul, ol, p { margin-bottom: 1em; }
+    ul li, ol li { margin-left: 1em; }
+    ul { list-style: outside square; }
   }
 
   .article-footer {
