@@ -75,3 +75,6 @@ blockquote { border-left: solid 6px #666; color: #666; padding-left: 6px; }
 .node-article .article-footer .related-content ul { list-style: square outside; margin-left: 24px; }
 
 @media screen and (min-width: 450px) { html { font-size: 20px; line-height: 30px; } }
+@media screen and (min-width: 624px) { #home #main-content { width: 600px; margin: 0 auto; } }
+#home #main-content article { margin: 30px; }
+#home #main-content .pagination { margin: 60px auto 0 auto; text-align: center; }
