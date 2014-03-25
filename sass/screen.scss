@@ -6,6 +6,15 @@
 @import "compass/reset";
 @import "compass";
 
+@mixin centered-content {
+  @media screen and (min-width: 624px) {
+    width: 600px;
+    margin: 0 auto;
+  }
+}
+
+////////////////////
+// Fonts
 @font-face {
   font-family: 'liberation_serifregular';
   src: url('../fonts/LiberationSerif-Regular-webfont.eot');
@@ -17,6 +26,8 @@
   font-style: normal;
 }
 
+/////////////////////
+// Typography
 html { font-family: 'liberation_serifregular'; font-size: 16px; line-height: 24px; }
 
 h1 { font-size: 40px; line-height: 48px; margin: 6px 0; font-weight: bold; }
@@ -37,6 +48,8 @@ blockquote { border-left: solid 6px #666; color: #666; padding-left: 6px; }
 
 .responsive-video { width: 100%; height: auto !important; margin: 6px 0; }
 
+////////////////////////////////
+// Layout
 #header {
   background: url('../img/header.jpg') repeat-x; height: 36px;
 
@@ -47,7 +60,9 @@ blockquote { border-left: solid 6px #666; color: #666; padding-left: 6px; }
 #main-content { margin: 0 12px; }
 
 .node-article {
+
   .article-header {
+    @include centered-content;
     margin-bottom: 12px;
 
     datetime { display: block; }
@@ -55,6 +70,8 @@ blockquote { border-left: solid 6px #666; color: #666; padding-left: 6px; }
   }
 
   .article-body {
+    @include centered-content;
+
     ul, ol, p { margin-bottom: 1em; }
     ul li, ol li { margin-left: 1em; }
     ul { list-style: outside square; }
@@ -70,10 +87,22 @@ blockquote { border-left: solid 6px #666; color: #666; padding-left: 6px; }
       .primary-cta strong { display: block; font-size: 27px; line-height: 36px; text-shadow: 2px 2px #333; }
     }
 
+    .comments { 
+      @include centered-content;
+      padding: 0 12px;
+    }
+
     .related-content {
+      @include centered-content;
       padding: 0 12px;
 
       ul { list-style: square outside; margin-left: 24px; }
     }
   }
+}
+
+///////////////////////////
+// Media Queries
+@media screen and (min-width: 450px) {
+  html { font-size: 20px; line-height: 30px; }
 }
