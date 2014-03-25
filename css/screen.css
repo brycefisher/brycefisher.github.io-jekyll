@@ -58,7 +58,7 @@ blockquote { border-left: solid 6px #666; color: #666; padding-left: 6px; }
 
 .node-article .article-header { margin-bottom: 12px; }
 @media screen and (min-width: 624px) { .node-article .article-header { width: 600px; margin: 0 auto; } }
-.node-article .article-header datetime { display: block; }
+.node-article .article-header datetime { display: block; margin-bottom: 30px; }
 .node-article .article-header .article-image { display: block; width: 100%; height: auto !important; }
 @media screen and (min-width: 624px) { .node-article .article-body { width: 600px; margin: 0 auto; } }
 .node-article .article-body ul, .node-article .article-body ol, .node-article .article-body p { margin-bottom: 1em; }

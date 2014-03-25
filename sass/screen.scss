@@ -65,7 +65,7 @@ blockquote { border-left: solid 6px #666; color: #666; padding-left: 6px; }
     @include centered-content;
     margin-bottom: 12px;
 
-    datetime { display: block; }
+    datetime { display: block; margin-bottom: 30px; }
     .article-image { display: block; width: 100%; height: auto !important; }
   }
 
