@@ -46,7 +46,9 @@ code { font-family: monospace; font-size: 14px; }
 
 pre code { display: block; color: white; background-color: #333; padding: 6px 0 6px 1em; margin-bottom: 24px; word-wrap: break-word; white-space: pre-wrap; }
 
-blockquote { border-left: solid 6px #666; color: #666; padding-left: 6px; }
+blockquote { border-left: solid 6px #666; color: #666; padding-left: 24px; }
+
+blockquote + h2, blockquote + h3, blockquote + h4, blockquote + h5, blockquote + h6 { padding-top: 24px; }
 
 .responsive-video { width: 100%; height: auto !important; margin: 6px 0; }
 
@@ -60,7 +62,7 @@ blockquote { border-left: solid 6px #666; color: #666; padding-left: 6px; }
 @media screen and (min-width: 624px) { .node-article .article-header { width: 600px; margin: 0 auto; } }
 .node-article .article-header datetime { display: block; margin-bottom: 30px; }
 .node-article .article-header .article-image { display: block; width: 100%; height: auto !important; }
-.node-article .article-body { padding-bottom: 24px; }
+.node-article .article-body { padding-bottom: 60px; }
 @media screen and (min-width: 624px) { .node-article .article-body { width: 600px; margin: 0 auto; } }
 .node-article .article-body ul, .node-article .article-body ol, .node-article .article-body p { margin-bottom: 1em; }
 .node-article .article-body ul li, .node-article .article-body ol li { margin-left: 1em; }

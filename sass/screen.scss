@@ -44,7 +44,12 @@ em { font-style: italic; }
 
 code { font-family: monospace; font-size: 14px; }
 pre code { display: block; color: white; background-color: #333; padding: 6px 0 6px 1em; margin-bottom: 24px; word-wrap: break-word; white-space: pre-wrap; }
-blockquote { border-left: solid 6px #666; color: #666; padding-left: 6px; }
+blockquote { border-left: solid 6px #666; color: #666; padding-left: 24px; }
+blockquote + h2,
+blockquote + h3,
+blockquote + h4,
+blockquote + h5,
+blockquote + h6 { padding-top: 24px; }
 
 .responsive-video { width: 100%; height: auto !important; margin: 6px 0; }
 
@@ -71,7 +76,7 @@ blockquote { border-left: solid 6px #666; color: #666; padding-left: 6px; }
 
   .article-body {
     @include centered-content;
-    padding-bottom: 24px;
+    padding-bottom: 60px;
 
     ul, ol, p { margin-bottom: 1em; }
     ul li, ol li { margin-left: 1em; }
