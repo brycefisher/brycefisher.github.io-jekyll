@@ -14,7 +14,7 @@ So, if you're reading this post you probably want to upload some code into the c
 
 ## So WTF Is a Security Group Anyway?
 
-Essentially, an AWS <term>security group</term> is a [firewall](https://en.wikipedia.org/wiki/Firewall_%28computing%29) that [whitelists](https://en.wikipedia.org/wiki/Whitelist) access to any number of EC2 instances. The security group is a bouncer that keeps the riff-raff out of a VIP club &mdash; if you&apos;re not on the list, you don&apos;t get into the club. According to the [official AWS documentation](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html), 
+Essentially, an AWS **security group** is a [firewall](https://en.wikipedia.org/wiki/Firewall_%28computing%29) that [whitelists](https://en.wikipedia.org/wiki/Whitelist) access to any number of EC2 instances. The security group is a bouncer that keeps the riff-raff out of a VIP club &mdash; if you&apos;re not on the list, you don&apos;t get into the club. According to the [official AWS documentation](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html), 
 
 > Security group rules are always permissive; you can't create rules that deny access.
 

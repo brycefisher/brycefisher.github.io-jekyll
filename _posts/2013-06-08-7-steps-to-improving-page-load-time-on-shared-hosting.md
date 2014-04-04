@@ -1,15 +1,15 @@
 ---
 title: "7 Steps to Improving Page Load Time on Shared Hosting"
 layout: "post"
-excerpt: ""
+excerpt: "I recently optimized page load time for the Spelling Word’s Well homepage as part of a redesign. Using the YSlow Add-on helped, but I still had a learning curve to face, and I also uncovered some other tricks. Here’s a summary of the most important steps I took."
 ---
 I recently optimized page load time for the <a href="http://spelling-words-well.com">Spelling Word's Well homepage</a> as part of a redesign. Using the <a href="http://yslow.org">YSlow Add-on</a> helped, but I still had a learning curve to face, and I also uncovered some other tricks. Here's a summary of the most important steps I took:
 
 ## 1. Make a DIY, Cookie-free Content Delivery Network
 
-The key ingredient here is to use a subdomain that delivers **all** your static content: images, css, static json files, xml dumps, javascript, etc. So, you'll need to assemble all those assets if they are scattered around. I often have cPanel available on my shared hosting sites. Log into cPanel and click **Subdomains** in the Domains box. You'll see something like this:
+The key ingredient here is to use a subdomain that delivers **all** your static content: images, css, static json files, xml dumps, javascript, etc. So, you'll need to assemble all those assets if they are scattered around. I often have cPanel available on my shared hosting sites. Log into cPanel and click **Subdomains** in the Domains box. <!--You'll see something like this:-->
 
-![cPanel form for creating a subdomain](/sites/default/files/field/image/cPanel-make-subdomain.png)
+<!--![cPanel form for creating a subdomain](/sites/default/files/field/image/cPanel-make-subdomain.png)-->
 
 Choose a subdomain name that makes sense to you. I like to store these files outside of the public directory of the main domain (hence /subdomains/static instead of /public_html/static in the screenshot). Once this directory is created, be ruthless about putting everything you can on this subdomain, and update your html to use this subdomain.
 
@@ -19,7 +19,7 @@ Choose a subdomain name that makes sense to you. I like to store these files out
 
 Create an htaccess file in the root directory of your subdomain (in my example, /subdomains/static/.htaccess). The following .htaccess file asks browsers to store images and other static assets in it's cache longer for better repeat traffic. It utilizes mod_deflate to compress all kinds of text files (js, xml, html, css, ajax, etc.) over the netwok. It also blocks access to directory listings and sensitive batch files for security.
 
-<script src="https://gist.github.com/brycefisher/5734403.js"></script>
+[See this as a gist](https://gist.github.com/brycefisher/5734403)
 
 ## 3. Fight the Scourge of Social Sharing Widgets
 

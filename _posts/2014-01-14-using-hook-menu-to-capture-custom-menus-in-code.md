@@ -24,13 +24,13 @@ I should also note that it's good to look at the admin menu page periodically to
 
 Let's talk about the function signature. Don't accept any arguments into your function. Do return an array, which is by convention named `$items`. The outline of the function will look like this:
 
-<pre><code>
+{% highlight php %}
 function mymodule_menu() {
     $items = array();
 
     return $items;
 }
-</code></pre>
+{% endhighlight %}
 
 This is correct, but won't do anything yet.
 
@@ -38,7 +38,7 @@ This is correct, but won't do anything yet.
 
 To actually create some menu items, we'll need to set the paths for the menu items as keys in the `$items` array. Here's a simple example:
 
-<pre><code>
+{% highlight php %}
 function mymodule_menu() {
     $items = array();
 
@@ -46,11 +46,11 @@ function mymodule_menu() {
 
     return $items;
 }
-</code></pre>
+{% endhighlight %}
 
 The key line above is `$items['status'] = array()`. The array key 'status' tells Drupal to listen for requests at that path or route. (I use the terms "path" and "route" interchangeably throughout this article.) We'll need to fill in some more code to tell Drupal how to respond to requests on that route:
 
-<pre><code>
+{% highlight php %}
 function mymodule_menu() {
     $items = array();
 
@@ -63,7 +63,7 @@ function mymodule_menu() {
 
     return $items;
 }
-</code></pre>
+{% endhighlight %}
 
 The nested array takes several different keys. This is where the online documentation gets really hard to read. Some keys are incompatible or nonsensical with other keys, and other keys are required but only in certain situations. The above code is one combination of keys that will work to create a new top level menu item in the Main Menu labelled 'My Status Page'. Here's a detailed explanation:
 
@@ -75,7 +75,7 @@ The nested array takes several different keys. This is where the online document
 
 The `'page callback'` specifies a callback function name. So, I would need to write a function mymodule_status_page(). If your custom menu item is outputting html, you'll want to eventually output using the `theme('page', ...)` function. For example:
 
-<pre><code>
+{% highlight php %}
 function mymodule_status_page() {
     // Do custom stuff here
     $html = ''; //Put the final markup in $html
@@ -83,7 +83,7 @@ function mymodule_status_page() {
     // theme('page') will wrap your output with a page in the create theme (admin or public).
     print theme('page', $html);
 }
-</code></pre>
+{% endhighlight %}
 
 ## Hierarchy: Taking it to the next level
 
@@ -93,7 +93,7 @@ What if we wanted to nest a menu item? There are two ways of doing this.
 
 By default, Drupal will look at the registered paths in the menu/router system, and it will organize them hierarchically. So, if we wanted to add a subpage underneath our 'status' route (defined above), we could create a new route at 'status/us-east-1'. Here's the code we'd need to use to do that:
 
-<pre><code>
+{% highlight php %}
 function mymodule_menu() {
     $items = array();
 
@@ -109,7 +109,7 @@ function mymodule_menu() {
 
     return $items;
 }
-</code></pre>
+{% endhighlight %}
 
 I've omitted the keys ('title', etc) for clarity's sake, but all the keys on each route work just as we discussed above. 
 
@@ -134,7 +134,7 @@ The tricky step here is finding the mlid value of the parent. The simplest way t
 
 Here's what that code looks like:
 
-<pre><code>
+{% highlight php %}
 function mymodule_menu() {
     $items = array();
 
@@ -146,4 +146,4 @@ function mymodule_menu() {
 
     return $items;
 }
-</code></pre>
+{% endhighlight %}
