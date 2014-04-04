@@ -71,10 +71,12 @@ blockquote { border-left: solid 6px #666; color: #666; padding-left: 6px; }
 
   .article-body {
     @include centered-content;
+    
 
     ul, ol, p { margin-bottom: 1em; }
     ul li, ol li { margin-left: 1em; }
     ul { list-style: outside square; }
+    ol { list-style: outside decimal; margin-left:10px; }
   }
 
   .article-footer {
