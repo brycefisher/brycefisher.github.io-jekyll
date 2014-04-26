@@ -13,7 +13,9 @@ The key ingredient here is to use a subdomain that delivers **all** your static 
 
 Choose a subdomain name that makes sense to you. I like to store these files outside of the public directory of the main domain (hence /subdomains/static instead of /public_html/static in the screenshot). Once this directory is created, be ruthless about putting everything you can on this subdomain, and update your html to use this subdomain.
 
-**UPDATE:** Finally, make your DIY CDN real [using CloudFlare for free](https://www.cloudflare.com/features-cdn). I'll be covering this in detail in a future post. Stay tuned!
+**UPDATE:** Finally, make your DIY CDN real [using CloudFlare for free](https://www.cloudflare.com/features-cdn).
+
+**UPDATE April, 2014:** See my walkthrough describing how to [setup AWS CloudFront with a custom SSL cert and an AWS S3 bucket](/blog/setting-up-ssl-on-aws-cloudfront-and-s3/) (what I do on this site) for as little as $10 for the 1st year.
 
 ## 2. Supercharge Your Subdomain
 
