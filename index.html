@@ -21,7 +21,9 @@ css_id: home
 
 <!-- Pagination links -->
 <div class="pagination">
-  {% if paginator.previous_page %}
+  {% if paginator.previous_page and paginator.page == 2 %}
+    <a href="/" class="previous">Previous</a>
+  {% elsif paginator.previous_page %}
     <a href="/blog/{{ paginator.previous_page }}" class="previous">Previous</a>
   {% endif %}
 
