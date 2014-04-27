@@ -25,4 +25,4 @@ For my day job, I'm currently stuck with Drupal 6, so I don't even have the Enti
 
 ## Up Next
 
-Ready to make the shift? Check out [Ditching Views part 2](http://bryceadamfisher.com/blog/ditching-views-sql-part-2) to learn about how to implement my advice on your own drupal instance.
+Ready to make the shift? Check out [Ditching Views part 2](http://bryceadamfisher.com/blog/ditching-views-for-sql-part-2) to learn about how to implement my advice on your own drupal instance.

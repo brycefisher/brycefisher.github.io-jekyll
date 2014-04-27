@@ -4,7 +4,7 @@ layout: "post"
 excerpt: "In this third and final installment, I'll walk you through some basic Drupal theme hooks that you can use to create memorable template names and inject all the data just as you need it into that template."
 category: planet_drupal
 ---
-In part one of this series, I discussed [the reasons not to use Views](/blog/ditching-views-sql) including the difficulty in debugging Views and the fact that Views is only in Drupal (whereas SQL is everywhere online). In part two, I walk you through some [simple SQL queries and tools](/blog/ditching-views-sql-part-2) that you'd use to find the data for a sample project. In this post, I'll connect the results of that SQL query to the Drupal theme layer so that we can actually use that dynamic content in our Drupal site without relying on Views. For today's lesson, you should at least be comfortable with some basic Drupal theming already.
+In part one of this series, I discussed [the reasons not to use Views](/blog/ditching-views-for-sql) including the difficulty in debugging Views and the fact that Views is only in Drupal (whereas SQL is everywhere online). In part two, I walk you through some [simple SQL queries and tools](/blog/ditching-views-for-sql-part-2) that you'd use to find the data for a sample project. In this post, I'll connect the results of that SQL query to the Drupal theme layer so that we can actually use that dynamic content in our Drupal site without relying on Views. For today's lesson, you should at least be comfortable with some basic Drupal theming already.
 
 ## The End Goal
 
@@ -12,6 +12,7 @@ As a quick reminder from last week, this blog post is a record of how I'm planni
 
 The final markup should look something like this:
 
+{% highlight html %}
     <ol class="blog-articles">
         <li class="article nid-1">
             <a href="http://bryceadamfisher.com/blog/first-post">
@@ -21,6 +22,7 @@ The final markup should look something like this:
         </li>
         <!-- More posts go here just like the above post -->
     </ol>
+{% endhighlight %}
 
 ## Hook_theme() 101
 
@@ -38,6 +40,7 @@ Some function names are special in Drupal. Functions that use certain names are 
 
 Inside your theme folder (/sites/all/themes/myblog), create or edit the file template.php. Inside this file, create a function `myblog_theme()` like this:
 
+{% highlight php %}
     function myblog_theme($existing, $type) {
         return array(
             'front_blog_teasers' => array(
@@ -45,6 +48,7 @@ Inside your theme folder (/sites/all/themes/myblog), create or edit the file tem
             ),
         );
     }
+{% endhighlight %}
 
 Here's the important points to note:
 
@@ -58,9 +62,9 @@ This function is only invoked during Drupal cron runs, and the results are cache
 
 We've done three important things with this hook:
 
-1. Registered new custom theming
-2. Connected that custom theming to a specific template in a debug-friendly way
-3. Made new preprocess functions available
+ 1. Registered new custom theming
+ 2. Connected that custom theming to a specific template in a debug-friendly way
+ 3. Made new preprocess functions available
 
 We'll take advantage of each of these pieces to do everything that Views was doing for us earlier.
 
@@ -68,15 +72,19 @@ We'll take advantage of each of these pieces to do everything that Views was doi
 
 Anywhere we want to display our dynamic content, we can invoke:
 
+{% highlight php %}
     <?php
     print theme('front_blog_teaser');
     ?>
+{% endhighlight %}
 
 If you're accustomed to working with Views, the equivalent code would be something like:
 
+{% highlight php %}
     <?php
     print views_embed_view('name_of_view');
     ?>
+{% endhighlight %}
 
 In this project for my blog, I'd place this code just under the `$content` region in page--front.tpl.php. 
 
@@ -92,6 +100,7 @@ Using `hook_theme`, we can do a text search for the name of the template across 
 
 Let's actually write the template file code now. Inside the directory /sites/all/themes/myblog/, create the file `front-blog-teaser.tpl.php`. Remember, we'll want to display any number of different post teasers on the homepage. Let's take the markup we want to end up with (above), and substitute imaginary variable names into that html. Later, we'll make sure these variables get injected just how we want them, but for now let's focus on the end result. Here's what I would do:
 
+{% highlight php %}
     <ol class="blog-articles">
     <?php foreach($articles as $article) : ?>
         <li class="article nid-<?php print $article->nid; ?>">
@@ -102,10 +111,12 @@ Let's actually write the template file code now. Inside the directory /sites/all
         </li>
     <?php endforeach; ?>
     </ol>
+{% endhighlight %}
 
 Quick observations:
-* An array of objects named `articles` must be injected into this template
-* Each object inside `articles` should have the properties, title, nid, and summary.
+
+ * An array of objects named `articles` must be injected into this template
+ * Each object inside `articles` should have the properties, title, nid, and summary.
 
 ### A Word On Debugging Templates
 
@@ -127,6 +138,7 @@ In Drupal, registering a new custom theming in hook_theme automatically makes a 
 
 So for our situation, we'll want to put the drupal SQL query we wrote in part 2 inside the preprocess function and then pass those variables back to the template. Here's how we do that:
 
+{% highlight php %}
     <?php
     function myblog_preprocess_front_blog_teasers(&$vars) {
       // Query all the raw blog teaser data
@@ -150,6 +162,7 @@ So for our situation, we'll want to put the drupal SQL query we wrote in part 2 
       $vars['articles'] = $articles;
     }
     ?>
+{% endhighlight %}
 
 There's only two changes here. You notice that we queried the database for the whole body value using SQL, but we're displaying the article summary in the template. I added this line of code to create the summary: `$row->summary = mb_substr($row->body_value, 0, 200);`. The reason I did this was to demonstrate how you might prepare some special information for the template. I should point out however that there is a whole field in the database for the summary and you should probably you use that field instead since blog authors might use a different summary than the first 200 characters of their article.
 
@@ -164,7 +177,3 @@ We could have done a lot more. We could used SQL to capture the number of commen
 ## Conclusion
 
 Although it takes more time to setup, using SQL and hook_theme allowed us to write easily debuggable and understandable code with much less CPU overhead than running Views. You'll thank yourself at 1am when you need to fix something fast on the homepage that you didn't use Views. 
-
-## Extending the conversation
-
-Like this post? Share it on twitter. Feel free to reach out to me @BryceAdamFisher on twitter or email me through the contact form.
