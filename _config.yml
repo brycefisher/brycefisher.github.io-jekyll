@@ -1,6 +1,7 @@
 url: "https://bryce.fisher-fleig.org"
+rss_url: "http://bryce.fisher-fleig.org"
 name: "Bryce Fisher-Fleig"
-description: "Drupal and Front End Best Practices"
+description: "Rust, Javascript, Php, Drupal, and Front End Web Development"
 
 safe: false
 timezone: America/Los_Angelos
