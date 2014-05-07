@@ -17,6 +17,8 @@ include:
 - favicon.ico
 
 permalink: /blog/:title
+relative_permalinks: false
 pygments: true
 paginate: 10
 paginate_path: /blog/:num
+markdown: kramdown

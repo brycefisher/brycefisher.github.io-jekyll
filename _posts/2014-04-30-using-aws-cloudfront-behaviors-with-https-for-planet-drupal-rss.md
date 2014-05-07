@@ -13,13 +13,14 @@ Unfortunately, I discovered that [RSS feed aggregators](http://feedvalidator.org
 
 If you're using CloudFront, it's actually very simple to serve your feeds over HTTP and redirect everything else to HTTPS. Let's assume you already direct all your traffic to HTTPS. Here's how to add an exception:
 
+
  1. Open CloudFront in Web Console
  2. Edit the Distribution
  3. Click on "Behaviors"
  4. Add a new behavior, setting the following settings:
-    <ul><li><strong>Path Pattern</strong> - setup a regex that matches your RSS feeds. I set all my RSS feeds as feed.xml, so for me this value was "*/feed.xml"</li>
-    <li><strong>Origin</strong> - choose your existing Origin from the dropdown list</li>
-    <li><strong>Viewer Protocol Policy</strong> - use the default setting here (this setting is the important one)</li></ul>
+    * <strong>Path Pattern</strong> - setup a regex that matches your RSS feeds. I set all my RSS feeds as feed.xml, so for me this value was "*/feed.xml"
+    * <strong>Origin</strong> - choose your existing Origin from the dropdown list
+    * <strong>Viewer Protocol Policy</strong> - use the default setting here (this setting is the important one)
  5. Save it!
  
 Once your distribution finishes updating the edge servers, you should be able to access your feed over HTTP (and HTTPS), but everything else should redirect to HTTPS. Tada!
