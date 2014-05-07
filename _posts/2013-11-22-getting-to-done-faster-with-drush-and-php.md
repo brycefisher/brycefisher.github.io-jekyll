@@ -61,7 +61,7 @@ Notice that you still need to issue some sort of print/var_dump command to see t
 
 I no longer have a windows machine at home, but this works a little differently on Windows. Here's an example from memory:
 
-{% highlight %}
+{% highlight powershell %}
 C:\> php -e
 
 <?php
