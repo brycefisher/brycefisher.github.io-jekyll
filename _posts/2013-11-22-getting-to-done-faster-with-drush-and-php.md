@@ -61,17 +61,17 @@ Notice that you still need to issue some sort of print/var_dump command to see t
 
 I no longer have a windows machine at home, but this works a little differently on Windows. Here's an example from memory:
 
-<pre><code>
-C:\ &gt; php -e
+{% highlight %}
+C:\> php -e
 
-&lt;?php
+<?php
 $x = serialize(array(1 => 'abc'));
 echo $x;
-?&gt;CTRL-Z
+?>CTRL-Z
 a:1:{i:1;s:3:"abc";}
 
-C:\ &gt;
-</code></pre>
+C:\>
+{% endhighlight %}
 
 So, the main thing to note is that php on windows will treat whatever you type as a regular php file which requires the use of <?php and ?> to work. Also, php won't start interpreting until you press CTRL + Z and ENTER after the closing ?>. So, this is less useful on windows, but still really handy when you need it.
 

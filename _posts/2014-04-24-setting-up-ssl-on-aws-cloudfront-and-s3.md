@@ -22,18 +22,18 @@ Throughout this tutorial I'll use the domain name of this blog to help you under
  3. Copy and paste this JSON snippet into the policy editor:
 
 {% highlight json %}
-    {
-      "Version":"2012-10-17",
-      "Statement":[{
-          "Sid":"PublicReadGetObject",
-          "Effect":"Allow",
-          "Principal": {
-            "AWS": "*"
-          },
-          "Action":["s3:GetObject"],
-          "Resource":["arn:aws:s3:::bryce-fisher-fleig-org/*"]
-      }]
-    }
+{
+  "Version":"2012-10-17",
+  "Statement":[{
+    "Sid":"PublicReadGetObject",
+    "Effect":"Allow",
+    "Principal": {
+      "AWS": "*"
+    },
+    "Action":["s3:GetObject"],
+    "Resource":["arn:aws:s3:::bryce-fisher-fleig-org/*"]
+  }]
+}
 {% endhighlight %}
 
  4. Change "bryce-fisher-fleig-org" above to your bucket name
@@ -64,12 +64,16 @@ Once you've paid for a certificate, you'll need to generate two cryptographic fi
 
 ### Step 3.A: Make a private key
 
-    $ mkdir bff-certs && cd bff-certs
-    $ openssl genrsa 2048 > bryce-fisher-fleig-org.key
+{% highlight bash %}
+$ mkdir bff-certs && cd bff-certs
+$ openssl genrsa 2048 > bryce-fisher-fleig-org.key
+{% endhighlight %}
 
 ### Step 3.B: Make a CSR
 
-    $ openssl req -new -key bryce-fisher-fleig-org.key -out bryce-fisher-fleig-org.csr
+{% highlight bash %}
+$ openssl req -new -key bryce-fisher-fleig-org.key -out bryce-fisher-fleig-org.csr
+{% endhighlight %}
 
 Openssl will ask you a series of questions once you enter the command above:
 
@@ -112,33 +116,39 @@ Amazon stores all of the SSL certificates used by any of the AWS services inside
  10. Copy and paste this JSON snippet into the Policy Editor and click save:
 
 {% highlight json %}
-    {
-      "Version": "2012-10-17",
-      "Statement": [{
-        "Effect": "Allow",
-        "Action": ["*"],
-        "Resource": ["*"]
-      }]
-    }
+{
+  "Version": "2012-10-17",
+  "Statement": [{
+    "Effect": "Allow",
+    "Action": ["*"],
+    "Resource": ["*"]
+  }]
+}
 {% endhighlight %}
  
 The JSON snippet above gives this user all privileges, so be careful! 
 
 **Setup AWS Cli** For Mac just use homebrew:
 
-    $ brew up
-    $ brew install aws-cfn-tools aws-iam-tools
+{% highlight bash %}
+$ brew up
+$ brew install aws-cfn-tools aws-iam-tools
+{% endhighlight %}
 
 On Debian/Ubuntu, just apt-get:
 
-    $ sudo apt-get install python python-pip
-    $ sudo pip install awscli
+{% highlight bash %}
+$ sudo apt-get install python python-pip
+$ sudo pip install awscli
+{% endhighlight %}
 
 For other platforms, see the [official AWS documentation](http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-set-up.html)
 
 **Configure the AWS Cli:**
 
-    $ aws configure
+{% highlight bash %}
+$ aws configure
+{% endhighlight %}
 
 The only tricky part here is to make sure you enter the IAM credentials for our SslKingPin user. The other settings are a matter of preference.
 
@@ -149,13 +159,13 @@ The only tricky part here is to make sure you enter the IAM credentials for our 
  3. Follow these steps to upload your ssl certificate to IAM:
 
 {% highlight bash %}
-    $ cd /path/to/certificate/files/
-    $ aws iam upload-server-certificate \
-    --server-certificate-name BryceFisherFleigOrg \
-    --certificate-body file://bryce_fisher-fleig_org.crt \
-    --private-key file://bryce-fisher-fleig-org.key \
-    --certificate-chain file://PostivieSSLCA2.crt \
-    --path /cloudfront/bryce-fisher-fleig/
+$ cd /path/to/certificate/files/
+$ aws iam upload-server-certificate \
+  --server-certificate-name BryceFisherFleigOrg \
+  --certificate-body file://bryce_fisher-fleig_org.crt \
+  --private-key file://bryce-fisher-fleig-org.key \
+  --certificate-chain file://PostivieSSLCA2.crt \
+  --path /cloudfront/bryce-fisher-fleig/
 {% endhighlight %}
 
 This command is REALLY tricky to get right. So, lets break it down a bit:

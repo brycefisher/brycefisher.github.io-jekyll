@@ -35,14 +35,17 @@ This strategy actively shields your content from being discoverable by search en
  
  5. Underneath the line starting with "Resource", add this:
  
+{% highlight json %}
         "Condition": {
 				"StringEqualsIgnoreCase": {
 					"aws:UserAgent": "Amazon CloudFront"
 				}
 			}
+{% endhighlight %}
 
 The whole should probably look something like this:
 
+{% highlight json %}
     {
     	"Version": "2012-10-17",
     	"Statement": [
@@ -62,6 +65,7 @@ The whole should probably look something like this:
     		}
     	]
     }
+{% endhighlight %}
 
 ### Did It Work??
 
@@ -83,7 +87,9 @@ As a quick aside, CloudFront does provide a mechanism that allows direct access 
 
 Let's take a look at the second strategy to avoid duplicate content penalties: canonical urls in a link tag. All you have to do is a link tag with rel canoncial and href `http://your/real/url/here`. You can look at the source code of this page, or do something like the following:
 
+{% highlight html %}
     <link rel="canonical" href="https://bryce.fisher-fleig.org/blog/avoiding-duplicate-content-penalty-with-aws-s3-and-cloudfront">
+{% endhighlight %}
 
 This technique is much weaker in that we're providing suggestions to Google's crawlers, but we can't force the crawlers to comply. Nevertheless, if your mother always taught you it's not polite to user agent sniff, canonical url links are completely kosher. Also, they won't randomly take your site down when CloudFront gets a new user agent.
 
