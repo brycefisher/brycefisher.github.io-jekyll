@@ -22,7 +22,7 @@ html { font-family: 'liberation_serifregular'; font-size: 16px; line-height: 24p
 
 h1 { font-size: 40px; line-height: 48px; margin: 6px 0; font-weight: bold; }
 
-h2 { font-size: 30px; line-height: 36px; margin: 6px 0; font-weight: bold; }
+h2 { font-size: 30px; line-height: 36px; margin: 36px 6px 0; font-weight: bold; }
 
 h3 { font-size: 24px; line-height: 30px; margin: 3px 0; font-weight: bold; }
 
@@ -60,10 +60,12 @@ blockquote + h2, blockquote + h3, blockquote + h4, blockquote + h5, blockquote +
 
 .node-article .article-header { margin-bottom: 12px; }
 @media screen and (min-width: 624px) { .node-article .article-header { width: 600px; margin: 0 auto; } }
+@media screen and (min-width: 800px) { .node-article .article-header { width: 750px; } }
 .node-article .article-header datetime { display: block; margin-bottom: 30px; }
 .node-article .article-header .article-image { display: block; width: 100%; height: auto !important; }
 .node-article .article-body { padding-bottom: 60px; }
 @media screen and (min-width: 624px) { .node-article .article-body { width: 600px; margin: 0 auto; } }
+@media screen and (min-width: 800px) { .node-article .article-body { width: 750px; } }
 .node-article .article-body ul, .node-article .article-body ol, .node-article .article-body p { margin-bottom: 1em; }
 .node-article .article-body ul li, .node-article .article-body ol li { margin-left: 1em; }
 .node-article .article-body ul { list-style: outside square; }
@@ -74,11 +76,14 @@ blockquote + h2, blockquote + h3, blockquote + h4, blockquote + h5, blockquote +
 .node-article .article-footer .article-call-to-action .primary-cta strong { display: block; font-size: 27px; line-height: 36px; text-shadow: 2px 2px #333; }
 .node-article .article-footer .comments { padding: 0 12px; }
 @media screen and (min-width: 624px) { .node-article .article-footer .comments { width: 600px; margin: 0 auto; } }
+@media screen and (min-width: 800px) { .node-article .article-footer .comments { width: 750px; } }
 .node-article .article-footer .related-content { padding: 0 12px; }
 @media screen and (min-width: 624px) { .node-article .article-footer .related-content { width: 600px; margin: 0 auto; } }
+@media screen and (min-width: 800px) { .node-article .article-footer .related-content { width: 750px; } }
 .node-article .article-footer .related-content ul { list-style: square outside; margin-left: 24px; }
 
 @media screen and (min-width: 450px) { html { font-size: 20px; line-height: 30px; } }
 @media screen and (min-width: 624px) { #home #main-content { width: 600px; margin: 0 auto; } }
+@media screen and (min-width: 800px) { #home #main-content { width: 750px; } }
 #home #main-content article { margin: 30px; }
 #home #main-content .pagination { margin: 60px auto 0 auto; text-align: center; }

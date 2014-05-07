@@ -11,6 +11,9 @@
     width: 600px;
     margin: 0 auto;
   }
+  @media screen and (min-width: 800px) {
+    width: 750px;
+  }
 }
 
 ////////////////////
@@ -31,7 +34,7 @@
 html { font-family: 'liberation_serifregular'; font-size: 16px; line-height: 24px; }
 
 h1 { font-size: 40px; line-height: 48px; margin: 6px 0; font-weight: bold; }
-h2 { font-size: 30px; line-height: 36px; margin: 6px 0; font-weight: bold; }
+h2 { font-size: 30px; line-height: 36px; margin: 36px 6px 0; font-weight: bold; }
 h3 { font-size: 24px; line-height: 30px; margin: 3px 0; font-weight: bold; }
 h4 { font-size: 20px; font-weight: bold; }
 h5 { font-weight: bold; }
@@ -90,8 +93,21 @@ blockquote + h6 { padding-top: 24px; }
     .article-call-to-action {
       text-align: center; padding: 12px; margin-bottom: 24px; background-color: #ddd;
 
-      a.primary-cta { display: block; margin:24px auto; color:white; border-radius: 6px; width: 200px; text-decoration: none; background-color: #7db9e8; @include filter-gradient(#7db9e8, #1e5799, vertical); @include background-image(linear-gradient(top,  #7db9e8 0%,#2989d8 50%,#1e5799 100%)); -webkit-box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.75); -moz-box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.75); box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.75); }
-      .primary-cta strong { display: block; font-size: 27px; line-height: 36px; text-shadow: 2px 2px #333; }
+      a.primary-cta {
+      	display: block; 
+      	margin:24px auto;
+      	color:white;
+      	border-radius: 6px;
+      	width: 200px;
+      	text-decoration: none;
+      	background-color: #7db9e8;
+      	@include filter-gradient(#7db9e8, #1e5799, vertical);
+      	@include background-image(linear-gradient(top,  #7db9e8 0%,#2989d8 50%,#1e5799 100%)); 
+      	-webkit-box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.75);
+      	-moz-box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.75); 
+      	box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.75); }
+      	
+        .primary-cta strong { display: block; font-size: 27px; line-height: 36px; text-shadow: 2px 2px #333; }
     }
 
     .comments { 
