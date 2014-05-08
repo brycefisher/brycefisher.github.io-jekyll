@@ -49,8 +49,9 @@ em { font-style: italic; }
 datetime { color:#666; font-size:smaller; } 
 
 .highlight { background-color: #333; margin-bottom: 24px; }
-code { font-family: monospace; font-size: 14px; }
-pre code { @include centered-content; display: block; color: white; padding: 6px 0 6px 1em; word-wrap: break-word; white-space: pre-wrap; }
+code { font-family: monospace;  }
+pre code { @include centered-content; display: block; color: white; padding: 6px 0 6px 1em; word-wrap: break-word; white-space: pre-wrap; font-size: 14px; }
+li code, p code { color:#aaa; }
 
 blockquote { background-color: #ddd; padding:24px 0 12px 0; margin-bottom:24px; }
 blockquote + h2,
