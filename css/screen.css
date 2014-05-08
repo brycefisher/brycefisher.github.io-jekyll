@@ -20,7 +20,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 
 .highlight { background: #111111; color: white; }
 
-.highlight .c { color: #008800; font-style: italic; background-color: #0f140f; }
+.highlight .c { color: #999999; font-style: italic; }
 
 /* Comment */
 .highlight .err { color: white; }
@@ -38,25 +38,25 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 .highlight .n { color: white; }
 
 /* Name */
-.highlight .o { color: white; }
+.highlight .o { color: #b2d7f6; }
 
 /* Operator */
 .highlight .x { color: white; }
 
 /* Other */
-.highlight .p { color: white; }
+.highlight .p { color: #f3a97b; }
 
 /* Punctuation */
-.highlight .cm { color: #008800; font-style: italic; background-color: #0f140f; }
+.highlight .cm { color: #999999; font-style: italic; }
 
 /* Comment.Multiline */
-.highlight .cp { color: #ff0007; font-weight: bold; font-style: italic; background-color: #0f140f; }
+.highlight .cp { color: #999999; font-weight: bold; }
 
 /* Comment.Preproc */
-.highlight .c1 { color: #008800; font-style: italic; background-color: #0f140f; }
+.highlight .c1 { color: #999999; font-style: italic; }
 
 /* Comment.Single */
-.highlight .cs { color: #008800; font-style: italic; background-color: #0f140f; }
+.highlight .cs { color: #999999; font-style: italic; }
 
 /* Comment.Special */
 .highlight .gd { color: white; }
@@ -116,7 +116,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 .highlight .s { color: #0086d2; }
 
 /* Literal.String */
-.highlight .na { color: #ff0086; font-weight: bold; }
+.highlight .na { color: #8eb3de; }
 
 /* Name.Attribute */
 .highlight .nb { color: white; }
@@ -155,7 +155,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 .highlight .nt { color: #fb660a; font-weight: bold; }
 
 /* Name.Tag */
-.highlight .nv { color: #fb660a; }
+.highlight .nv { color: white; }
 
 /* Name.Variable */
 .highlight .ow { color: white; }
@@ -188,7 +188,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 .highlight .s2 { color: #0086d2; }
 
 /* Literal.String.Double */
-.highlight .se { color: #0086d2; }
+.highlight .se { color: #8cd5ff; }
 
 /* Literal.String.Escape */
 .highlight .sh { color: #0086d2; }
@@ -266,11 +266,13 @@ datetime { color: #666; font-size: smaller; }
 
 .highlight { background-color: #333; margin-bottom: 24px; }
 
-code { font-family: monospace; font-size: 14px; }
+code { font-family: monospace; }
 
-pre code { display: block; color: white; padding: 6px 0 6px 1em; word-wrap: break-word; white-space: pre-wrap; }
+pre code { display: block; color: white; padding: 6px 0 6px 1em; word-wrap: break-word; white-space: pre-wrap; font-size: 14px; }
 @media screen and (min-width: 624px) { pre code { width: 600px; margin-right: auto; margin-left: auto; } }
 @media screen and (min-width: 800px) { pre code { width: 750px; } }
+
+li code, p code { color: #aaa; }
 
 blockquote { background-color: #ddd; padding: 24px 0 12px 0; margin-bottom: 24px; }
 
