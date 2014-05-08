@@ -40,8 +40,10 @@ h4 { font-size: 20px; font-weight: bold; color: #000; @include centered-content;
 h5 { font-weight: bold; color: #000; @include centered-content; }
 h6 { font-variant: small-caps; color: #000; @include centered-content; }
 
-a:link { color: #66f; }
-a:visited { color: #009; }
+a { text-decoration: none; color: #1a1afa; }
+a:link:hover, a:hover { color: #4c4cfa; }
+a:visited { color: #4c4cfa; }
+a:visited:hover { color: #1a1afa; }
 a:active { color: #f66; }
 
 strong { font-weight: 600; }
@@ -81,7 +83,7 @@ blockquote + h6 { padding-top: 24px; }
     margin-top: 12px;
     margin-bottom: 12px;
 
-    datetime { display: block; margin-bottom: 30px; @include centered-content; }
+    datetime { display: block; @include centered-content; margin-bottom: 30px; }
   }
 
   .article-body {
@@ -136,8 +138,12 @@ blockquote + h6 { padding-top: 24px; }
   html { font-size: 20px; line-height: 30px; }
 }
 @media screen and (min-width: 624px) {
+	h1 { font-size: 54px; line-height: 60px; }
+	h2 { font-size: 36px; line-height: 42px; }
+	
 	blockquote p { max-width: 500px; position: relative; left: 50px; }
 	blockquote:before { display:block; @include centered-content; content:"\201C"; color:#999; font-size:10em; position:relative; top:0.3em; }
+	
 	.node-article { padding-right:0; padding-left:0; }
 }
 @media screen and (min-width: 800px) {
@@ -149,5 +155,6 @@ blockquote + h6 { padding-top: 24px; }
 #home #main-content {
   @include centered-content;
   article { margin: 30px; }
+  datetime { margin-bottom: 0; }
   .pagination { margin: 60px auto 0 auto; text-align: center; }
 }
