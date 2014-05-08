@@ -11,6 +11,7 @@ exclude:
 - README.md
 - LICENSE
 - config.rb
+- publish.sh
 
 include:
 - css
