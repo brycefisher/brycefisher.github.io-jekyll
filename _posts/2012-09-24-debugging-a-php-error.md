@@ -53,7 +53,7 @@ There are several kinds of errors that you will run into if you work with PHP fo
 
 #### Syntax Errors
 
-The most common errors are syntax errors, and the most common among these are missing semicolons from the end of the previous line, or missing brackets, or missing parentheses. Here is a list of [all tokens that might occur in an error message](http://us2.php.net/tokens).
+The most common errors are syntax errors, and the most common among these are missing semicolons from the end of the previous line, or missing brackets, or missing parentheses. Here is a list of [all tokens that might occur in an error message](http://php.net/tokens).
 
 ##### Fixing Common Syntax Errors
 
