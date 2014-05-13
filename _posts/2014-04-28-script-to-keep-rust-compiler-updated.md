@@ -10,7 +10,17 @@ I'm very excited about Rust, the safe concurrent language from Mozilla. Like Gol
 
 Currently, rust is not stored in apt-get. Here's a shell script for Ubuntu to help you stay up to date:
 
-{% gist 11375392 update-rust.sh %}
+{% highlight bash %}
+#!/bin/sh
+ 
+curl http://static.rust-lang.org/dist/rust-nightly-x86_64-unknown-linux-gnu.tar.gz >> rust-nightly.tar.gz
+tar xvf rust-nightly.tar.gz
+cd rust-nightly-x86_64-unknown-linux-gnu
+./install.sh
+cd ..
+rm -rf rust-nightly-x86_64-unknown-linux-gnu
+rm rust-nightly.tar.gz
+{% endhighlight %}
 
 You'll need to make this script executable (`chmod +x update-rust.sh`) and run it using `sudo ./update-rust.sh`.
 
