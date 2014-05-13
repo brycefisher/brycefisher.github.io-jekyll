@@ -95,9 +95,9 @@ blockquote + h6 { padding-top: 24px; }
     ul { list-style: outside square; }
     ol { list-style: outside decimal; }
 
-    table { border:2px solid #ccc; }
+    table, td { border:2px solid #ccc; }
     th { background-color: #ccc; }
-    th, td { text-align: left; }
+    th, td { text-align: left; padding:2px; }
   }
 
   .article-footer {
