@@ -8,6 +8,9 @@
 @import "pygments.fruity";
 
 @mixin centered-content {
+  @media screen and (max-width: 623px) {
+    padding-left: 6px; padding-right: 6px;
+  }
   @media screen and (min-width: 624px) {
     width: 600px;
     margin-right: auto;
@@ -76,14 +79,12 @@ blockquote + h6 { padding-top: 24px; }
 //#main-content { margin: 0 12px; }
 
 .node-article {
-  padding-left: 6px; padding-right: 6px;
 
   .article-header {
-    @include centered-content;
-    margin-top: 12px;
-    margin-bottom: 12px;
+    margin-bottom: 12px; background: black url(/img/spotlight-on-green-damask.jpg) center;
 
-    datetime { display: block; @include centered-content; margin-bottom: 30px; }
+    h1 { @include centered-content; color:white; padding-top: 18px; margin-top:0; }
+    datetime { display: block; @include centered-content; padding-bottom: 30px; color:#eee; }
   }
 
   .article-body {
@@ -160,6 +161,7 @@ blockquote + h6 { padding-top: 24px; }
 #home #main-content {
   @include centered-content;
   article { margin: 30px; }
-  datetime { margin-bottom: 0; }
+  datetime { padding-bottom: 0; color:#999; }
   .pagination { margin: 60px auto 0 auto; text-align: center; }
+  .node-article .article-header { background:none; }
 }

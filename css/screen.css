@@ -229,26 +229,32 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 html { font-family: 'liberation_serifregular'; font-size: 16px; line-height: 24px; color: #333; }
 
 h1 { font-size: 40px; line-height: 48px; margin: 6px 0; font-weight: bold; color: #000; }
+@media screen and (max-width: 623px) { h1 { padding-left: 6px; padding-right: 6px; } }
 @media screen and (min-width: 624px) { h1 { width: 600px; margin-right: auto; margin-left: auto; } }
 @media screen and (min-width: 800px) { h1 { width: 750px; } }
 
 h2 { font-size: 30px; line-height: 36px; margin: 36px 0 6px 0; font-weight: bold; color: #000; }
+@media screen and (max-width: 623px) { h2 { padding-left: 6px; padding-right: 6px; } }
 @media screen and (min-width: 624px) { h2 { width: 600px; margin-right: auto; margin-left: auto; } }
 @media screen and (min-width: 800px) { h2 { width: 750px; } }
 
 h3 { font-size: 24px; line-height: 30px; margin: 3px 0; font-weight: bold; color: #000; }
+@media screen and (max-width: 623px) { h3 { padding-left: 6px; padding-right: 6px; } }
 @media screen and (min-width: 624px) { h3 { width: 600px; margin-right: auto; margin-left: auto; } }
 @media screen and (min-width: 800px) { h3 { width: 750px; } }
 
 h4 { font-size: 20px; font-weight: bold; color: #000; }
+@media screen and (max-width: 623px) { h4 { padding-left: 6px; padding-right: 6px; } }
 @media screen and (min-width: 624px) { h4 { width: 600px; margin-right: auto; margin-left: auto; } }
 @media screen and (min-width: 800px) { h4 { width: 750px; } }
 
 h5 { font-weight: bold; color: #000; }
+@media screen and (max-width: 623px) { h5 { padding-left: 6px; padding-right: 6px; } }
 @media screen and (min-width: 624px) { h5 { width: 600px; margin-right: auto; margin-left: auto; } }
 @media screen and (min-width: 800px) { h5 { width: 750px; } }
 
 h6 { font-variant: small-caps; color: #000; }
+@media screen and (max-width: 623px) { h6 { padding-left: 6px; padding-right: 6px; } }
 @media screen and (min-width: 624px) { h6 { width: 600px; margin-right: auto; margin-left: auto; } }
 @media screen and (min-width: 800px) { h6 { width: 750px; } }
 
@@ -273,6 +279,7 @@ datetime { color: #666; font-size: smaller; }
 code { font-family: monospace; }
 
 pre code { display: block; color: white; padding: 6px 0 6px 1em; word-wrap: break-word; white-space: pre-wrap; font-size: 14px; }
+@media screen and (max-width: 623px) { pre code { padding-left: 6px; padding-right: 6px; } }
 @media screen and (min-width: 624px) { pre code { width: 600px; margin-right: auto; margin-left: auto; } }
 @media screen and (min-width: 800px) { pre code { width: 750px; } }
 
@@ -288,17 +295,21 @@ blockquote + h2, blockquote + h3, blockquote + h4, blockquote + h5, blockquote +
 #header #logo img { height: 24px; width: auto; margin: 6px; float: left; }
 #header h2#site-title { float: left; font-size: 24px; line-height: 36px; margin: 0; color: white; text-shadow: 1px 1px black; width: auto; }
 
-.node-article { padding-left: 6px; padding-right: 6px; }
-.node-article .article-header { margin-top: 12px; margin-bottom: 12px; }
-@media screen and (min-width: 624px) { .node-article .article-header { width: 600px; margin-right: auto; margin-left: auto; } }
-@media screen and (min-width: 800px) { .node-article .article-header { width: 750px; } }
-.node-article .article-header datetime { display: block; margin-bottom: 30px; }
+.node-article .article-header { margin-bottom: 12px; background: black url(/img/spotlight-on-green-damask.jpg) center; }
+.node-article .article-header h1 { color: white; padding-top: 18px; margin-top: 0; }
+@media screen and (max-width: 623px) { .node-article .article-header h1 { padding-left: 6px; padding-right: 6px; } }
+@media screen and (min-width: 624px) { .node-article .article-header h1 { width: 600px; margin-right: auto; margin-left: auto; } }
+@media screen and (min-width: 800px) { .node-article .article-header h1 { width: 750px; } }
+.node-article .article-header datetime { display: block; padding-bottom: 30px; color: #eee; }
+@media screen and (max-width: 623px) { .node-article .article-header datetime { padding-left: 6px; padding-right: 6px; } }
 @media screen and (min-width: 624px) { .node-article .article-header datetime { width: 600px; margin-right: auto; margin-left: auto; } }
 @media screen and (min-width: 800px) { .node-article .article-header datetime { width: 750px; } }
 .node-article .article-body { padding-bottom: 60px; }
 .node-article .article-body ul, .node-article .article-body ol, .node-article .article-body p { margin-bottom: 1em; }
+@media screen and (max-width: 623px) { .node-article .article-body ul, .node-article .article-body ol, .node-article .article-body p { padding-left: 6px; padding-right: 6px; } }
 @media screen and (min-width: 624px) { .node-article .article-body ul, .node-article .article-body ol, .node-article .article-body p { width: 600px; margin-right: auto; margin-left: auto; } }
 @media screen and (min-width: 800px) { .node-article .article-body ul, .node-article .article-body ol, .node-article .article-body p { width: 750px; } }
+.node-article .article-body ul ul, .node-article .article-body ul ol, .node-article .article-body ol ol, .node-article .article-body ol ul { margin-bottom: 0; }
 .node-article .article-body ul li, .node-article .article-body ol li { margin-left: 1.2em; }
 .node-article .article-body ul { list-style: outside square; }
 .node-article .article-body ol { list-style: outside decimal; }
@@ -307,25 +318,33 @@ blockquote + h2, blockquote + h3, blockquote + h4, blockquote + h5, blockquote +
 .node-article .article-footer .article-call-to-action a.primary-cta { display: block; margin: 24px auto; color: white; border-radius: 6px; width: 200px; text-decoration: none; background-color: #7db9e8; *zoom: 1; filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FF7DB9E8', endColorstr='#FF1E5799'); background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #7db9e8), color-stop(50%, #2989d8), color-stop(100%, #1e5799)); background-image: -webkit-linear-gradient(top, #7db9e8 0%, #2989d8 50%, #1e5799 100%); background-image: -moz-linear-gradient(top, #7db9e8 0%, #2989d8 50%, #1e5799 100%); background-image: -o-linear-gradient(top, #7db9e8 0%, #2989d8 50%, #1e5799 100%); background-image: linear-gradient(top, #7db9e8 0%, #2989d8 50%, #1e5799 100%); -webkit-box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.75); -moz-box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.75); box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.75); }
 .node-article .article-footer .article-call-to-action .primary-cta strong { display: block; font-size: 27px; line-height: 36px; text-shadow: 2px 2px #333; }
 .node-article .article-footer .comments { padding: 0 12px; }
+@media screen and (max-width: 623px) { .node-article .article-footer .comments { padding-left: 6px; padding-right: 6px; } }
 @media screen and (min-width: 624px) { .node-article .article-footer .comments { width: 600px; margin-right: auto; margin-left: auto; } }
 @media screen and (min-width: 800px) { .node-article .article-footer .comments { width: 750px; } }
 .node-article .article-footer .related-content { padding: 0 12px; }
+@media screen and (max-width: 623px) { .node-article .article-footer .related-content { padding-left: 6px; padding-right: 6px; } }
 @media screen and (min-width: 624px) { .node-article .article-footer .related-content { width: 600px; margin-right: auto; margin-left: auto; } }
 @media screen and (min-width: 800px) { .node-article .article-footer .related-content { width: 750px; } }
 .node-article .article-footer .related-content ul { list-style: square outside; margin-left: 24px; }
 
 @media screen and (min-width: 450px) { html { font-size: 20px; line-height: 30px; } }
-@media screen and (min-width: 624px) { h1 { font-size: 54px; line-height: 60px; }
+@media screen and (min-width: 624px) { h1 { font-size: 72px; line-height: 84px; }
   h2 { font-size: 36px; line-height: 42px; }
+  ul, ol { padding-left: 20px; }
+  ul ul, ol ol, ul ol, ol ul { padding-left: 0; }
   blockquote p { max-width: 500px; position: relative; left: 50px; }
   blockquote:before { display: block; content: "\201C"; color: #999; font-size: 10em; position: relative; top: 0.3em; }
   .node-article { padding-right: 0; padding-left: 0; } }
+@media screen and (min-width: 624px) and (max-width: 623px) { blockquote:before { padding-left: 6px; padding-right: 6px; } }
 @media screen and (min-width: 624px) and (min-width: 624px) { blockquote:before { width: 600px; margin-right: auto; margin-left: auto; } }
 @media screen and (min-width: 624px) and (min-width: 800px) { blockquote:before { width: 750px; } }
 
-@media screen and (min-width: 800px) { blockquote p { max-width: 650px; } }
+@media screen and (min-width: 800px) { ul, ol { padding-left: 50px; }
+  blockquote p { max-width: 650px; } }
+@media screen and (max-width: 623px) { #home #main-content { padding-left: 6px; padding-right: 6px; } }
 @media screen and (min-width: 624px) { #home #main-content { width: 600px; margin-right: auto; margin-left: auto; } }
 @media screen and (min-width: 800px) { #home #main-content { width: 750px; } }
 #home #main-content article { margin: 30px; }
-#home #main-content datetime { margin-bottom: 0; }
+#home #main-content datetime { padding-bottom: 0; color: #999; }
 #home #main-content .pagination { margin: 60px auto 0 auto; text-align: center; }
+#home #main-content .node-article .article-header { background: none; }
