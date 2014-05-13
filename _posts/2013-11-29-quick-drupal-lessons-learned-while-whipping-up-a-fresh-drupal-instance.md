@@ -10,11 +10,15 @@ I've recently migrated to Ubuntu 12.04 from Windows, and I ran into some issues 
 
 Ubuntu uses a package management tool called "apt-get" to install, update, and remove applications from the operating systems. If you've ever used composer for PHP, or npm for NodeJS, it's exactly the same, and it's my favorite feature of linuxy operating systems over Mac and Windows. Conveniently, apt-get has a package for drush!
 
-    $ sudo apt-get install drush
+{% highlight bash %}
+$ sudo apt-get install drush
+{% endhighlight %}
 
 Unfortunately, the apt-get version of Drush is version 4.x, whereas the stable version of Drush is 5.x. Also, the quick drupal command we're insterested in is only added to drush starting somewhere in the 5.x branch. However, drush has it's own self-update command. Hooray!
 
-   $ drush self-update -y
+{% highlight bash %}
+$ drush self-update -y
+{% endhighlight %}
 
 Phew! Now if you run `drush help` in the terminal, you'll see that the command "core-quick-drupal" listed near the top. 
 
@@ -24,7 +28,9 @@ I *thought* I was an experienced drush ninja, but it turns out I hadn't fully re
 
 To use quick drupal as I had intended, you actually need to use the first optional parameter. So, the command will look like this:
 
-    $ drush core-quick-drupal patches -y
+{% highlight bash %}
+$ drush core-quick-drupal patches -y
+{% endhighlight %}
 
 Notice "patches" in the command above. "patches" is the site name parameter, and you **must** specify this parameter or else drush will try to use mysql for datastore, and if it fails you'll have all kinds of weird errors. The moral of the story here is to always "read the fucking manual" as the old adage goes.
 
@@ -32,8 +38,10 @@ Notice "patches" in the command above. "patches" is the site name parameter, and
 
 Eventually, I realized that SQLite does not come pre-installed on Ubuntu 12.04 (at least, not in the Desktop distro that I downloaded). I also found some blogs that mentioned PHP5 requires sqlite v3 to work and the php5 sqlite connector. I use apt-get to install these dependencies:
 
-    $ sudo apt-get install sqlite3 
-    $ sudo apt-get install php5-sqlite3
+{% highlight bash %}
+$ sudo apt-get install sqlite3 
+$ sudo apt-get install php5-sqlite3
+{% endhighlight %}
 
 If you try the quick drupal command again, you should start to get helpful error messages at this point.
 
@@ -43,7 +51,9 @@ If you've followed along with me so far, you can probably figure the rest of thi
 
 However, this next hurdle blocked me for a while because the error message in the terminal had html around it. With my particular setup, I had use apt-get to install php on my machine but certain extensions required by Drupal were not installed as part of apt-get command. In my case, I found that the "gd" graphics library was not installed. Fortunately, a compatible version of gd for php5 can be easily installed:
 
-    $ sudo apt-get install php5-gd
+{% highlight bash %}
+$ sudo apt-get install php5-gd
+{% endhighlight %}
 
 ## Use a Compatible PHP Binary
 
@@ -51,7 +61,9 @@ The quick drupal command was intended to be used with PHP 5.4 because this versi
 
 Ubuntu's apt-get only has PHP 5.3 which doesn't have the php web server built-in. Furthermore, drush core-quick-drupal doesn't like the cli flavor of PHP 5.3 either. So, unless you want to compile PHP and all the necessary extensions from source, I recommend you install the PHP cgi binary:
 
-    $ sudo apt-get install php-cgi
+{% highlight bash %}
+$ sudo apt-get install php-cgi
+{% endhighlight %}
 
 
 ### Emulating the Web Server on PHP 5.3
@@ -72,7 +84,9 @@ If you're running Windows, just use [SMTP 4 Dev a dummy SMTP server](https://smt
 
 On Ubuntu, we're going to install postfix and mailutils, and then we'll configure them. There's a great [stackoverflow that explains postfix setup nicely](http://serverfault.com/questions/119105/setup-ubuntu-server-to-send-mail), but I'll explain how I did it slightly differently. 
 
-     $ sudo apt-get install postfix
+{% highlight bash %}
+$ sudo apt-get install postfix
+{% endhighlight %}
 
 During the install screen in the terminal, I choose "local server" (the last option). This means that postfix will only deliver emails locally to the current machine. The next screen will ask you for a Fully Qualified Doman Name. This doesn't matter -- I entered localhost and it worked fine. 
 
@@ -80,7 +94,9 @@ During the install screen in the terminal, I choose "local server" (the last opt
 
 Next you'll need to install the command line mail client:
 
-    $ sudo apt-get install mailutils
+{% highlight bash %}
+$ sudo apt-get install mailutils
+{% endhighlight %}
 
 Try sending yourself a test email now like this:
 
@@ -96,14 +112,19 @@ Pressing CTRL + D ends the message body and sends the message. You should be abl
 
 Then under /etc/php5/conf.d create a file (e.g. mailconfig.ini) with these contents (note you'll need sudo permissions to save the file in this directory):
 
-    sendmail_from = "root@localhost"
-    sendmail_path = "/usr/sbin/sendmail -t -i -f root@localhost"
+  
+{% highlight ini %}
+sendmail_from = "root@localhost"
+sendmail_path = "/usr/sbin/sendmail -t -i -f root@localhost"
+{% endhighlight %}
 
 ## It Works!
 
 Finally, we can now run the quick drupal command...quickly. Here's how to do it:
 
-    $ cd /path/to/where/drupal/should/be
-    $ drush qd my_drupal -y
+{% highlight bash %}
+$ cd /path/to/where/drupal/should/be
+$ drush qd my_drupal -y
+{% endhighlight %}
 
 A few minutes later, you'll have a php server running a Drupal instance on SQLite, and your browser will open and login you in as the admin user. Hooray! Now go make some patches.
