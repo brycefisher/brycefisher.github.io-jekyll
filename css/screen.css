@@ -289,8 +289,6 @@ blockquote { background-color: #ddd; padding: 24px 0 12px 0; margin-bottom: 24px
 
 blockquote + h2, blockquote + h3, blockquote + h4, blockquote + h5, blockquote + h6 { padding-top: 24px; }
 
-.responsive-video { width: 100%; height: auto !important; margin: 6px 0; }
-
 .video { display: block; margin-bottom: 24px; background-color: #333; }
 @media screen and (max-width: 623px) { .video { padding-left: 6px; padding-right: 6px; } }
 @media screen and (min-width: 624px) { .video { width: 600px; margin-right: auto; margin-left: auto; } }
