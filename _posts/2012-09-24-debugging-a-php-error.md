@@ -28,6 +28,7 @@ Typically, you'll have a "development" server on your personal computer or a com
 To display error messages for a single file, include this code at the beginning of your code, right after &lt;?php 
 
 {% highlight php %}
+<?php
 ini_set('display_errors','On');
 
 // Your existing code below here
@@ -39,11 +40,15 @@ PHP can be configured to write error messages to a file named error_log. It does
 
 To turn on error logging for your server, find your php.ini file (use phpinfo() to help you locate this file), and make sure there is a line in php.ini that has
 
-    log_errors=On
+{% highlight ini %}
+log_errors=On
+{% endhighlight %}
 
 If you see a line:
 
-    log_errors=Off
+{% highlight ini %}
+log_errors=Off
+{% endhighlight %}
 
 Change it to "log_errors=On", and restart Apache.
 
