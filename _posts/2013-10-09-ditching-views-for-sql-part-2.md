@@ -28,11 +28,13 @@ After poking around in my database, I found that the `node` table contained almo
 ### 2. Write a Working SQL Query
 Let's ignore the body field for a moment just get most of our query written:
 
-          SELECT nid, title
-            FROM  node
-           WHERE type = "article"
-             AND status = 1
-        ORDER BY created DESC;
+{% highlight sql %}
+  SELECT nid, title
+    FROM  node
+   WHERE type = "article"
+     AND status = 1
+ORDER BY created DESC;
+{% endhighlight %}
 
 If you run that query in the "query" tab on HeidiSQL, you should see three results in the correct order with the nid and title fields. The only thing to explain here is that `status = 1` clause filters out unpublished nodes. So far so good! Okay, let's add in the body field now.
 
@@ -40,47 +42,55 @@ If you run that query in the "query" tab on HeidiSQL, you should see three resul
 
 If you're on Drupal 6, the body field is always stored in the `node_revision` table. Just join the `node` and `node_revision` tables on the vid field. Here's the SQL for Drupal 6:
 
-         SELECT nid, title, body
-           FROM node
-           JOIN node_revision
-             ON node.vid = node_revision.vid
-          WHERE type = "article"
-            AND status = 1
-       ORDER BY created DESC;
+{% highlight sql %}
+  SELECT nid, title, body
+    FROM node
+    JOIN node_revision
+      ON node.vid = node_revision.vid
+   WHERE type = "article"
+     AND status = 1
+ORDER BY created DESC;
+{% endhighlight %}
 
 #### Body Field Drupal 7
 
 Drupal 7 is a little different. The body field is in the `field_data_body` table, and the field is called body_value. Here's the SQL Drupal 7:
 
-        SELECT nid, title, body_value
-          FROM node
-          JOIN field_data_body
-            ON node.nid = field_data_body.entity_id
-         WHERE type = "article"
-           AND status = 1
-      ORDER BY created DESC;
+{% highlight sql %}
+  SELECT nid, title, body_value
+    FROM node
+    JOIN field_data_body
+      ON node.nid = field_data_body.entity_id
+   WHERE type = "article"
+     AND status = 1
+ORDER BY created DESC;
+{% endhighlight %}
 
 ### 3. Drupalize the SQL Syntax
 
 Drupal's database abstraction layer allows you to automatically prefix your table names in the queries. (It also allows parameterized queries which is vital to security, but it doesn't apply to our situation). Doing this step makes your SQL more portable and is really easy. All we need to do is wrap curly braces around the table names. By convention, queries also use aliases for table names. Here's the SQL for Drupal 6:
 
-         SELECT n.nid, n.title, r.body
-           FROM {node} n
-           JOIN {node_revision} r
-             ON n.vid = r.vid
-          WHERE n.type = "article"
-            AND n.status = 1
-       ORDER BY n.created DESC;
+{% highlight sql %}
+  SELECT n.nid, n.title, r.body
+    FROM {node} n
+    JOIN {node_revision} r
+      ON n.vid = r.vid
+   WHERE n.type = "article"
+     AND n.status = 1
+ORDER BY n.created DESC;
+{% endhighlight %}
 
 Here's the SQL for Drupal 7:
 
-        SELECT n.nid, n.title, b.body_value
-          FROM {node} n
-          JOIN {field_data_body} b
-            ON n.nid = b.entity_id
-         WHERE n.type = "article"
-           AND n.status = 1
-      ORDER BY n.created DESC;
+{% highlight sql %}
+  SELECT n.nid, n.title, b.body_value
+    FROM {node} n
+    JOIN {field_data_body} b
+      ON n.nid = b.entity_id
+   WHERE n.type = "article"
+     AND n.status = 1
+ORDER BY n.created DESC;
+{% endhighlight %}
 
 ### 4. Pass the query through `db_query()`
 
@@ -96,7 +106,6 @@ $query = "SELECT n.nid, n.title, b.body_value
              AND n.status = 1
         ORDER BY n.created DESC";
 $result = db_query($query);
-?>
 {% endhighlight %}
 
 It's important to keep the return value of `db_query()` so that we can actually pull out the individual rows from the database. 
@@ -120,7 +129,6 @@ while ($row = db_fetch_object($result)) {
    
 //Output the result to the browser
 var_dump($nodes);
-?>
 {% endhighlight %}
 
 Again, the only thing to really explain here is that when db_fetch_object reaches that last row in the result set, it will return false. Setting $row to false makes everything inside the while conditional evaluate to false. That kills the while loop. Simple and elegant!
