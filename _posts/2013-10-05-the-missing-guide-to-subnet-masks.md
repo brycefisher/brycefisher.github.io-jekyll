@@ -28,18 +28,18 @@ All subnet masks use boolean AND to combine the IP Address and the mask. Let's r
 
 Okay, now putting that altogether, let's AND the IP address and the subnet mask together:
 
-| First Octect | Second Octet | Third Octet | Fourth Octet | Name |
-|------------------:|---------------------:|------------------:|---------------------:|:---------------------|
-| 00110010  | 01111010 | 00100010 | 0001**0101** | **IP Address**      |
-| 11111111   | 11111111  | 11111111   | 1111**0000**  | **Subnet Masks** |
-| 00110010 | 01111010 | 00100010  | 0001**0000** | **Result**             |
+|First Octect |Second Octet |Third Octet |Fourth Octet |              Name|
+|-------------|-------------|------------|-------------|------------------|
+|`00110010`   |`01111010`   |`00100010`  |`00010101`   |    **IP Address**|
+|`11111111`   |`11111111`   |`11111111`  |`11110000`   |  **Subnet Masks**|
+|`00110010`   |`01111010`   |`00100010`  |`00010000`   |        **Result**|
 
 Notice how all the ones on the left side of the subnet mask allow the starting IP address to trickle down into the result. Only the rightmost bits (where the mask has 0's) are altered. At the end of the process, we get 50.122.34.16 converting the binary result back into decimal.
 
 A Subnet Mask By Any Other Name
 -----------------------------------------------------
 
-So, why would we care about getting out 50.122.34.16? We care because we now have a way of saying "do something all the IP addresses between 50.122.34.21 and 50.122.34.16". Let's take this a little farther and make subnet masks more useful. Look at the binary form of the subnet mask once more:
+So, why would we care about getting out 50.122.34.16? We care because we now have a way of saying "do something to all the IP addresses between 50.122.34.21 and 50.122.34.16". Let's take this a little farther and make subnet masks more useful. Look at the binary form of the subnet mask once more:
 
 > 11111111 . 11111111 . 11111111 . 11110000
 

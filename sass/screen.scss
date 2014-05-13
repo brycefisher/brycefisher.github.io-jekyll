@@ -88,11 +88,14 @@ blockquote + h6 { padding-top: 24px; }
   .article-body {
     padding-bottom: 60px;
 
-    ul, ol, p { margin-bottom: 1em; @include centered-content; }
+    ul, ol, p, table { margin-bottom: 1em; @include centered-content; }
     ul ul, ul ol, ol ol, ol ul { margin-bottom: 0; }
     ul li, ol li { margin-left: 1.2em; }
     ul { list-style: outside square; }
     ol { list-style: outside decimal; }
+    table { border-bottom:2px solid #ccc; }
+    th { background-color: #ccc; }
+    th, td { text-align: left; }
   }
 
   .article-footer {
