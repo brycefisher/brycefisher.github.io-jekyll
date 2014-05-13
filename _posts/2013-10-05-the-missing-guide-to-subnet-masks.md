@@ -1,7 +1,7 @@
 ---
 title: "The Missing Guide to Subnet Masks"
 layout: "post"
-excerpt: ""
+excerpt: "This post aims to make it a little easier to understand how to read and specify ranges of IP addresses using subnet masks."
 ---
 Recently, I tried to understand what was going on in terms of IP ranges in my firewall configuration, and I had an impossible time trying to find a succinct and clear explanation. This post aims to make it a little easier to understand how to read and specify ranges of IP addresses using subnet masks. 
 
