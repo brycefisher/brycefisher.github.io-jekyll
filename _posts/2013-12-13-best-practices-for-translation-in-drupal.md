@@ -13,10 +13,10 @@ Recently, as I've been involved in this process, I've discovered several pitfall
 The [t() function](https://api.drupal.org/api/drupal/includes!common.inc/function/t/6) takes English strings that are used in PHP and exposes them to Drupal for translation. Drupal takes care of the hard part of figuring out which language to display on the current page, but Drupal won't know to translate your string unless you've first wrapped it in the t(). The [API documentation for t()](https://api.drupal.org/api/drupal/includes!common.inc/function/t/6) has lots of great examples of correct and incorrect usage of t(). The bottom line is inline elements should go inside t() and block level elements outside.
 
 {% highlight php %}
-    <!-- Correct! -->
-    <p><?php print t('Your new <strong>BFF</strong> in web development'); ?></p>
-    <!-- Incorrect -->
-    <?php print t('<p>Your new <strong>BFF</strong> in web development</p>'); ?>
+<!-- Correct! -->
+<p><?php print t('Your new <strong>BFF</strong> in web development'); ?></p>
+<!-- Incorrect -->
+<?php print t('<p>Your new <strong>BFF</strong> in web development</p>'); ?>
 {% endhighlight %}
 
 Notice that paragraph tags are block level elements in CSS, and therefore should not be included in t(). However, inline elements like `a`, `strong`, `em`, and `br` should definitely go inside t().
@@ -32,11 +32,19 @@ Often times, you'll want to pass a value that shouldn't be translated into `t()`
 Again here's some examples:
 
 {% highlight php %}
-    <!-- Correct -->
-    <?php print t('Providing <strong>!visitors+</strong> visitors with outrageously awesome Drupal advice', array('!visitors' => $num_visitors)); ?>
+<?php
+// Correct
+print t(
+  'Providing !visitors visitors with outrageously awesome Drupal advice',
+  array('!visitors' => $num_visitors)
+);
 
-    <!-- Yikes! Confusing -->
-    <?php print t('Providing !visitors with outrageously awesome Drupal advice', array('!visitors' => format_plural($num_visitors, '1 visitor', '@count visitors'))); ?>
+// Yikes! Confusing
+print t(
+  'Providing !visitors visitors with outrageously awesome Drupal advice',
+  array('!visitors' => format_plural($num_visitors, '1 visitor', '@count visitors'))
+);
+?>
 {% endhighlight %}
 
 Let's unpack that a bit. You can tell `t()` to insert variables into your strings using a special escape syntax. Use ! or @ or % to tell Drupal where to insert your variable. Then pass `t()` an array of values. So, the above examples are just inserting the value of `$num_visitors` into each string above.
@@ -50,45 +58,45 @@ There may be situations where you could one or multiple numbers inside `t()` var
 I've seen some programmers try to separate repeated strings into different `t()` invokations. Let's look at an example HTML output in English:
 
 {% highlight html %}
-    <!-- This how the final HTML should look in English -->
-    <ul>
-        <li>BryceAdamFisher - Astounding Drupal Insights</li>
-        <li>BryceAdamFisher - Jaw Dropping Coding Skillz</li>
-        <li>BryceAdamFisher - Oh, snap! He did it again</li>
-    </li>
+<!-- This how the final HTML should look in English -->
+<ul>
+  <li>Bryce Fisher-Fleig - Astounding Drupal Insights</li>
+  <li>Bryce Fisher-Fleig - Jaw Dropping Coding Skillz</li>
+  <li>Bryce Fisher-Fleig - Oh, snap! He did it again</li>
+</ul>
 {% endhighlight %}
 
-We're working in PHP and we see a pattern, so why not DRY up the code a little bit? So, trying to use "abstraction" on these strings turns into this PHP code:
+We're working in PHP and we see a pattern, so why not DRY up the code a little bit? So, trying to use "abstraction" on these strings might lead to something like this:
 
 {% highlight php %}
-    <!-- Do NOT do this at home, kids! -->
-    <ul>
-        <li><?php print t('BryceAdamFisher - !description', array('!description' => t('Astounding Drupal Insights'))); ?></li>
-        <li>BryceAdamFisher - !description', array('!description' => t('Jaw Dropping Coding Skillz'))); ?></li>
-        <li>BryceAdamFisher - !description', array('!description' => t('Oh, snap! He did it again'))); ?></li>
-    </li>
+<!-- Do NOT do this at home, kids! -->
+<ul>
+    <li><?php print t('Bryce Fisher-Fleig - !description', array('!description' => t('Astounding Drupal Insights'))); ?></li>
+    <li><?php print t('Bryce Fisher-Fleig - !description', array('!description' => t('Jaw Dropping Coding Skillz'))); ?></li>
+    <li><?php print t('Bryce Fisher-Fleig - !description', array('!description' => t('Oh, snap! He did it again'))); ?></li>
+</ul>
 {% endhighlight %}
 
-This is an antipattern because the translator might need to reorder these strings, or they might translate the text different having known the strings appear next to each other. Here's an example of how that might need to appear in Japanese:
+**This is an antipattern because the translator might need to reorder these strings**, or they might translate the text different having known the strings appear next to each other. Here's an example of how that might need to appear in Japanese:
 
 {% highlight html %}
-    <!-- Thank you google translate! -->
-    <ul>
-        <li>驚異Drupalの洞察 - BryceAdamFisher</li>
-        <li>顎落としたりするスキルコーディング - BryceAdamFisher</li>
-        <li>ああ、スナップ！彼は再びそれをやった - BryceAdamFisher</li>
-    </li>
+<!-- Thank you google translate! -->
+<ul>
+    <li>驚異Drupalの洞察 - Bryce Fisher-Fleig</li>
+    <li>顎落としたりするスキルコーディング - Bryce Fisher-Fleig</li>
+    <li>ああ、スナップ！彼は再びそれをやった - Bryce Fisher-Fleig</li>
+</ul>
 {% endhighlight %}
 
-If you break the string into pieces, translators won't be able to see that the strings belong together and you'll have wasted your money on the translation effort. **Always keep strings together for the translator just like you would for the end user**. I promise you the translators will be thoroughly confused if you try to separate the repeated strings. Let the experst make the call on whether or not a given phrase should be translated the same way in different contexts. Just keep the strings together, as much as possible so the translators can have at least full sentence context, like so:
+If you break the string into pieces, translators won't be able to see that the strings belong together and you'll have wasted your money on the translation effort. **Always keep strings together for the translator just like you would for the end user**. I promise you the translators will be thoroughly confused if you try to separate the repeated strings. Let the experts make the call on whether or not a given phrase should be translated the same way in different contexts. Just keep the strings together as much as possible so the translators can have at least full sentence context, like so:
 
 {% highlight php %}
-    <!-- This is the right way -->
-    <ul>
-        <li><?php print t('BryceAdamFisher - Astounding Drupal Insights'); ?></li>
-        <li><?php print t('BryceAdamFisher - Jaw Dropping Coding Skillz'); ?></li>
-        <li><?php print t('BryceAdamFisher - Oh, snap! He did it again'); ?></li>
-    </li>
+<!-- This is the right way -->
+<ul>
+    <li><?php print t('BryceAdamFisher - Astounding Drupal Insights'); ?></li>
+    <li><?php print t('BryceAdamFisher - Jaw Dropping Coding Skillz'); ?></li>
+    <li><?php print t('BryceAdamFisher - Oh, snap! He did it again'); ?></li>
+</ul>
 {% endhighlight %}
 
 ## Preparing to Export Strings from `t()`
