@@ -316,7 +316,7 @@ blockquote + h2, blockquote + h3, blockquote + h4, blockquote + h5, blockquote +
 .node-article .article-body ul li, .node-article .article-body ol li { margin-left: 1.2em; }
 .node-article .article-body ul { list-style: outside square; }
 .node-article .article-body ol { list-style: outside decimal; }
-.node-article .article-body table { border-bottom: 2px solid #ccc; }
+.node-article .article-body table { border: 2px solid #ccc; }
 .node-article .article-body th { background-color: #ccc; }
 .node-article .article-body th, .node-article .article-body td { text-align: left; }
 .node-article .article-footer { margin: 0 -12px; }
