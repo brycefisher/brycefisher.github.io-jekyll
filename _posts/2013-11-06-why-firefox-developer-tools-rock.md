@@ -37,7 +37,7 @@ It took me ages to figure this feature out, but it's actually a great experience
 
 ## Responsive Design Mode
 
-<iframe width="550" height="416" src="//www.youtube.com/embed/PiVizmO90wc" frameborder="0">  </iframe>
+<iframe width="550" height="416" src="//www.youtube.com/embed/PiVizmO90wc" frameborder="0" class="video"></iframe>
 
 Okay, now it's time for the best feature of all: The Responsive Design mode! I haven't seen this feature in any other Developer Tools or plugin out there (although to be fair I haven't really looked). However, the fact that this is baked into Firefox makes it really really easy to test various breakpoints and screen sizes all from the comfort of my favorite browser.
 
