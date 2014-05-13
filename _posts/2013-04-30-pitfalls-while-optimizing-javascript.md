@@ -15,11 +15,13 @@ JavaScript essentially moves any variable declarations into the top of the curre
 
 An easy way to speed up JavaScript code is to optimize for loops. The `length` property of arrays is actually more like a function call in that the browser will have to rexamine the array each time your script accesses the `length`. The way to optimize this situation is to read the length of the array once, store it in a local variable, and then compare the iterator to the local variable. Here's an example:
 
-    var myArray = [1,2,3,4,5,6,7,8,9],
-    max = myArray.length;
-    for(var i=0; i<max; i++){
-       console.log(myArray[i])
-    }
+{% highlight javascript %}
+var myArray = [1,2,3,4,5,6,7,8,9],
+max = myArray.length;
+for(var i=0; i<max; i++){
+   console.log(myArray[i])
+}
+{% endhighlight %}
 
 Simple, right? Using `max` prevents the browser from reexamining `myArray`'s contents on every iteration of the loop, thus avoiding unnecessary work. This effect becomes more pronounced on larger arrays. 
 
@@ -27,12 +29,14 @@ Simple, right? Using `max` prevents the browser from reexamining `myArray`'s con
 
 While the first example above is all well and good, we could go a step farther. All else being equal, it's faster to compare a number to 0 than to another number. So, we can (in theory) speed up this for-loop just a little bit by starting `i` at the length, and comparing to 0 and decrementing `i` instead. The added bonus is that we get to remove an extra variable. Here's an example:
 
-    //antipattern
-    var myArray = [1,2,3,4,5,6,7,8,9],
-    i = myArray.length;
-    for(; i>0; i--){
-       console.log(myArray[i])
-    }
+{% highlight javascript %}
+//antipattern
+var myArray = [1,2,3,4,5,6,7,8,9],
+i = myArray.length;
+for(; i>0; i--){
+   console.log(myArray[i])
+}
+{% endhighlight %}
 
 Notice that we're still caching the `length` inside a variable. The odd thing about this syntax is that we set `i` outside the for-loop and thus the first statement is just a semicolon. While strange to see, you'd have to admit that the code inside in the for loop couldn't get much shorter.
 
@@ -42,11 +46,13 @@ If you try to run the second example above, it won't work. Why not? The length p
 
 The solution is simple. Set `i` to length - 1, and then inside the for loop update the conditional to include 0. Here's final code:
 
-    var myArray = [1,2,3,4,5,6,7,8,9],
-    i = myArray.length - 1;
-    for(; i>=0; i--){
-       console.log(myArray[i])
-    }
+{% highlight javascript %}
+var myArray = [1,2,3,4,5,6,7,8,9],
+i = myArray.length - 1;
+for(; i>=0; i--){
+   console.log(myArray[i])
+}
+{% endhighlight %}
 
 ## Optimizing DOM Lookups
 
@@ -56,15 +62,17 @@ You can speed up your script to updating larger swathes of the DOM at a time whe
 
 To implement this "pattern," grab the element you want, clone it, modify it, and swap out the original with the clone. Let's look at an example:
 
-    //antipattern
-    var old_node = document.getElementById('product-list'),
-    new_node = old_node.cloneNode(),
-    lis = new_node.getElementsByTagName('li'),
-    i = lis.length - 1;
-    for(; i>=0; i--) {
-      lis[i].style.color = "red";
-    }
-    old_node.parentNode.replaceChild(new_node, old_node);
+{% highlight javascript %}
+//antipattern
+var old_node = document.getElementById('product-list'),
+new_node = old_node.cloneNode(),
+lis = new_node.getElementsByTagName('li'),
+i = lis.length - 1;
+for(; i>=0; i--) {
+  lis[i].style.color = "red";
+}
+old_node.parentNode.replaceChild(new_node, old_node);
+{% endhighlight %}
 
 ### Copy the DOM Subtree Separately
 
@@ -72,17 +80,19 @@ Unfortunately the above snippet doesn't work as you'd expect. The problem is tha
 
 The solution is to copy the innerHTML property as well. Here's my example (you're welcome to improve upon it):
 
-    var old_node = document.getElementById('product-list'),
-    new_node = old_node.cloneNode(),
-    lis = [],
-    i = 0;
-    
-    new_node.innerHTML = old_node.innerHTML;
-    lis = new_node.getElementsByTagName('li');
-    i = lis.length - 1;
-    for(; i>=0; i--) {
-      lis[i].style.color = "red";
-    }
-    old_node.parentNode.replaceChild(new_node, old_node);
+{% highlight javascript %}
+var old_node = document.getElementById('product-list'),
+new_node = old_node.cloneNode(),
+lis = [],
+i = 0;
+
+new_node.innerHTML = old_node.innerHTML;
+lis = new_node.getElementsByTagName('li');
+i = lis.length - 1;
+for(; i>=0; i--) {
+  lis[i].style.color = "red";
+}
+old_node.parentNode.replaceChild(new_node, old_node);
+{% endhighlight %}
 
 Feel free to share your thoughts!
