@@ -1,7 +1,7 @@
 ---
-title: "Buying Trash -- My Latest Startup Fantasy"
+title: "Buying Trash - My Latest Startup Fantasy"
 layout: "post"
-excerpt: "Every developer in Silicon Valley, like the 49er's here two centuries ago, dreams of striking gold. I'm no different. I love my day job, but I always find myself hankering to *create* something novel and (hopefully) profitable."
+excerpt: "Every developer in Silicon Valley, like the 49er's here two centuries ago, dreams of striking gold. I'm no different. I love my day job, but I always find myself hankering to <strong>create</strong> something novel and (hopefully) profitable."
 ---
 Every developer in Silicon Valley, like the 49er's here two centuries ago, dreams of striking gold. I'm no different. I love my day job, but I always find myself hankering to *create* something novel and (hopefully) profitable.
 
