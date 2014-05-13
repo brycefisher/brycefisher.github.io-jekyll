@@ -291,6 +291,11 @@ blockquote + h2, blockquote + h3, blockquote + h4, blockquote + h5, blockquote +
 
 .responsive-video { width: 100%; height: auto !important; margin: 6px 0; }
 
+.video { display: block; margin-bottom: 24px; background-color: #333; }
+@media screen and (max-width: 623px) { .video { padding-left: 6px; padding-right: 6px; } }
+@media screen and (min-width: 624px) { .video { width: 600px; margin-right: auto; margin-left: auto; } }
+@media screen and (min-width: 800px) { .video { width: 750px; } }
+
 #header { background: url("../img/header.jpg") repeat-x; height: 36px; }
 #header #logo img { height: 24px; width: auto; margin: 6px; float: left; }
 #header h2#site-title { float: left; font-size: 24px; line-height: 36px; margin: 0; color: white; text-shadow: 1px 1px black; width: auto; }

@@ -18,21 +18,25 @@ My final argument for this particular technique is transparency. I store the cod
 
 The trick to getting credentials out of your settings.php file is to use **environment variables**. The shells for Windows, Mac, and Linux are able to store small pieces of information in the environment. It's really easy to temporarily set an environmental variable in a bash shell:
 
-    $ set x='y'
-    $ echo $x
-    y
+{% highlight bash %}
+$ set x='y'
+$ echo $x
+y
+{% endhighlight %}
 
 Here's how it looks in a Windows command prompt:
 
-    > set x='y'
-    > echo %x%
-    'y'
+{% highlight powershell %}
+> set x='y'
+> echo %x%
+'y'
+{% endhighlight %}
 
 However, these environment variables will poof out of existence as soon as your restart your computer (or close that terminal session!). In order for Drupal to work, we need a "set it and forget it" approach to these environment variables, so that they persistent indefinitely. 
 
 ### Long Lived Environment Variables in Windows
 
-<iframe width="640" height="360" src="//www.youtube-nocookie.com/embed/bEroNNzqlF4?rel=0#t=0m28s" frameborder="0">  </iframe>
+<iframe width="640" height="360" src="//www.youtube-nocookie.com/embed/bEroNNzqlF4?rel=0#t=0m28s" frameborder="0" class="video"></iframe>
 
 In Windows Vista, Windows 7, or WIndows 8, you can set a persistent environment variable by right clicking on "My Computer" > "Properties", then clicking on "Advanced system settings" and clicking "Environment Variables" at the bottom of the dialog box. Then click "New..." and you'll be able to name and set your variable. This variable will be available system wide. Restart Apache and you'll be good to go!
 
@@ -46,17 +50,23 @@ There are at least two different ways to accomplish this. If you're more experie
 
 If you do have root access to your Mac/Linux machine, then you should be able to edit the file **/etc/apache2/envvars**. You can set an environment variable for Apache inside this file like this:
 
-    export MY_ENVVAR="helloWeb"
+{% highlight bash %}
+export MY_ENVVAR="helloWeb"
+{% endhighlight %}
 
 Using Ubuntu, I had to restart the machine before MY_ENVAR was picked up by Apache. I also needed to restart apache after making a change:
 
-    $ sudo apachectl restart 
+{% highlight bash %}
+$ sudo apachectl restart 
+{% endhighlight %}
 
 #### 2) Using Htaccess
 
 If you don't have root access, never fear! You can still set an environment variable for Apache inside an htaccess file. Create or edit a file named **.htaccess** in the directory above your public root, and add the following code to it:
 
-    SetEnv MY_ENVVAR "helloWeb"
+{% highlight bash %}
+SetEnv MY_ENVVAR "helloWeb"
+{% endhighlight %}
 
 For this to work, you may need to have IT set Apache's AllowOverride directive to "All" or "FileInfo" for your virtual host. Try it out first, then contact support at your hosting company if this doesn't work (see the testing section next).
 
@@ -64,15 +74,21 @@ For this to work, you may need to have IT set Apache's AllowOverride directive t
 
 No matter how you set it, we need to make sure that php picks up the environment variable you set. This is super easy. Just a make a file called envvars.php and put it the top directory of your drupal site. Put this inside your file:
 
-    <?php var_dump(getenv('MY_ENVVAR')); ?>
+{% highlight php %}
+<?php var_dump(getenv('MY_ENVVAR')); ?>
+{% endhighlight %}
 
 We'll use the [`getenv()` function](http://php.net/getenv) to retrieve the environment variable. During debugging, I use `var_dump()` so that I can see what type of variable php is returning. Now go to your drupal site's url and add '/envvars.php' to the end. If you see:
 
-    string(8) "helloWeb"
+{% highlight bash %}
+string(8) "helloWeb"
+{% endhighlight %}
 
 It worked! You're ready to go on to the rest of this article. If you see:
 
-   bool(0) FALSE
+{% highlight bash %}
+bool(0) FALSE
+{% endhighlight %}
 
 Then, php didn't pick up this variable. First try restarting Apache on that machine. If that doesn't give you the expected result, then try contacting your hosting company's support for assistance or leave me a comment on this post.
 
@@ -80,7 +96,9 @@ Then, php didn't pick up this variable. First try restarting Apache on that mach
 
 **Drupal 6** uses a single *connection string* to store the database credentials. This string contains the user name, the database name and password, the host, and port. Here's an example:
   
-    mysql://user:password@localhost/database
+{% highlight php %}
+mysql://user:password@localhost/database
+{% endhighlight %}
 
 Simply replace 'user' with your database username, and so on. Then set an environment variable with this string for Drupal 6 and the [php function `getenv`](http://us2.php.net/getenv) to retrieve the value. Easy!
 
@@ -88,22 +106,33 @@ Simply replace 'user' with your database username, and so on. Then set an enviro
 
 Drupal 7 uses an array to store the database credentials. Although you could store separate parts of the credentials in separate environment variables, I prefer to use the [`serialize()` function](http://us2.php.net/serialize) to convert an array into a string ahead of time. I typically do this by opening an interactive php shell and copying the result:
 
-    $ php -a
-    Interactive shell
+{% highlight bash %}
+$ php -a
+Interactive shell
 
-    php > $creds = array();
-    php > $creds['driver'] = 'mysql';
-    php > $creds['database'] = 'databasename';
-    php > $creds['username'] = 'username';
-    php > $creds['password'] = 'password';
-    php > $creds['host'] = 'localhost';
-    php > $creds['prefix'] = '';
-    php > print serialize($creds);
-    a:5:{s:6:"driver";s:5:"mysql";s:8:"database";s:12:"databasename";s:8:"password";s:8:"password";s:4:"host";s:9:"localhost";s:6:"prefix";s:0:"";}
+php > $creds = array();
+php > $creds['driver'] = 'mysql';
+php > $creds['database'] = 'databasename';
+php > $creds['username'] = 'username';
+php > $creds['password'] = 'password';
+php > $creds['host'] = 'localhost';
+php > $creds['prefix'] = '';
+php > print serialize($creds);
+a:5:{s:6:"driver";s:5:"mysql";s:8:"database";s:12:"databasename";s:8:"password";s:8:"password";s:4:"host";s:9:"localhost";s:6:"prefix";s:0:"";}
+{% endhighlight %}
 
 You'll want to replace all the dummy values above with your actual database credentials, and then copy and paste that last line **exactly** as it appears into an environment variable. Inside my settings.php, I use the following code to retrieve the environment variable:
 
-<script src="https://gist.github.com/brycefisher/7434467.js"></script>
+{% highlight php %}
+<?php
+// Store the database credentials serialized in an environmental variable.
+$db_creds = unserialize(getenv('DRUPAL_DB_CRED'));
+$databases = array (
+  'default' => array (
+    'default' => $db_creds,
+  ),
+);
+{% endhighlight %}
 
 ## Potential Pitfalls
 
