@@ -4,15 +4,15 @@ layout: "post"
 excerpt: "A quick tutorial on setting up two versions of php (5.2 and 5.3) on the same HostGator shared hosting account"
 category: php
 ---
-In this tutorial, I'm going walk you through how to setup PHP 5.3 and PHP 5.2 on the same shared hosting account with HostGator. Obviously, having two separate servers would be the ideal scenario, but when budgets don't allow for that, it is possible to run different PHP versions on the same server and even account. Onward!
+In this tutorial, I'm going walk you through how to setup PHP 5.3 and PHP 5.2 (or other versions) on the same shared hosting account with HostGator. Obviously, having two separate servers would be the ideal scenario, but when budgets don't allow for that, it is possible to run different PHP versions on the same server and even account. Onward!
+
+_**UPDATE MAY, 2014**_ -- *HostGator is now converting [all PHP to version 5.4.](http://support.hostgator.com/articles/hosting-guide/hardware-software/what-version-of-php-are-you-using) This is awesome because 5.4 is significantly faster than previous versions and it comes with a development server, traits, JavaScript array notation* (ex: `[1,"string",TRUE,[],...]`) *and loads of other goodies and security updates. Great job, HostGator!*
 
 ##Why???
 
 I was running [Drupal](http://drupal.org) as the CMS on my personal shared hosting account, and I've been playing with around with [Fat Free Framework](http://github.com/bcosca/fatfree) for building a lightweight backend and RESTful API to a mobile app. Before dishing out the whopping $50/month to rollout my app on a dedicated server, I just wanted to do some basic user testing early on in the process. So, to save some money, I decided to use my personal shared hosting account (with HostGator). 
 
 Unfortunately, Fat Free Framework requires PHP 5.3+ to work it's magic, but HostGator by default uses PHP 5.2. After puttering through their documentation, I discovered that PHP 5.3 comes pre-installed on all shared hosting. Hooray! However, none of the Zend extensions are compatible with HostGator's PHP 5.3 setup, such as PDO, sqlite, pdo_mysql, and others. Here's the rub -- Drupal __depends__ on these modules being loaded. So how can we escape this from this most heart-rending dilemma ever seen???
-
-_**UPDATE MAY, 2014**_ -- *HostGator is now converting [all PHP to version 5.4.](http://support.hostgator.com/articles/hosting-guide/hardware-software/what-version-of-php-are-you-using) This is awesome because 5.4 is significantly faster than previous versions and it comes with a development server, traits, JavaScript array notation* (ex: `[1,"string",TRUE,[],...]`) *and loads of other goodies and security updates. Great job, HostGator!*
 
 ##Two Php Configurations
 
