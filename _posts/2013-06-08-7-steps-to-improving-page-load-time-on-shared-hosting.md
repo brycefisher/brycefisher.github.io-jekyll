@@ -21,7 +21,41 @@ Choose a subdomain name that makes sense to you. I like to store these files out
 
 Create an htaccess file in the root directory of your subdomain (in my example, /subdomains/static/.htaccess). The following .htaccess file asks browsers to store images and other static assets in it's cache longer for better repeat traffic. It utilizes mod_deflate to compress all kinds of text files (js, xml, html, css, ajax, etc.) over the netwok. It also blocks access to directory listings and sensitive batch files for security.
 
-[See this as a gist](https://gist.github.com/brycefisher/5734403)
+{% highlight apache %}
+# Security
+Options -Indexes
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule \.bat$ - [R=404]
+</IfModule>
+ 
+# Leverage Browser Caching
+<IfModule mod_expires.c>
+# Enable Expirations
+ExpiresActive On
+ 
+# Default Expiration Time
+ExpiresDefault "access plus 1 month"
+ 
+# Expiration for Images
+ExpiresByType image/gif "access plus 1 month"
+ExpiresByType image/png "access plus 1 month"
+ExpiresByType image/jpg "access plus 1 month"
+ExpiresByType image/jpeg "access plus 1 month"
+ 
+# Expiration for CSS
+ExpiresByType text/css "access plus 1 month"
+ 
+# Expiration for JavaScript
+ExpiresByType application/javascript "access plus 1 month"
+</IfModule>
+ 
+# Gzip
+<ifmodule mod_deflate.c>
+AddOutputFilterByType DEFLATE text/text text/html text/plain text/xml text/css application/x-javascript application/javascript text/javascript
+</ifmodule>
+#End Gzip
+{% endhighlight %}
 
 ## 3. Fight the Scourge of Social Sharing Widgets
 
