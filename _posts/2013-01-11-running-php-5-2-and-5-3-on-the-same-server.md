@@ -8,9 +8,11 @@ In this tutorial, I'm going walk you through how to setup PHP 5.3 and PHP 5.2 on
 
 ##Why???
 
-I'm running [Drupal](http://drupal.org) as the CMS on my personal shared hosting account, and I've been playing with around with [Fat Free Framework](http://github.com/bcosca/fatfree) for building a lightweight backend and RESTful API to a mobile app. Before dishing out the whopping $50/month to rollout my app on a dedicated server, I just wanted to do some basic user testing early on in the process. So, to save some money, I'm using my personal shared hosting account (with HostGator). 
+I was running [Drupal](http://drupal.org) as the CMS on my personal shared hosting account, and I've been playing with around with [Fat Free Framework](http://github.com/bcosca/fatfree) for building a lightweight backend and RESTful API to a mobile app. Before dishing out the whopping $50/month to rollout my app on a dedicated server, I just wanted to do some basic user testing early on in the process. So, to save some money, I decided to use my personal shared hosting account (with HostGator). 
 
 Unfortunately, Fat Free Framework requires PHP 5.3+ to work it's magic, but HostGator by default uses PHP 5.2. After puttering through their documentation, I discovered that PHP 5.3 comes pre-installed on all shared hosting. Hooray! However, none of the Zend extensions are compatible with HostGator's PHP 5.3 setup, such as PDO, sqlite, pdo_mysql, and others. Here's the rub -- Drupal __depends__ on these modules being loaded. So how can we escape this from this most heart-rending dilemma ever seen???
+
+_**UPDATE MAY, 2014**_ -- *HostGator is now converting [all PHP to version 5.4.](http://support.hostgator.com/articles/hosting-guide/hardware-software/what-version-of-php-are-you-using) This is awesome because 5.4 is significantly faster than previous versions and it comes with a development server, traits, JavaScript array notation* (ex: `[1,"string",TRUE,[],...]`) *and loads of other goodies and security updates. Great job, HostGator!*
 
 ##Two Php Configurations
 
@@ -18,25 +20,30 @@ Because HostGator uses suPHP by default, we can instruct suPHP to load different
 
 To illustrate, here's how I've structured my home directory:
 
-    /home/user/
-        php.ini -- This is the default that comes with shared hosting. No need to change this!
-        public_html/ -- Drupal lives in here. Uses PHP 5.2 with Zend modules by default 
-            ...
-        php53/
-             .htaccess -- Tells Apache to use PHP 5.3 in this folder and all sub-folders
-             php.ini -- Tells suPHP not to load Zend modules
+{% highlight yaml %}
+/home/user/
+    php.ini # This is the default that comes with shared hosting. No need to change this!
+    public_html/ # Drupal lives in here. Uses PHP 5.2 with Zend modules by default 
+    php53/
+         .htaccess # Tells Apache to use PHP 5.3 in this folder and all sub-folders
+         php.ini # Tells suPHP not to load Zend modules
+{% endhighlight %}
 
 ###Htaccess File for PHP 5.3
 
 So, let's put together the htaccess file for PHP 5.3. First we need to instruct Apache to use PHP 5.3 in this directory and all other subdirectories:
 
-    AddType application/x-httpd-php53 .php
+{% highlight apache %}
+AddType application/x-httpd-php53 .php
+{% endhighlight %}
 
 That was easy, right? Okay, now let's tell suPHP where to find our custom php.ini file:
 
-    <IfModule mod_suphp.c>
-	suPHP_ConfigPath /home/user/php53
-    </IfModule>
+{% highlight apache %}
+<IfModule mod_suphp.c>
+  suPHP_ConfigPath /home/user/php53
+</IfModule>
+{% endhighlight %}
 
 __NOTE:__ You'll need to change the path to point to the directory where you're custom php.ini will be. The example above uses the directory structure I've outlined earlier in the article. 
 
@@ -46,34 +53,38 @@ By default, HostGator puts a php.ini for you in your home directory. Copy that f
 
 Also, PHP 5.3 seems to require a timezone to be set in the php.ini file. Simply add this code to the very bottom (substituting the "`America/Los_Angeles`" with your [time zone](http://php.net/manual/en/timezones.php)):
 
-    [Date]
-    date.timezone="America/Los_Angeles"
+{% highlight ini %}
+[Date]
+date.timezone="America/Los_Angeles"
+{% endhighlight %}
 
 When you are finished, the end of your custom php.ini file should look like this:
 
-	[Zend]
+{% highlight ini %}
+[Zend]
 
-	;extension=magickwand.so 
-	;extension=imagick.so
-	;extension=mailparse.so
+;extension=magickwand.so 
+;extension=imagick.so
+;extension=mailparse.so
 
-	;extension=pdo.so
-	;extension=pdo_sqlite.so
-	;extension=sqlite.so
-	;extension=pdo_mysql.so
-	;extension=uploadprogress.so
-	;extension=gnupg.so
-	;extension=mailparse.so
-	;extension=fileinfo.so
+;extension=pdo.so
+;extension=pdo_sqlite.so
+;extension=sqlite.so
+;extension=pdo_mysql.so
+;extension=uploadprogress.so
+;extension=gnupg.so
+;extension=mailparse.so
+;extension=fileinfo.so
 
-	;extension=mongo.so
-	;extension=http.so
-	;extension=phar.so
-	;extension="ixed.5.2.lin"
-	;zend_extension="/usr/local/Zend/lib/Optimizer-3.3.9/php-5.2.x/ZendOptimizer.so"
+;extension=mongo.so
+;extension=http.so
+;extension=phar.so
+;extension="ixed.5.2.lin"
+;zend_extension="/usr/local/Zend/lib/Optimizer-3.3.9/php-5.2.x/ZendOptimizer.so"
 
-	[Date]
-	date.timezone="America/Los_Angeles"
+[Date]
+date.timezone="America/Los_Angeles"
+{% endhighlight %}
 
 ## Making Sure It Works
 
