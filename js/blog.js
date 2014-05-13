@@ -19,20 +19,21 @@
   }
 
   /* Conversion Metrics */
-  function ga_convert(class_selector, category, action,) {
+  function ga_convert(class_selector, category, action, label) {
     var node_list = document.querySelectorAll(class_selector),
-        i=0;
+        i = 0,
+        f = function(e) {
+          console.log('Thanks for clicking on my ' + label + '!');
+          ga('send', 'event', category, action, label, 1);
+        };
+
     if (node_list) {
       for (; i<node_list.length; i++) {
-        node_list[i].addEventListener('click', callback, false);
+        node_list[i].addEventListener('click', f, false);
       }
     }
   }
-  ga_convert('.secondary-cta', function(e){
-    ga('send', 'event', 'social', 'follow', 'rss', 1);
-  });
-  ga_convert('.primary-cta', function(){
-    ga('send', 'event', 'social', 'follow', 'twitter', 1);
-  });
+  ga_convert('.secondary-cta', 'social', 'follow', 'rss');
+  ga_convert('.primary-cta', 'social', 'follow', 'twitter');
   
-})()
+})();
