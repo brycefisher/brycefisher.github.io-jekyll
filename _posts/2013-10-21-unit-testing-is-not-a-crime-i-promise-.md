@@ -3,7 +3,7 @@ title: "Unit Testing is Not a Crime (I promise!)"
 layout: "post"
 excerpt: "This article is another workplace rant from me about web development best practices, specifically the importance of building tests. I'll try my best to convince myself, my boss, and you that we should all write unit tests for almost any piece of code we write."
 ---
-Each keystroke I make breaks some piece of the code that I touch. In contrast, well written code sends off alarm bells when something is broken, but in every software project I've ever worked on, testing has always been considered a waste of time. The standard reasoning is that we're just building simple websites and that with the size of our teams, it's not a good use of our resources. I've worked at both a small 5 man shop and now at are larger publicly traded company, but the software and the excuses for unusable, brittle, and downright orny code have been same.
+Each keystroke I make breaks some piece of the code that I touch. In contrast, well written code sends off alarm bells when something is broken, but in every software project I've ever worked on, testing has always been considered a waste of time. The standard reasoning is that we're just building simple websites and that with the size of our teams, it's not a good use of our resources. I've worked at both a small 5 person drupal shop and now at a larger publicly traded company, but the software and the excuses for unusable, brittle, and downright orny code have been same.
 
 I find this situation unacceptable. It's an unacceptable waste of my employer's time for me to produce code that cannot reasonable be understood or fixed even by myself. I recently read an article on Hacker News (that I can't find now), but this article discussed how writing unit tests is not something needs to be justified to one's project's manager. It's simply part of building software like a professional. Likewise, I believe that adding tests is something that I should be doing just as much as rendering the javascript in the browser.
 
@@ -11,7 +11,7 @@ TDD and BDD aside, most days I don't even get error messages when something goes
 
 ## What To Test
 
-In my world, I build websites like [dnaink](http://www.dnaink.com/) that function as glorified brochureware. Typically, if I asked my boss for permission to create tests (unit or otherwise), my boss would respond that there's not enough complexity to justify it, and could it be done yesterday please? However, this website has a myriad of complex functions integrating with the underlying CMS that probably only I will ever fully understand, and most of which I've already forgotten. Let's examine a few real world examples of what I would want to test on this site.
+In my world, I build websites like [DNAInk](http://www.dnaink.com/) that function as glorified brochureware. Typically, if I asked my boss for permission to create tests (unit or otherwise), my boss would respond that there's not enough complexity to justify it, and could it be done yesterday please? However, this website has a myriad of complex functions integrating with the underlying CMS that probably only I will ever fully understand, and most of which I've already forgotten. Let's examine a few real world examples of what I would want to test on this site.
 
 ### Anything Functional (not merely cosmetic)
 
@@ -30,7 +30,7 @@ If you're a new programmer or you've never seen the code for this website, you'v
 + What's going wrong?
 + What's supposed to even be happening here?
 
-These are hard problems to solve if you have 0 information to start with. When DNA Ink approaches you to fix this problem, the first question will be "How will it take to fix it?" I hate this question, because there is no answer. The reason there's no answer is because you don't yet know what's wrong, and as they say "knowing is half the battle." 
+These are hard problems to solve if you have 0 information to start with. When DNA Ink approaches you to fix this problem, the first question will be "How long will it take to fix it?" I hate this question, because there is no *accurate* answer. The reason there's no answer is because you don't yet know what's wrong, and as they say "knowing is half the battle." 
 
 ### Just Imagine the Buttery Goodness of an Error Message Right Now
 
