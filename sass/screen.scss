@@ -9,7 +9,7 @@
 
 @mixin centered-content {
   @media screen and (max-width: 623px) {
-    padding-left: 6px; padding-right: 6px;
+    margin-left: 6px; margin-right: 6px;
   }
   @media screen and (min-width: 624px) {
     width: 600px;
@@ -35,6 +35,7 @@
 /////////////////////
 // Typography
 html { font-family: 'liberation_serifregular'; font-size: 16px; line-height: 24px; color: #333; }
+body { overflow-x: hidden; }
 
 h1 { font-size: 40px; line-height: 48px; margin: 6px 0; font-weight: bold; color: #000; @include centered-content; }
 h2 { font-size: 30px; line-height: 36px; margin: 36px 0 6px 0; font-weight: bold; color: #000; @include centered-content; }
@@ -48,6 +49,9 @@ a:link:hover, a:hover { color: #4c4cfa; }
 a:visited { color: #4c4cfa; }
 a:visited:hover { color: #1a1afa; }
 a:active { color: #f66; }
+
+ul, ol { padding-left: 30px; }
+ul ul, ol ol, ul ol, ol ul { padding-left: 0; }
 
 strong { font-weight: 600; }
 em { font-style: italic; }
@@ -69,6 +73,8 @@ blockquote + h6 { padding-top: 24px; }
 
 ////////////////////////////////
 // Layout
+
+// Site Header
 #header {
   background: url('../img/header.jpg') repeat-x; height: 36px;
 
@@ -76,6 +82,7 @@ blockquote + h6 { padding-top: 24px; }
   h2#site-title { float: left; font-size: 24px; line-height: 36px; margin: 0; color: white; text-shadow: 1px 1px black; width: auto; }
 }
 
+// Article
 .node-article {
 
   .article-header {
@@ -125,14 +132,13 @@ blockquote + h6 { padding-top: 24px; }
 
     .comments { 
       @include centered-content;
-      padding: 0 12px;
+      h2, #disqus_thread { max-width:95%; margin-right:15px; margin-left: 15px; }
     }
 
-    .related-content {
+    #related-posts {
       @include centered-content;
-      padding: 0 12px;
-
-      ul { list-style: square outside; margin-left: 24px; }
+      margin-bottom: 48px; 
+      ul { list-style: square outside; }
     }
   }
 }
@@ -145,9 +151,6 @@ blockquote + h6 { padding-top: 24px; }
 @media screen and (min-width: 624px) {
 	h1 { font-size: 72px; line-height: 84px; }
 	h2 { font-size: 36px; line-height: 42px; }
-
-  ul, ol { padding-left: 20px; }
-  ul ul, ol ol, ul ol, ol ul { padding-left: 0; }
 	
 	blockquote p { max-width: 500px; position: relative; left: 50px; }
 	blockquote:before { display:block; @include centered-content; content:"\201C"; color:#999; font-size:10em; position:relative; top:0.3em; }

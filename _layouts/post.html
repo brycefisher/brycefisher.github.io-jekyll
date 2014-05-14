@@ -25,10 +25,21 @@ layout: default
       
       <p>or <a href="/feed.xml" class="secondary-cta">RSS</a> to read my next post <strong>first!</strong></p>
     </div>
+    <div id="related-posts">
+      <h2>What to Read Next</h2>
+      <ul>
+        {% for post in site.related_posts limit:3 %}
+          <li>
+            <a href="{{ post.url }}">{{ post.title }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
 
     <div class="comments">
-        <div id="disqus_thread"></div>
-        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments.</a></noscript>
+      <h2>Discuss</h2>
+      <div id="disqus_thread"></div>
+      <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments.</a></noscript>
     </div>
   </footer>
 </article>
