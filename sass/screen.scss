@@ -70,6 +70,10 @@ blockquote + h5,
 blockquote + h6 { padding-top: 24px; }
 
 .video { @include centered-content; display:block; margin-bottom: 24px; background-color:#333; }
+.responsive-image {
+	display: inline;
+	img { display: block; width: 100%; height: auto !important; }
+}
 
 ////////////////////////////////
 // Layout
