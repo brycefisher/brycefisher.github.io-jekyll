@@ -21,6 +21,5 @@ permalink: /blog/:title
 relative_permalinks: false
 pygments: true
 paginate: 10
-lsi: true
 paginate_path: /blog/:num
 markdown: kramdown
