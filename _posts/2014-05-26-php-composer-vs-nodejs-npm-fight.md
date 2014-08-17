@@ -9,7 +9,9 @@ As web developers, we suddenly have a lot of options for building our own open s
 
 While historical statistics about NPM in aggregate are unavailable, [Packagist provides several charts](https://packagist.org/statistics) about user activity going back to September of 2011. The number of projects on Packagist has more than doubled in roughly the last 9 months. Not bad for the most hated programming language on Hacker News.
 
-![Packagist usage](/img/2014-05-25-Packagist-charts.png)
+<p class="responsive-image">
+  <img alt="Packagist usage" src="/img/2014-05-25-Packagist-charts.png">
+</p>
 
 ## The Challenge
 
