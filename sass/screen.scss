@@ -79,12 +79,16 @@ blockquote + h6 { padding-top: 24px; }
 // Layout
 
 // Site Header
-#header {
+#header, #site-footer {
   background: url('../img/header.jpg') repeat-x; height: 36px;
 
   #logo img { height: 24px; width: auto; margin: 6px; float: left; }
-  h2#site-title { float: left; font-size: 24px; line-height: 36px; margin: 0; color: white; text-shadow: 1px 1px black; width: auto; }
+  p, h2#site-title { margin: 0; color: white; text-shadow: 1px 1px black; width: auto; }
+  h2#site-title { font-size: 24px; line-height: 36px; float: left;  }
+  p { @include centered-content;  font-size: 12px;  line-height:36px; }
 }
+
+#site-footer { margin-top: 24px; }
 
 // Article
 .node-article {
@@ -161,7 +165,7 @@ blockquote + h6 { padding-top: 24px; }
     @include centered-content;
     article { margin: 30px 0; }
     datetime { padding-bottom: 0; color:#999; }
-    .pagination { margin: 60px auto 0 auto; text-align: center; }
+    .pagination { margin: 60px auto 0 auto; }
     .node-article .article-header { background:none; }
   }
 }
