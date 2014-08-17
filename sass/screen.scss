@@ -147,6 +147,25 @@ blockquote + h6 { padding-top: 24px; }
   }
 }
 
+//////////////////////////////
+// Named pages - custom layout
+#home {
+  h1 { font-size:60px; line-height:72px; }
+
+  #site-mission {
+    margin-top: -4px; padding:12px 0; background: black url(/img/spotlight-on-green-damask.jpg) center;
+    h1, p { color:white; @include centered-content; }
+  }
+
+  #main-content {
+    @include centered-content;
+    article { margin: 30px 0; }
+    datetime { padding-bottom: 0; color:#999; }
+    .pagination { margin: 60px auto 0 auto; text-align: center; }
+    .node-article .article-header { background:none; }
+  }
+}
+
 ///////////////////////////
 // Media Queries
 @media screen and (min-width: 450px) {
@@ -155,6 +174,7 @@ blockquote + h6 { padding-top: 24px; }
 @media screen and (min-width: 624px) {
 	h1 { font-size: 72px; line-height: 84px; }
 	h2 { font-size: 36px; line-height: 42px; }
+  #home h1 { font-size:108px; line-height: 126px; }
 	
 	blockquote p { max-width: 500px; position: relative; left: 50px; }
 	blockquote:before { display:block; @include centered-content; content:"\201C"; color:#999; font-size:10em; position:relative; top:0.3em; }
@@ -166,12 +186,3 @@ blockquote + h6 { padding-top: 24px; }
 	blockquote p { max-width: 650px; }
 }
 
-//////////////////////////////
-// Named pages - custom layout
-#home #main-content {
-  @include centered-content;
-  article { margin: 30px; }
-  datetime { padding-bottom: 0; color:#999; }
-  .pagination { margin: 60px auto 0 auto; text-align: center; }
-  .node-article .article-header { background:none; }
-}
