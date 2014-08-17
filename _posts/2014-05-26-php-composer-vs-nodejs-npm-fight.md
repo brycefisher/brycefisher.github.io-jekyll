@@ -39,6 +39,8 @@ Since I hadn't worked with either Guzzle or Symfony seriously before, I had some
 
 However, Composer doesn't have an easy mechanism to install a shell script into the path. Apparently, to do so requires subclassing Composer and overriding certain methods. While object oriented paradigms are possibly the best thing to ever happen to PHP, writing a custom installer class shouldn't be necessary for a bare-bones cli tool. **Ideally, we should be able to install an executable script to the path with minimal configuration**. Perhaps I'm too inexperienced here, but really really it should not be hard. Fail, Composer.
 
+***UPDATE August, 2014** - As I suspected originally, there is actually a way to install packages globally (thanks readers!). This information is not readily forthcoming however unless you already know where to find it (for instance it can't be found in the cli help information provided with composer).*
+
 ## NodeJS NPM
 
 Having used Uglify-Js on the command line, I knew it had to be easier with NodeJS's NPM. I was able to identify a couple of packages on npmjs.org  quickly for my two requirements:
@@ -62,4 +64,4 @@ Then simply `npm link` in the directory of your package.json file. Npm will noti
 
 ## And the Winner is...
 
-Although the particular packages I used from PHP had better documentation, the lack of a global install mechanism means that PHP Composer is second place in this contest. For my situation, NodeJS's NPM was the superior tool.
+Although the particular packages I used from PHP had better documentation, I'm awarding second place to PHP Composer because of the difficulty in installing packages. For my situation, NodeJS's NPM was the superior tool.
