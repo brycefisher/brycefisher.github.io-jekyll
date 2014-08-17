@@ -18,76 +18,78 @@ Drupal has a whole host of modules that are designed to make it easier for Drupa
 
 ## Comparison of Features
 
-<table>
-  <thead>
+<div class="scroll">
+  <table>
+    <thead>
+      <tr>
+         <th>Module Name</th>
+         <th title="What happens when JavaScript is disabled">Fallback?</th>
+         <th title="Can this module make img tags inside responsive in node bodies? Or, only image fields?">Affects Image Types</th>
+         <th title="Denotes any non-Drupal code that is required to run this module">3rd Party Libraries</th>
+         <th>Ease of Installation</th>
+         <th title="Other Modules that this module is intended to work with">Integrates with</th>
+         <th>Maintenance Concerns</th>
+         <th title="Number of sites that report using this module on Drupal.org at time of writing">Reported Installs</th>
+      </tr>
+    </thead>
+    <tbody>
     <tr>
-       <th>Module Name</th>
-       <th title="What happens when JavaScript is disabled">Fallback?</th>
-       <th title="Can this module make img tags inside responsive in node bodies? Or, only image fields?">Affects Image Types</th>
-       <th title="Denotes any non-Drupal code that is required to run this module">3rd Party Libraries</th>
-       <th>Ease of Installation</th>
-       <th title="Other Modules that this module is intended to work with">Integrates with</th>
-       <th>Maintenance Concerns</th>
-       <th title="Number of sites that report using this module on Drupal.org at time of writing">Reported Installs</th>
+      <td><a href="http://drupal.org/project/adaptive_image">Adaptive Image</a></td>
+      <td>??</td>
+      <td>Fields only</td>
+      <td>None</td>
+      <td>Easy</td>
+      <td>Image Styles</td>
+      <td>None</td>
+     <td>4000ish</td>
     </tr>
-  </thead>
-  <tbody>
-  <tr>
-    <td><a href="http://drupal.org/project/adaptive_image">Adaptive Image</a></td>
-    <td>??</td>
-    <td>Fields only</td>
-    <td>None</td>
-    <td>Easy</td>
-    <td>Image Styles</td>
-    <td>None</td>
-   <td>4000ish</td>
-  </tr>
 
-  <tr>
-    <td><a href="http://drupal.org/project/cs_adaptive_image">Client Side Adaptive Image</a></td>
-    <td>noscript tag sets a fallback image</td>
-    <td>Fields only</td>
-    <td>None</td>
-    <td>Easy</td>
-    <td>Image Field</td>
-    <td>None</td>
-    <td>1500</td>
-  </tr>
+    <tr>
+      <td><a href="http://drupal.org/project/cs_adaptive_image">Client Side Adaptive Image</a></td>
+      <td>noscript tag sets a fallback image</td>
+      <td>Fields only</td>
+      <td>None</td>
+      <td>Easy</td>
+      <td>Image Field</td>
+      <td>None</td>
+      <td>1500</td>
+    </tr>
 
-  <tr>
-    <td><a href="http://drupal.org/project/ais">Adaptive Image Styles</a></td>
-    <td>Original image</td>
-    <td>Fields, and Inline Img tags</td>
-    <td>None</td>
-    <td>Hard</td>
-    <td>Image Styles, Media, WYSIWYG</td>
-    <td>Patching .htaccess module after drupal core updates!</td>
-    <td>1700</td>
-  </tr>
+    <tr>
+      <td><a href="http://drupal.org/project/ais">Adaptive Image Styles</a></td>
+      <td>Original image</td>
+      <td>Fields, and Inline Img tags</td>
+      <td>None</td>
+      <td>Hard</td>
+      <td>Image Styles, Media, WYSIWYG</td>
+      <td>Patching .htaccess module after drupal core updates!</td>
+      <td>1700</td>
+    </tr>
 
-  <tr>
-    <td><a href="http://drupal.org/project/resp_img">Responsive Images</a></td>
-    <td>??</td>
-    <td>Fields only</td>
-    <td><a href="https://github.com/filamentgroup/Responsive-Images/tree/cookie-driven">Responsive Image library</a></td>
-    <td>Moderate</td>
-    <td>Image Styles</td>
-    <td><strong>NOT ACTIVELY MAINTAINED</strong></td>
-    <td>106</td>
-  </tr>
+    <tr>
+      <td><a href="http://drupal.org/project/resp_img">Responsive Images</a></td>
+      <td>??</td>
+      <td>Fields only</td>
+      <td><a href="https://github.com/filamentgroup/Responsive-Images/tree/cookie-driven">Responsive Image library</a></td>
+      <td>Moderate</td>
+      <td>Image Styles</td>
+      <td><strong>NOT ACTIVELY MAINTAINED</strong></td>
+      <td>106</td>
+    </tr>
 
-  <tr>
-    <td><a href="http://drupal.org/project/resp_img">Responsive Images and Styles</a></td>
-    <td>CSS Based / JS independent</td>
-    <td>Fields, Blocks, Entities textfields, Inline img tags, and more</td>
-    <td>None</td>
-    <td>Easy to Moderate</td>
-    <td>Image Styles, Context, Media, Picture, field_slideshow, colorbox, expire</td>
-    <td>Will be part of D8 Core, but breaks on Drupal 7.20+ without some TLC (see project page)</td>
-    <td>1811</td>
-  </tr>
-</tbody>
-</table>
+    <tr>
+      <td><a href="http://drupal.org/project/resp_img">Responsive Images and Styles</a></td>
+      <td>CSS Based / JS independent</td>
+      <td>Fields, Blocks, Entities textfields, Inline img tags, and more</td>
+      <td>None</td>
+      <td>Easy to Moderate</td>
+      <td>Image Styles, Context, Media, Picture, field_slideshow, colorbox, expire</td>
+      <td>Will be part of D8 Core, but breaks on Drupal 7.20+ without some TLC (see project page)</td>
+      <td>1811</td>
+    </tr>
+  </tbody>
+  </table>
+</div>
 
 ## Concluding thoughts on Responsive Images and Drupal
 

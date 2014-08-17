@@ -74,6 +74,7 @@ blockquote + h6 { padding-top: 24px; }
 	display: inline;
 	img { display: block; width: 100%; height: auto !important; }
 }
+.scroll { overflow: scroll; }
 
 ////////////////////////////////
 // Layout
@@ -188,5 +189,6 @@ blockquote + h6 { padding-top: 24px; }
 @media screen and (min-width: 800px) {
   ul, ol { padding-left: 50px; }
 	blockquote p { max-width: 650px; }
+  .scroll { overflow:auto; }
 }
 

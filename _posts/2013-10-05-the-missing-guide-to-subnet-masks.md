@@ -28,11 +28,42 @@ All subnet masks use boolean AND to combine the IP Address and the mask. Let's r
 
 Okay, now putting that altogether, let's AND the IP address and the subnet mask together:
 
-|First Octect |Second Octet |Third Octet |Fourth Octet |              Name|
-|-------------|-------------|------------|-------------|------------------|
-|`00110010`   |`01111010`   |`00100010`  |`00010101`   |    **IP Address**|
-|`11111111`   |`11111111`   |`11111111`  |`11110000`   |  **Subnet Masks**|
-|`00110010`   |`01111010`   |`00100010`  |`00010000`   |        **Result**|
+<div class="scroll">
+  <table>
+    <thead>
+      <tr>
+        <th>First Octect</th>
+        <th>Second Octect</th>
+        <th>Third Octet</th>
+        <th>Fourth Octect</th>
+        <th>Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>00110010</td>   
+        <td>01111010</td>   
+        <td>00100010</td>  
+        <td>00010101</td>
+        <td><strong>IP Address</strong></td>
+      </tr>
+      <tr>
+        <td>11111111</td>   
+        <td>11111111</td>   
+        <td>11111111</td>  
+        <td>11110000</td>
+        <td><strong>Subnet Masks</strong></td>
+      </tr>
+      <tr>
+        <td>00110010</td>   
+        <td>01111010</td>   
+        <td>00100010</td>  
+        <td>00010000</td>
+        <td><strong>Result</strong></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 Notice how all the ones on the left side of the subnet mask allow the starting IP address to trickle down into the result. Only the rightmost bits (where the mask has 0's) are altered. At the end of the process, we get 50.122.34.16 converting the binary result back into decimal.
 
