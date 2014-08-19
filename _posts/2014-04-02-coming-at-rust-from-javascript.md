@@ -5,7 +5,13 @@ excerpt: "My explorations in Rust and having to wrestle with a statically typed 
 category: rust
 ---
 
-Two months ago, I watched [a very inspiring talk about Servo](http://paulrouget.com/e/servopres/), Mozilla's experimental new layout engine written in Rust. I started playing but having no formal background in computer science, I shied away from such a low level language especially since I'm a web developer by day. A few days ago, Jared Forsyth [wrote](http://jaredly.github.io/2014/03/22/rust-vs-go/index.html),
+Two months ago, I watched [a very inspiring talk about Servo](http://paulrouget.com/e/servopres/), Mozilla's experimental new layout engine written in Rust. 
+
+<video controls src="http://mirrors.dotsrc.org/fosdem/2014/UD2218A/Saturday/Servo_building_a_parallel_web_browser.webm">
+    http://mirrors.dotsrc.org/fosdem/2014/UD2218A/Saturday/Servo_building_a_parallel_web_browser.webm
+</video>
+
+I started playing but having no formal background in computer science, I shied away from such a low level language especially since I'm a web developer by day. A few days ago, Jared Forsyth [wrote](http://jaredly.github.io/2014/03/22/rust-vs-go/index.html),
 
 > Conclusion: I'm betting on Rust. ...once Rust settles down and matures a bit its superior design will shine through and it will become really popular.
 
