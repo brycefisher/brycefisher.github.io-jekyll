@@ -89,13 +89,15 @@ video, .video { @include centered-content; display:block; margin-bottom: 24px; b
   p { @include centered-content;  font-size: 12px;  line-height:36px; }
 }
 
+#header { position:fixed; width:100%; top:0; }
+
 #site-footer { margin-top: 24px; }
 
 // Article
 .node-article {
 
   .article-header {
-    margin-bottom: 12px; background: black url(/img/spotlight-on-green-damask.jpg) center;
+    margin:24px 0 12px; background: black url(/img/spotlight-on-green-damask.jpg) fixed bottom;
 
     h1 { @include centered-content; color:white; padding-top: 18px; margin-top:0; }
     datetime { display: block; @include centered-content; padding-bottom: 30px; color:#eee; }
@@ -158,7 +160,7 @@ video, .video { @include centered-content; display:block; margin-bottom: 24px; b
   h1 { font-size:60px; line-height:72px; }
 
   #site-mission {
-    margin-top: -4px; padding:12px 0; background: black url(/img/spotlight-on-green-damask.jpg) center;
+    margin-top: 24px; padding:12px 0; background: black url(/img/spotlight-on-green-damask.jpg) fixed bottom;
     h1, p { color:white; @include centered-content; }
   }
 
