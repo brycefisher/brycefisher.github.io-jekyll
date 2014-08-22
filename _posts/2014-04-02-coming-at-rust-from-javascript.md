@@ -7,7 +7,7 @@ category: rust
 
 Two months ago, I watched [a very inspiring talk about Servo](http://paulrouget.com/e/servopres/), Mozilla's experimental new layout engine written in Rust. 
 
-<video controls src="http://mirrors.dotsrc.org/fosdem/2014/UD2218A/Saturday/Servo_building_a_parallel_web_browser.webm">
+<video class="video" controls src="http://mirrors.dotsrc.org/fosdem/2014/UD2218A/Saturday/Servo_building_a_parallel_web_browser.webm">
     http://mirrors.dotsrc.org/fosdem/2014/UD2218A/Saturday/Servo_building_a_parallel_web_browser.webm
 </video>
 

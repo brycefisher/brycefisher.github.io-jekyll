@@ -36,7 +36,7 @@ However, these environment variables will poof out of existence as soon as your 
 
 ### Long Lived Environment Variables in Windows
 
-<iframe width="640" height="360" src="//www.youtube-nocookie.com/embed/bEroNNzqlF4?rel=0#t=0m28s" frameborder="0" class="video"></iframe>
+<iframe src="//www.youtube-nocookie.com/embed/bEroNNzqlF4?rel=0#t=0m28s" frameborder="0" class="video"></iframe>
 
 In Windows Vista, Windows 7, or WIndows 8, you can set a persistent environment variable by right clicking on "My Computer" > "Properties", then clicking on "Advanced system settings" and clicking "Environment Variables" at the bottom of the dialog box. Then click "New..." and you'll be able to name and set your variable. This variable will be available system wide. Restart Apache and you'll be good to go!
 

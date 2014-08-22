@@ -6,6 +6,7 @@
 @import "compass/reset";
 @import "compass";
 @import "pygments.fruity";
+@import "_video-js";
 
 @mixin centered-content {
   @media screen and (max-width: 623px) {
@@ -69,7 +70,16 @@ blockquote + h4,
 blockquote + h5,
 blockquote + h6 { padding-top: 24px; }
 
-video, .video { @include centered-content; display:block; margin-bottom: 24px; background-color:#333; }
+video, .video, .video .vjs-tech { display:block; position:static; @include centered-content; margin-bottom: 24px; background-color:#333; min-height:200px; }
+@media screen and (max-width:623px) {
+  video, .video, .video .vjs-tech {width:100%; }
+}
+@media screen and (min-width:624px) {
+  video, .video, .video .vjs-tech { height:378px; }
+}
+@media screen and (min-width:800px) {
+  video, .video, .video .vjs-tech { height:473px; }
+}
 .responsive-image {
 	display: inline;
 	img { display: block; width: 100%; height: auto !important; }
@@ -89,7 +99,7 @@ video, .video { @include centered-content; display:block; margin-bottom: 24px; b
   p { @include centered-content;  font-size: 12px;  line-height:36px; }
 }
 
-#header { position:fixed; width:100%; top:0; }
+#header { position:fixed; width:100%; top:0; z-index:1000;}
 
 #site-footer { margin-top: 24px; }
 
