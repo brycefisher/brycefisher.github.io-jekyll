@@ -6,8 +6,11 @@
 @import "compass/reset";
 @import "compass";
 @import "pygments.fruity";
+@import "_variables";
 @import "_video-js";
 
+/////////////////////
+// Responsive Mixins
 @mixin centered-content {
   @media screen and (max-width: 623px) {
     margin-left: 6px; margin-right: 6px;
@@ -33,44 +36,48 @@
        url('../fonts/LiberationSerif-Regular-webfont.svg#liberation_serifregular') format('svg');
 }
 
+@mixin heading {
+  @include centered-content; font-weight: bold; color: $header-color;
+}
+
 /////////////////////
 // Typography
-html { font-family: 'liberation_serifregular'; font-size: 16px; line-height: 24px; color: #333; }
+html { font-family: 'liberation_serifregular'; font-size: 16px; line-height: 24px; color: $text-color; }
 body { overflow-x: hidden; }
 
-h1 { font-size: 40px; line-height: 48px; margin: 6px 0; font-weight: bold; color: #000; @include centered-content; }
-h2 { font-size: 30px; line-height: 36px; margin: 36px 0 6px 0; font-weight: bold; color: #000; @include centered-content; }
-h3 { font-size: 24px; line-height: 30px; margin: 3px 0; font-weight: bold; color: #000; @include centered-content; }
-h4 { font-size: 20px; font-weight: bold; color: #000; @include centered-content; }
-h5 { font-weight: bold; color: #000; @include centered-content; }
-h6 { font-variant: small-caps; color: #000; @include centered-content; }
+h1 { @include heading; font-size: 40px; line-height: 48px; margin: 6px 0; }
+h2 { @include heading; font-size: 30px; line-height: 36px; margin: 36px 0 6px 0; }
+h3 { @include heading; font-size: 24px; line-height: 30px; margin: 3px 0; }
+h4 { @include heading; font-size: 20px; }
+h5 { @include heading; }
+h6 { @include heading; font-weight:normal; font-variant: small-caps; }
 
 a { text-decoration: none; color: #1a1afa; }
 a:link:hover, a:hover { color: #4c4cfa; }
 a:visited { color: #4c4cfa; }
 a:visited:hover { color: #1a1afa; }
-a:active { color: #f66; }
+a:active { color: $link-color; }
 
 ul, ol { padding-left: 30px; }
 ul ul, ol ol, ul ol, ol ul { padding-left: 0; }
 
 strong { font-weight: 600; }
 em { font-style: italic; }
-datetime { color:#666; font-size:smaller; } 
+datetime { color:$dark-grey; font-size:smaller; } 
 
-.highlight { background-color: #333; margin-bottom: 24px; }
-code { font-family: monospace;  }
+.highlight { background-color: $dark-grey; margin-bottom: 24px; }
+code { font-family: monospace; }
 pre code { @include centered-content; display: block; color: white; padding: 6px 0 6px 1em; word-wrap: break-word; white-space: pre-wrap; font-size: 14px; }
 li code, p code { color:#aaa; }
 
-blockquote { background-color: #ddd; padding:24px 0 12px 0; margin-bottom:24px; }
+blockquote { background-color: $light-grey; padding:24px 0 12px 0; margin-bottom:24px; }
 blockquote + h2,
 blockquote + h3,
 blockquote + h4,
 blockquote + h5,
 blockquote + h6 { padding-top: 24px; }
 
-video, .video, .video .vjs-tech { display:block; position:static; @include centered-content; margin-bottom: 24px; background-color:#333; min-height:200px; }
+video, .video, .video .vjs-tech { display:block; position:static; @include centered-content; margin-bottom: 24px; background-color:$dark-grey; min-height:200px; }
 @media screen and (max-width:623px) {
   video, .video, .video .vjs-tech {width:100%; }
 }
@@ -110,7 +117,7 @@ video, .video, .video .vjs-tech { display:block; position:static; @include cente
     margin:24px 0 12px; background: black url(/img/spotlight-on-green-damask.jpg) fixed bottom;
 
     h1 { @include centered-content; color:white; padding-top: 18px; margin-top:0; }
-    datetime { display: block; @include centered-content; padding-bottom: 30px; color:#eee; }
+    datetime { display: block; @include centered-content; padding-bottom: 30px; color: $light-grey; }
   }
 
   .article-body {
@@ -148,7 +155,7 @@ video, .video, .video .vjs-tech { display:block; position:static; @include cente
       	-moz-box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.75); 
       	box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.75); }
       	
-        .primary-cta strong { display: block; font-size: 27px; line-height: 36px; text-shadow: 2px 2px #333; }
+        .primary-cta strong { display: block; font-size: 27px; line-height: 36px; text-shadow: 2px 2px $dark-grey; }
     }
 
     .comments { 
@@ -174,13 +181,23 @@ video, .video, .video .vjs-tech { display:block; position:static; @include cente
     h1, p { color:white; @include centered-content; }
   }
 
-  #main-content {
-    @include centered-content;
-    article { margin: 30px 0; }
-    datetime { padding-bottom: 0; color:#999; }
-    .pagination { margin: 60px auto 0 auto; }
-    .node-article .article-header { background:none; }
+  #main-content { @include centered-content;}
+  .article-header { 
+    background:none; 
+
+    /* FIXME: For some reason, i'm not able to test visited links
+    a:visited {
+      position:relative; background-color:red; font-weight:bold;
+      &:before { content:"x"; color:$light-grey; position:absolute; left: -30px; }
+    }
+    */
   }
+  .node-article { transition-property:all; transition-duration:750ms; }
+  .node-article:hover { background-color:$off-white; }
+  article { margin: 30px 0; }
+  datetime { padding-bottom: 0; color:#999; }
+  .pagination { margin: 60px auto 0 auto; }
+
 }
 
 ///////////////////////////
