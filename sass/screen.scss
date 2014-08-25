@@ -193,7 +193,7 @@ video, .video, .video .vjs-tech { display:block; position:static; @include cente
     */
   }
   .node-article { transition-property:all; transition-duration:750ms; }
-  .node-article:hover { background-color:$off-white; }
+  .node-article:hover { background-color:$light-grey; }
   article { margin: 30px 0; }
   datetime { padding-bottom: 0; color:#999; }
   .pagination { margin: 60px auto 0 auto; }
