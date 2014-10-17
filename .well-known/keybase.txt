@@ -1,0 +1,70 @@
+==================================================================
+https://keybase.io/bff
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://bryce.fisher-fleig.org
+  * I am bff (https://keybase.io/bff) on keybase.
+  * I have a public key with fingerprint C5B5 A620 A9FE 0471 0B82  C3DE 7164 981B 336A 2F68
+
+To claim this, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "fingerprint": "c5b5a620a9fe04710b82c3de7164981b336a2f68",
+            "host": "keybase.io",
+            "key_id": "7164981b336a2f68",
+            "uid": "b3619086296beff2b5d67c5ed01f9c00",
+            "username": "bff"
+        },
+        "service": {
+            "hostname": "bryce.fisher-fleig.org",
+            "protocol": "https:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1412044149,
+    "expire_in": 157680000,
+    "prev": "40f52181e99f8bd7940f6f8892a45bd337584136c130f766ceb6b3c478b13b87",
+    "seqno": 7,
+    "tag": "signature"
+}
+
+with the aforementioned key, yielding the PGP signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v1.0.5
+Comment: https://keybase.io/crypto
+
+yML9AnicO8LLzMDFWJgyQ9o4Sz+D8fSB76UMIVqipdVKSfkplUpW1UrZqWAqLTMv
+PbWooCgzr0TJSinZNMk00czIINEyLdXAxNzQIMnCKNk4JdXc0MzE0sIwydjYLNEo
+zcxCSUcpI78YpANoTFJicapeZj5QDMiJz0wBimJRXwqWSDI2M7Q0sDAzsjRLSk1L
+M0oyTTEzTzZNTTEwTLNMNjAAKSxOLcpLzE0FqU5LU6rVUQIKlGUmp4KcC7IVJllU
+mZyql5ZZnJFapJuWk5qZrpdflA40oKAovyQ/OT8HqCajpKSg2ApkRkllAUhTeWpS
+PNS4+KTMvBSg74E6ylKLijPz85SsDIEqk0syQeYbmhgaGZiYGJpY6iilVhRkFqXG
+Z4JUmJqbWRgAAcie1DKgkSYGaaZGhhaGqZaWaRZJKeaWQAGzNAsLS6NEE9OkFGNj
+c1MLE0Njs2RDY4M0czOz5NQksyTjZBNziyRD4yQLcyWQBwvz8pWszIHOTEwHGlmc
+mZ6XWFJalKpUe+hgDAsDIxcDGysTKP4YuDgFYLEq3inAcNjwXoz3j+alIb19C9ZF
++cznalqxe5J81CTB2nvMCtrB5lbFh1U/q7tZeMfPyYiw1bndkLLl6enbr7fHeR7o
+WGD6oqP81PmpVpHO7KkybNEBqQxPPoU2GTDKr5k6p0fnwVG1uYqMq9/lv17aN+PW
+vbQlzNHq3/UuT+8wdO3L7GTlXxJk9umg3/XmlIO/o+bOKPvBtUup3bzI72XM9Vb5
+e/+7zt6tstCYbeYYnrJ+kWHQw3Ixqdu3s7ze2B+0kpy4+HL+3sAX3I+PmPp5RGQ/
+Sy1wuJksuvjBuclXY2a2uaSdSv+nERpZmPPYyymVS2XB14s/n9kXrPE4FhWTc1zv
+Jl9DmzMrx/aNC1ez/Fu2OCBtu90ZGyUBzRyjZrfoGboat4XUPTPXL39gnzaz6AC7
+qkaOm1qvhNeavewC3f6nWq9Imh+OljvAy3KOm9HeecmF2pdfuxYl5EW2HMhzWeDN
+ecAyaMXvhrV2xY3HWDL4QkTY5EOXWrCU+h1XDdvJzfYzfWr24stsXdUTnvS2WF5m
+3eLBelOwN8Zx29TvVUeUo3dPd70daKR4smTH5bwNf5q3xtz99XdJ5JP4rIZPHmt3
+/shYft5ePbF/34SZ26d+mWvBcWuHVNxPP6nZSz/kNuVeDTXxdX+lv3+b4I1Lswy7
+avKczzJ2TTj+/XeIOwOHfcyzxOXbBKdv0agVm+fWuCVUq6BjivX02/+4VAAxZ4U1
+=/XVU
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/bff
+
+==================================================================
