@@ -6,7 +6,7 @@ description: "Full Stack Forays into Web Development"
 safe: false
 timezone: America/Los_Angelos
 encoding: utf-8
-exclude: 
+exclude:
 - sass
 - README.md
 - LICENSE
@@ -16,10 +16,11 @@ exclude:
 include:
 - css
 - favicon.ico
+- .well-known
 
 permalink: /blog/:title
 relative_permalinks: false
-pygments: true
+highlighter: true
 paginate: 10
 paginate_path: /blog/:num
 markdown: kramdown
