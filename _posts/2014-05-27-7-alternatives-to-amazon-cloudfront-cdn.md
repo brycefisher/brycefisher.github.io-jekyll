@@ -8,31 +8,33 @@ tags: optimization, cdn, security, comparison
 AWS CloudFront has many bizarre quirks:
 
  + only two invalidations of 1000 paths can run concurrently
- + each invalidation takes about 5-15 minutes to complete
+ + each invalidation takes about 5-15 minutes to complete (not necessarily true anymore)
  + there is no "clear all cache"
  + configuring gzip compression is nontrivial
 
+**UPDATE: Nov, 2014 - Clearing a small number of objects out of the CloudFront cache finishes in roughly a minute now, much faster than when this article was originally written.**
+
 I'm comparing the alternatives to CloudFront for static web content (html, css, js, images), specifically [Azure](http://azure.microsoft.com/en-us/documentation/services/cdn/), [CDNify](https://cdnify.com/learn/api), [CloudFlare](http://cloudflare.com), [CDNSun](http://cdnsun.com/), [Fastly](https://cdnify.com/learn/api), [KeyCDN](http://keycdn.com), and [MaxCDN](http://docs.maxcdn.com/) . I've picked only CDNs that made pricing information available (which eliminated most of the options I could find). Pricing *is* a feature, and typically CDNs without pricing information didn't disclose their feature set online either.
 
-One CDN that looked fantastic but didn't make the cut was [Highwinds](http://highwinds.com/). They provide loads of documentation and a free trial, but no pricing information. 
+One CDN that looked fantastic but didn't make the cut was [Highwinds](http://highwinds.com/). They provide loads of documentation and a free trial, but no pricing information.
 
 ## Pricing Comparison
 
-| CDN        | Pricing Model            | Costs (US)        | HTTPS Pricing | Free Option |
-| ----------:|:------------------------:| -----------------:| ------------- |:----------- |
-| CloudFront | Per GB                   | $0.12             | $0 - SNI      | Y - 1 yr    |
-| Azure      | Per GB                   | $0.12             | Unknown       | Y           |
-| CDNify     | Flat Rate + Over *150*GB | **$10.00** + $0.07| $0            | N           |
-| CloudFlare | Flat Rate                | **$20.00**        | $200/mo Plan  | Y           |
-| CDNSun     | Per GB                   | $0.45             | $699/yr       | Y - 15 days |
-| Fastly     | Per Request + Per GB     | *$0.01* + $0.12   | $1500/mo      | Y - 30 days |
-| KeyCDN     | Per GB                   | $0.04             | $0            | N           |
-| MaxCDN     | Flat Rate + Over *100*GB | **$9.00** + $0.08 | $39/mo        | N           |
+| CDN        | Pricing Model            | Costs (US)        | HTTPS Pricing              | Free Option |
+| ----------:|:------------------------:| -----------------:| -------------------------- |:----------- |
+| CloudFront | Per GB                   | $0.12             | $0 - SNI                   | Y - 1 yr    |
+| Azure      | Per GB                   | $0.12             | Unknown                    | Y           |
+| CDNify     | Flat Rate + Over *150*GB | **$10.00** + $0.07| $0                         | N           |
+| CloudFlare | Flat Rate                | **$20.00**        | $200/mo Plan               | Y           |
+| CDNSun     | Per GB                   | $0.45             | $699/yr                    | Y - 15 days |
+| Fastly     | Per Request + Per GB     | *$0.01* + $0.12   | $500 setup + $100/mon      | Y - 30 days |
+| KeyCDN     | Per GB                   | $0.04             | $0                         | N           |
+| MaxCDN     | Flat Rate + Over *100*GB | **$9.00** + $0.08 | $39/mo                     | N           |
 
  * "Per GB" (normal font) refers to bandwidth charges
  * **"Flat Rate"** (in bold) is per month fees. "Over ___ GB" specifies the included bandwidth
  * *"Per Request"* (in italics) refers to individual requests between edge and client
- 
+
 The standard going rate for CDN bandwith is 12&cent;. KeyCDN is the cheapest option, and CDNSun is priciest.
 
 ## Network Comparison
@@ -42,7 +44,7 @@ The standard going rate for CDN bandwith is 12&cent;. KeyCDN is the cheapest opt
 | CloudFront | Y     |    50|       47|Y - in origin          | N              |
 | Azure      | ?     |    30|       47|Y - in origin          | N              |
 | CDNify     | Y     |    20|       77|Y                      | N              |
-| CloudFlare | Y     |    25|       49|Y                      | N              |
+| CloudFlare | Y     |    25|       49|Y                      | Y              |
 | CDNSun     | Y     |    85|        ?|?                      | Y              |
 | Fastly     | Y     |    20|       58|Y                      | N              |
 | KeyCDN     | Y     |    15|        ?|Y                      | Y - images only|
@@ -82,8 +84,8 @@ The winner in this category appears to be Fastly, with CDNify providing virtuall
 | CDNify     | mins?   | Y         | Y  |
 | CloudFlare | secs    | Y         | Y  |
 | CDNSun     | mins?   | Y         | Y  |
-| Fastly     | 1 sec   | Y         | Y  |
-| KeyCDN     | mins    | Y         | N  |
+| Fastly     | 150 ms  | Y         | Y  |
+| KeyCDN     | 5 mins  | Y         | N  |
 | MaxCDN     | 30 sec  | Y         | Y  |
 
  * "latency" means the time required to update the edge servers with configuration changes (or purges/invalidations)
