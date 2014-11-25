@@ -8,11 +8,9 @@ tags: optimization, cdn, security, comparison
 AWS CloudFront has many bizarre quirks:
 
  + only two invalidations of 1000 paths can run concurrently
- + each invalidation takes about 5-15 minutes to complete (not necessarily true anymore)
+ + each invalidation takes about 5-15 minutes to complete
  + there is no "clear all cache"
  + configuring gzip compression is nontrivial
-
-**UPDATE: Nov, 2014 - Clearing a small number of objects out of the CloudFront cache finishes in roughly a minute now, much faster than when this article was originally written.**
 
 I'm comparing the alternatives to CloudFront for static web content (html, css, js, images), specifically [Azure](http://azure.microsoft.com/en-us/documentation/services/cdn/), [CDNify](https://cdnify.com/learn/api), [CloudFlare](http://cloudflare.com), [CDNSun](http://cdnsun.com/), [Fastly](https://cdnify.com/learn/api), [KeyCDN](http://keycdn.com), and [MaxCDN](http://docs.maxcdn.com/) . I've picked only CDNs that made pricing information available (which eliminated most of the options I could find). Pricing *is* a feature, and typically CDNs without pricing information didn't disclose their feature set online either.
 
