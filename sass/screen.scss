@@ -63,7 +63,7 @@ ul ul, ol ol, ul ol, ol ul { padding-left: 0; }
 
 strong { font-weight: 600; }
 em { font-style: italic; }
-datetime { color:$dark-grey; font-size:smaller; } 
+datetime { color:$dark-grey; font-size:smaller; }
 
 .highlight { background-color: $dark-grey; margin-bottom: 24px; }
 code { font-family: monospace; }
@@ -108,7 +108,10 @@ video, .video, .video .vjs-tech { display:block; position:static; @include cente
 
 #header { position:fixed; width:100%; top:0; z-index:1000;}
 
-#site-footer { margin-top: 24px; }
+#flattr-header { display:none; }
+#flattr-header, #flattr-footer { position: absolute; right: 3px; top: 8px; }
+
+#site-footer { margin-top: 24px; position: relative; }
 
 // Article
 .node-article {
@@ -142,7 +145,7 @@ video, .video, .video .vjs-tech { display:block; position:static; @include cente
       text-align: center; padding: 12px; margin-bottom: 24px; background-color: #ddd;
 
       a.primary-cta {
-      	display: block; 
+      	display: block;
       	margin:24px auto;
       	color:white;
       	border-radius: 6px;
@@ -150,22 +153,22 @@ video, .video, .video .vjs-tech { display:block; position:static; @include cente
       	text-decoration: none;
       	background-color: #7db9e8;
       	@include filter-gradient(#7db9e8, #1e5799, vertical);
-      	@include background-image(linear-gradient(top,  #7db9e8 0%,#2989d8 50%,#1e5799 100%)); 
+      	@include background-image(linear-gradient(top,  #7db9e8 0%,#2989d8 50%,#1e5799 100%));
       	-webkit-box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.75);
-      	-moz-box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.75); 
+      	-moz-box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.75);
       	box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.75); }
-      	
+
         .primary-cta strong { display: block; font-size: 27px; line-height: 36px; text-shadow: 2px 2px $dark-grey; }
     }
 
-    .comments { 
+    .comments {
       @include centered-content;
       h2, #disqus_thread { max-width:95%; margin-right:15px; margin-left: 15px; }
     }
 
     #related-posts {
       @include centered-content;
-      margin-bottom: 48px; 
+      margin-bottom: 48px;
       ul { list-style: square outside; }
     }
   }
@@ -182,8 +185,8 @@ video, .video, .video .vjs-tech { display:block; position:static; @include cente
   }
 
   #main-content { @include centered-content;}
-  .article-header { 
-    background:none; 
+  .article-header {
+    background:none;
 
     /* FIXME: For some reason, i'm not able to test visited links
     a:visited {
@@ -204,15 +207,16 @@ video, .video, .video .vjs-tech { display:block; position:static; @include cente
 // Media Queries
 @media screen and (min-width: 450px) {
   html { font-size: 20px; line-height: 30px; }
+  #flattr-header { display:block; }
 }
 @media screen and (min-width: 624px) {
 	h1 { font-size: 72px; line-height: 84px; }
 	h2 { font-size: 36px; line-height: 42px; }
   #home h1 { font-size:108px; line-height: 126px; }
-	
+
 	blockquote p { max-width: 500px; position: relative; left: 50px; }
 	blockquote:before { display:block; @include centered-content; content:"\201C"; color:#999; font-size:10em; position:relative; top:0.3em; }
-	
+
 	.node-article { padding-right:0; padding-left:0; }
 }
 @media screen and (min-width: 800px) {
@@ -220,4 +224,3 @@ video, .video, .video .vjs-tech { display:block; position:static; @include cente
 	blockquote p { max-width: 650px; }
   .scroll { overflow:auto; }
 }
-
