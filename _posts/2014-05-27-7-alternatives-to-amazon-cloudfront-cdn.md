@@ -85,7 +85,7 @@ The winner in this category appears to be Fastly, with CDNify providing virtuall
 | CloudFlare | secs    | Y         | Y  |
 | CDNSun     | mins?   | Y         | Y  |
 | Fastly     | 150 ms  | Y         | Y  |
-| KeyCDN     | 5 mins  | Y         | N  |
+| KeyCDN     | 5 mins  | Y         | ?  |
 | MaxCDN     | 30 sec  | Y         | Y  |
 
  * "latency" means the time required to update the edge servers with configuration changes (or purges/invalidations)
