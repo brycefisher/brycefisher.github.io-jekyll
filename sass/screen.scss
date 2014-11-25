@@ -221,6 +221,7 @@ video, .video, .video .vjs-tech { display:block; position:static; @include cente
 }
 @media screen and (min-width: 800px) {
   ul, ol { padding-left: 50px; }
-	blockquote p { max-width: 650px; }
+  blockquote p { max-width: 650px; }
   .scroll { overflow:auto; }
+  .article-body p:first-of-type { font-size: 26px; line-height:40px; margin-top: 40px; margin-bottom: 40px; }
 }
