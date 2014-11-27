@@ -17,59 +17,59 @@ This strategy actively shields your content from being discoverable by search en
  4. The JSON snippet in the Policy Editor should look like this:
 
 {% highlight json %}
-    {
-        "Version":"2012-10-17",
-        "Statement": [
-            {
-               "Sid":"PublicReadGetObject",
-               "Effect":"Allow",
-               "Principal": {
-                    "AWS": "*"
-                },
-                "Action":"s3:GetObject",
-                "Resource":"arn:aws:s3:::bryce-fisher-fleig-org/*"
-            }
-        ]
-    }
+{
+    "Version":"2012-10-17",
+    "Statement": [
+        {
+           "Sid":"PublicReadGetObject",
+           "Effect":"Allow",
+           "Principal": {
+                "AWS": "*"
+            },
+            "Action":"s3:GetObject",
+            "Resource":"arn:aws:s3:::bryce-fisher-fleig-org/*"
+        }
+    ]
+}
 {% endhighlight %}
- 
+
  5. Underneath the line starting with "Resource", add this:
- 
+
 {% highlight json %}
-        "Condition": {
-				"StringEqualsIgnoreCase": {
-					"aws:UserAgent": "Amazon CloudFront"
-				}
-			}
+"Condition": {
+    "StringEqualsIgnoreCase": {
+            "aws:UserAgent": "Amazon CloudFront"
+    }
+}
 {% endhighlight %}
 
 The whole should probably look something like this:
 
 {% highlight json %}
-    {
-    	"Version": "2012-10-17",
-    	"Statement": [
-    		{
-    			"Sid": "Allow CloudFront to read from Bucket",
-    			"Effect": "Allow",
-    			"Principal": {
-    				"AWS": "*"
-    			},
-    			"Action": "s3:GetObject",
-    			"Resource": "arn:aws:s3:::bryce-fisher-fleig-org/*",
-    			"Condition": {
-    				"StringEqualsIgnoreCase": {
-    					"aws:UserAgent": "Amazon CloudFront"
-    				}
-    			}
-    		}
-    	]
-    }
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "Allow CloudFront to read from Bucket",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "*"
+            },
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::bryce-fisher-fleig-org/*",
+            "Condition": {
+                "StringEqualsIgnoreCase": {
+                    "aws:UserAgent": "Amazon CloudFront"
+                }
+            }
+        }
+    ]
+}
 {% endhighlight %}
 
 ### Did It Work??
 
-If you did everything right, your site should still be accessible through the CloudFront url. Check a url that hasn't been cached in CloudFront yet (or do an invalidation). Go check right now, I'll wait. 
+If you did everything right, your site should still be accessible through the CloudFront url. Check a url that hasn't been cached in CloudFront yet (or do an invalidation). Go check right now, I'll wait.
 
 If new urls are coming through CloudFront okay, then make sure that your S3 website endpoint returns 403 Access Denied. Go, look up the website endpoint in your S3 console. If you received some kind of 403 error, Google's crawler shouldn't be able to access your S3 bucket directly. Congrats! No more duplicate content penalty for you.
 
@@ -88,7 +88,7 @@ As a quick aside, CloudFront does provide a mechanism that allows direct access 
 Let's take a look at the second strategy to avoid duplicate content penalties: canonical urls in a link tag. All you have to do is a link tag with rel canoncial and href `http://your/real/url/here`. You can look at the source code of this page, or do something like the following:
 
 {% highlight html %}
-    <link rel="canonical" href="https://bryce.fisher-fleig.org/blog/avoiding-duplicate-content-penalty-with-aws-s3-and-cloudfront">
+<link rel="canonical" href="https://bryce.fisher-fleig.org/blog/avoiding-duplicate-content-penalty-with-aws-s3-and-cloudfront">
 {% endhighlight %}
 
 This technique is much weaker in that we're providing suggestions to Google's crawlers, but we can't force the crawlers to comply. Nevertheless, if your mother always taught you it's not polite to user agent sniff, canonical url links are completely kosher. Also, they won't randomly take your site down when CloudFront gets a new user agent.
