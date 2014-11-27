@@ -42,12 +42,12 @@
 
 /////////////////////
 // Typography
-html { font-family: 'liberation_serifregular'; font-size: 16px; line-height: 24px; color: $text-color; }
+html { font-family: 'liberation_serifregular'; font-size: 16px; line-height: 30px; color: $text-color; }
 body { overflow-x: hidden; }
 
 h1 { @include heading; font-size: 40px; line-height: 48px; margin: 6px 0; }
-h2 { @include heading; font-size: 30px; line-height: 36px; margin: 36px 0 6px 0; }
-h3 { @include heading; font-size: 24px; line-height: 30px; margin: 3px 0; }
+h2 { @include heading; font-size: 30px; line-height: 42px; margin: 36px 0 12px; }
+h3 { @include heading; font-size: 24px; line-height: 36px; margin: 24px 0 12px; }
 h4 { @include heading; font-size: 20px; }
 h5 { @include heading; }
 h6 { @include heading; font-weight:normal; font-variant: small-caps; }
@@ -67,8 +67,8 @@ datetime { color:$dark-grey; font-size:smaller; }
 
 .highlight { background-color: black; margin-bottom: 42px; margin-top: 42px; padding: 24px 0; }
 code { font-family: monospace; }
-pre code { @include centered-content; display: block; color: white; padding: 6px 0 6px 1em; word-wrap: break-word; white-space: pre-wrap; font-size: 18px; }
-li code, p code { color:#aaa; }
+pre code { @include centered-content; display: block; color: white; padding: 6px 0 6px 1em; word-wrap: break-word; white-space: pre; font-size: 14px; overflow: auto; }
+li code, p code { color: #444; background: #ddd; display: inline-block; padding: 0 8px; }
 
 blockquote { background-color: $light-grey; padding:24px 0 12px 0; margin-bottom:24px; }
 blockquote + h2,
@@ -101,15 +101,14 @@ video, .video, .video .vjs-tech { display:block; position:static; @include cente
   height: 36px; background: url('../img/header.jpg') repeat-x;
 
   #logo img { height: 24px; width: auto; margin: 6px; float: left; }
-  p, h2#site-title { margin: 0; color: white; text-shadow: 1px 1px black; width: auto; }
-  h2#site-title { font-size: 24px; line-height: 36px; float: left;  }
+  p, #site-title { margin: 0; color: white; text-shadow: 1px 1px black; width: auto; }
+  #site-title { font-size: 24px; line-height: 36px; float: left;  }
   p { @include centered-content;  font-size: 12px;  line-height:36px; }
 }
 
 #header { position:fixed; width:100%; top:0; z-index:1000;}
 
-#flattr-header { display:none; }
-#flattr-header, #flattr-footer { position: absolute; right: 3px; top: 8px; }
+#flattr-header, #flattr-footer { display:none; position: absolute; right: 3px; top: 9px; }
 
 #site-footer { margin-top: 24px; position: relative; }
 
@@ -126,7 +125,8 @@ video, .video, .video .vjs-tech { display:block; position:static; @include cente
   .article-body {
     padding-bottom: 60px;
 
-    ul, ol, p, table { margin-bottom: 1em; @include centered-content; }
+    ul, ol, p, table { margin-bottom: 30px; @include centered-content; }
+    p + ul, p + ol { margin-top: -24px; }
 
     ul ul, ul ol, ol ol, ol ul { margin-bottom: 0; }
     ul li, ol li { margin-left: 1.2em; }
@@ -185,40 +185,43 @@ video, .video, .video .vjs-tech { display:block; position:static; @include cente
   }
 
   #main-content { @include centered-content;}
-  .article-header {
-    background:none;
-
-    /* FIXME: For some reason, i'm not able to test visited links
-    a:visited {
-      position:relative; background-color:red; font-weight:bold;
-      &:before { content:"x"; color:$light-grey; position:absolute; left: -30px; }
-    }
-    */
-  }
+  .article-header { background:none; }
   .node-article { transition-property:all; transition-duration:750ms; }
   .node-article:hover { background-color:$light-grey; }
   article { margin: 30px 0; }
   datetime { padding-bottom: 0; color:#999; }
   .pagination { margin: 60px auto 0 auto; }
-
 }
 
 ///////////////////////////
 // Media Queries
 @media screen and (min-width: 450px) {
-  html { font-size: 24px; line-height: 42px; }
-  #flattr-header { display:block; }
+  #flattr-header, #flattr-footer { display:block; }
 }
 @media screen and (min-width: 624px) {
-  h1 { font-size: 72px; line-height: 84px; }
-  h2 { font-size: 60px; line-height: 84px; margin: 30px inherit 60px inherit; }
-  h3 { font-size: 36px; line-height: 60px;}
-  #home h1 { font-size:108px; line-height: 126px; }
+  html { font-size: 24px; line-height: 42px; }
+
+  h1 { font-size: 84px; line-height: 108px; }
+  h2 { font-size: 60px; line-height: 84px; margin-top: 48px; margin-bottom: 30px; }
+  h3 { font-size: 36px; line-height: 60px; margin-top: 60px; margin-bottom: 18px; }
+  #home h1 { font-size: 108px; line-height: 126px; }
+  #home h2 { font-size: 36px; line-height: 48px; margin-bottom:0; }
+  .node-article .article-header h1 { padding-top: 36px; }
+
+  #flattr-header, #flattr-footer { top: 0; }
 
   blockquote p { max-width: 500px; position: relative; left: 50px; }
   blockquote:before { display:block; @include centered-content; content:"\201C"; color:#999; font-size:10em; position:relative; top:0.3em; }
 
-  .node-article { padding-right:0; padding-left:0; }
+  li code, p code { font-size: 18px; }
+  pre code { white-space: pre-wrap; font-size: 18px; }
+
+  .node-article {
+    padding-right:0; padding-left:0;
+    .article-body {
+      ul, ol, p, table { margin-bottom: 30px; }
+    }
+  }
 }
 @media screen and (min-width: 800px) {
   ul, ol { padding-left: 50px; }
