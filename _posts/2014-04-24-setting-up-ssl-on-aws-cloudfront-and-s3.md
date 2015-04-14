@@ -54,48 +54,70 @@ This would be a great time to start uploading all the things to your new bucket,
 
 Don't worry about the various HTTPS settings yet, we'll come back to that later. None of the other settings need to be changed either.
 
-## Step 3: Purchase an SSL Certificate on the Cheap
+## Step 3: Obtain an SSL Certificate
 
-The cheapest place I can find legit certs is from [cheapestssls.com](http://www.cheapestssls.com/) (Ironically, they don't serve their marketing pages over SSL.) 
+This step walks you through paying a company called a Certificate Authority ("CA") to verify your identity and issue an SSL certificate with their name on it. No matter which CA you pick, you'll have to create a Certificate Signing Request (CSR) which you will upload to the CA. You'll also need to generate a matching file called a private key.
 
-I chose the Comodo Positive SSL certificate for this domain because I only want to serve one domain using this certificate, and the price was $6.50.
+The CA's act as a kind of notary public for the internet. Anyone can generate an SSL certificate for free, but if your certificate isn't signed by an official CA, then Chrome, Firefox, Safari, etc will not allow visitors to access your site over HTTPS. There's a limited number of these Certificate Authorities around, thus they can and do charge obscene prices. Resellers, like the two I mention below, offer much better prices.
+
+Different CA's offer different kinds of certificates with various degrees of verification and encryption. For a personal blog, choose a single domain certificate verified using Domain Validation ("DV"). If you're doing e-commerce, you probably want the more complicated and expensive process called Extended Validation ("EV").
+
+### Step 3.A: Buy an SSL Certificate on the Cheap
+
+The best place I can find legit certs is from [ClickSSL.com](https://www.clickssl.com/?post_type=product). They provide an awesome search filter, and their certificates are all signed using SHA-2 (more on this below). All certificates have 2048-bit key length meaning that your certificate has reasonable encryption strength for the near future.
+
+Previously, I advocated using CheapestSSLs.com, but I've discovered that they can have slow customer service and weaker encryption. It's unclear if they support SHA-2. CheapestSSLs.com can be a little cheaper than ClickSSL.com if that's important.
+
+With either reseller, the main criteria for a certificate are:
+
+ 1. **SHA-2** (sometimes also called "SHA-256") -- Chrome and Firefox have pledged to start showing really scary security warnings to users for sites using the older SHA-1 signing algorithm by 2017. They already print warnings in the console today.
+ 2. **Domain Validation** (aka "DV") -- this means you can get the certificate right away through a self-service process. This option is only available for single domain certificates.
+ 3. **Price**
+
+At my renewal time, I chose the RapidSSL certificate for this domain because I only want to serve one domain using this certificate, and the price was only $27 for two years. I highly recommend buying a two year certificate so that you don't have to go through this process every single year.
+
+### Step 3.B: Generate a matching private key and CSR
 
 Once you've paid for a certificate, you'll need to generate two cryptographic files: a private key, and a certificate signing request (CSR).
 
-### Step 3.A: Make a private key
-
 {% highlight bash %}
-$ mkdir bff-certs && cd bff-certs
-$ openssl genrsa 2048 > bryce-fisher-fleig-org.key
+$ openssl req \
+    -sha256 \
+    -new -newkey \
+    rsa:2048 -nodes \
+    -keyout bryce_fisher-fleig_org.key \
+    -out bryce_fisher-fleig_org.csr
 {% endhighlight %}
 
-### Step 3.B: Make a CSR
-
-{% highlight bash %}
-$ openssl req -new -key bryce-fisher-fleig-org.key -out bryce-fisher-fleig-org.csr
-{% endhighlight %}
+_(There's a great article on what this command is doing at [entrust.net](http://www.entrust.net/knowledge-base/technote.cfm?tn=8231), but don't worry too much about it.)_
 
 Openssl will ask you a series of questions once you enter the command above:
 
  1. **Country Name** - two letter [ISO 3166-1 code for your country](http://en.wikipedia.org/wiki/ISO_country_codes#Officially_assigned_code_elements) (e.g. "US")
- 2. **State or Province** - e.g. "California" 
+ 2. **State or Province** - e.g. "California"
  3. **Locality Name** - e.g. "San Francisco"
  4. **Organization Name** - your DBA, LLC, corp, or personal name. E.g. "Bryce Fisher-Fleig"
  5. **Organizational Unit** - optional, type "." to leave blank
  6. **Common Name** - This is the one you MUST get right. Use the domain name you want to serve over HTTPS. E.g. "bryce.fisher-fleig.org"
  7. **Email address** - This is the email that will be exposed to spammers on the public certificate. You must have it, but consider creating a dedicated email address here for spam to collect in. E.g. "bff.dns.spam@gmail.com"
 
+Later on, we'll provide this private key to CloudFront, but it's vital that you keep the private key very, very private. The security of your website depends on the private key being accessible only to you and CloudFront. You should never email or share this file with anyone for any reason, and you shouldn't store this file Dropbox or Google Drive. If the key is ever compromised, many CA's will provide allow you regenerate your certificate from a new key for free.
+
 ### Step 3.C: Upload the CSR to your Certificate Authority
 
-I chose Comodo, and this part was very simple. I did have to re-enter some details that I entered on the CSR such as the domain name.
+This part was very simple for me with both Comodo and RapidSSL. I did have to re-enter some details that I entered on the CSR such as the domain name.
 
-### Step 3.D: Get verified!
+### Step 3.D: Get validated!
 
-Honestly, verifying that I owned the domain was the worst part of this whole experience. I can't complain about price or customer service, but the process seemed to drag on for a while.
+Honestly, verifying that I owned the domain is the worst part every time I've done this. I can't complain about price or customer service, but the process seemed to take forever. Thank yourself for choosing Domain Validation now, because you've saved yourself a week of effort.
 
-Eventually, Comodo required me to upload a file to the root domain (fisher-fleig.org) despite the fact that I wanted a cert only for a subdomain (bryce.fisher-fleig.org). I logged into their online portal to download a file. I recommend uploading this file both to the subdomain and root domain from the beginning. Make sure that all line breaks and whitespace in your file match exactly (no trailing whitespace or CRLFs). Then click the button inside their portal to verify your domain.
+There's three ways to complete the DV process:
 
-If you don't hear anything right away, you failed the verification. Don't wait! Contact customer support immediately to help you resolve the issue. I found support helpful, but the turn around time was slow.
+ 1. Click a link sent to a special **email address** (usually administrator@fisher-fleig.org). This seems the hardest to me, because you have to setup the email server ahead of time, add MX records, create email accounts, and possibly setup anti-spam measures. I try never to do this, but this is only option for RapidSSL. If you have to go this route, I highly recommend using [gandi.net](https://www.gandi.net/). They provide all the email setup for you as part of all domain name purchases, and their prices are very reasonable.
+ 2. Host a **file** at a special url on that domain. This is tricky, but usually easier than email. Comodo supports this option. If you use S3, just upload the file they give you to S3.
+ 3. Set a dns **TXT Record**. This is easiest possible way. Unfortunately, I've never used a CA that supported this option. If you find one, please tell me in the comments!
+
+If you don't hear anything right away, you failed the domain validation. Don't wait! Contact customer support immediately to help you resolve the issue. I've found support helpful, but the response time was unbearably slow (24hrs or more).
 
 ## Step 4: Upload the Certificate to IAM
 
@@ -103,7 +125,7 @@ Amazon stores all of the SSL certificates used by any of the AWS services inside
 
 
 **Create an admin IAM user:**
- 
+
  1. On the AWS Web Console, go to the IAM service
  2. Click on the "Users" tab
  3. Click "Create New Users"
@@ -125,14 +147,14 @@ Amazon stores all of the SSL certificates used by any of the AWS services inside
   }]
 }
 {% endhighlight %}
- 
-The JSON snippet above gives this user all privileges, so be careful! 
+
+The JSON snippet above gives this user all privileges, so be careful!
 
 **Setup AWS Cli** For Mac just use homebrew:
 
 {% highlight bash %}
 $ brew up
-$ brew install aws-cfn-tools aws-iam-tools
+$ brew install aws-cfn-tools awscli
 {% endhighlight %}
 
 On Debian/Ubuntu, just apt-get:
@@ -161,20 +183,20 @@ The only tricky part here is to make sure you enter the IAM credentials for our 
 {% highlight bash %}
 $ cd /path/to/certificate/files/
 $ aws iam upload-server-certificate \
-  --server-certificate-name BryceFisherFleigOrg \
+  --server-certificate-name bryce_fisher-fleig_org \
   --certificate-body file://bryce_fisher-fleig_org.crt \
-  --private-key file://bryce-fisher-fleig-org.key \
+  --private-key file://bryce_fisher-fleig_org.key \
   --certificate-chain file://PostivieSSLCA2.crt \
-  --path /cloudfront/bryce-fisher-fleig/
+  --path /cloudfront/
 {% endhighlight %}
 
 This command is REALLY tricky to get right. So, lets break it down a bit:
 
  * **server-certificate-name** This is just an alpha-numeric label you see inside AWS consoles. It doesn't matter to anyone except you.
  * **certificate-body** The certificate from Comodo
- * **private-key** This is the very first crypto file we made in Step 3.A. 
- * **certificate-chain** Using Comodo, this turned out to be the PositiveSSLCA2.crt file. It's basically any files between but not including the trusted root certificate and the certificate with your domain name on it. Please reach out in the comments or StackOverflow if you have questions about this.
- * **path** This ends in a slash, and it must start with /cloudfront/. Choose anything alpha-numeric-dashes you want where I put "bryce-fisher-fleig".
+ * **private-key** This is the very first crypto file we made in Step 3.B.
+ * **certificate-chain** Using Comodo, this turned out to be the PositiveSSLCA2.crt file. For RapidSSL, it's [this intermediate certificate chain](https://knowledge.rapidssl.com/support/ssl-certificate-support/index?page=content&actp=CROSSLINK&id=SO26459). It's basically any files between but not including the trusted root certificate and the certificate with your domain name on it.
+ * **path** This ends in a slash, and it must start with /cloudfront/.
 
 ## Step 5: Configure CloudFront to use SSL
 
