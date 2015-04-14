@@ -12,6 +12,7 @@ exclude:
 - LICENSE
 - config.rb
 - publish.sh
+- list-categories.sh
 
 include:
 - css
