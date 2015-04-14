@@ -11,12 +11,14 @@ I'll assume you're already using Jekyll or another static site generator to crea
 
 Throughout this tutorial I'll use the domain name of this blog to help you understand what files are what as we go.
 
+_**UPDATE**: Sometime around 2014, CloudFront started offering to serve HTTPS at no additional charge in certain situations. CloudFront takes advantage of an extension to the TLS protocol called Server Name Indication ("SNI"). SNI allows servers on a single IPv4 address to serve HTTPS content for multiple certificate. It's a huge cost savings for Amazon, and they've decided to pass on the savings to you. Pay attention to step 5 below to take advantage of SNI._
+
 ## Step 1: Create an S3 Bucket
 
 **Bucket Name:** Your bucket name must be like *bryce-fisher-fleig-org* to work with CloudFront (bryce.fisher-fleig.org won't work).
 
 **Permissions:** Grant everyone read access to this bucket so that CloudFront can read out the content. Here's how:
- 
+
  1. Open the Change the Permissions tab on your shiney new bucket
  2. Click "Edit bucket policy"
  3. Copy and paste this JSON snippet into the policy editor:
