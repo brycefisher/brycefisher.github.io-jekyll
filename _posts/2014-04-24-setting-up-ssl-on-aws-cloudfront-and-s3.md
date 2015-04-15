@@ -4,14 +4,13 @@ layout: "post"
 excerpt: "I've just setup this blog using an S3 bucket as the origin server, CloudFront as my CDN, and SSL for under $10. Since there were so many articles to read along the way, I'm gathering up what worked for me all in one place."
 category: aws
 ---
+I setup this blog using S3 as the origin server, CloudFront as my CDN, and HTTPS for roughly $10. Since there were so many articles to read along the way, I've gathered up what worked for me here.
 
-I've just setup this blog using an S3 bucket as the origin server, CloudFront as my CDN, and SSL for under $10. Since there were so many articles to read along the way, I'm gathering up what worked for me all in one place.
+## Step 0: Background & Assumptions
 
-I'll assume you're already using Jekyll or another static site generator to create HTML files that you want hosted on S3 instead of Github pages (which are awesome if you don't want to use SSL).
+CloudFront offers HTTPS at no additional charge in certain situations. CloudFront takes advantage of an extension to the TLS protocol called Server Name Indication ("SNI"), which allows servers on a single IPv4 address to serve multiple domains over HTTPS. It's a huge cost savings for Amazon, and they've decided to pass on the savings to you. Pay attention to step 5 below to take advantage of SNI. You'll still have to buy your own SSL certificate.
 
-Throughout this tutorial I'll use the domain name of this blog to help you understand what files are what as we go.
-
-_**UPDATE**: CloudFront now offers HTTPS at no additional charge in certain situations. CloudFront takes advantage of an extension to the TLS protocol called Server Name Indication ("SNI"). SNI allows servers on a single IPv4 address to serve HTTPS content for multiple domains. It's a huge cost savings for Amazon, and they've decided to pass on the savings to you. Pay attention to step 5 below to take advantage of SNI._
+I'll assume you're already using Jekyll or another static site generator to create HTML files that you plan to host on S3. Throughout this tutorial I'll use the domain name of this blog to help you understand. You'll want to replace "bryce.fisher-fleig.org" with your domain name anywhere you see it below.
 
 ## Step 1: Create an S3 Bucket
 
@@ -45,7 +44,7 @@ _**UPDATE**: CloudFront now offers HTTPS at no additional charge in certain situ
 
 This would be a great time to start uploading all the things to your new bucket, and try clicking on the Endpoint url to make sure things are groovy.
 
-## Step 2: Setup a CloudFront Distribution
+## Step 2: Create a CloudFront Distribution
 
  1. Choose "Web"
  2. **Origin Domain Name** - Paste the "Endpoint" from S3's Static Website Hosting tab here
@@ -66,11 +65,11 @@ Different CA's offer different kinds of certificates with various degrees of ver
 
 ### Step 3.A: Buy an SSL Certificate on the Cheap
 
-The best place I can find legit certs is from [ClickSSL.com](https://www.clickssl.com/?post_type=product). They provide an awesome search filter, and their certificates are all signed using SHA-2 (more on this below). All certificates have 2048-bit key length meaning that your certificate has reasonable encryption strength for the near future.
+The best place I can find legit certs is [ClickSSL.com](https://www.clickssl.com/?post_type=product). They provide an awesome search filter, and their certificates are all signed using SHA-2 (more on this below). All certificates have 2048-bit key length meaning that your certificate has reasonable encryption strength for the near future.
 
-Previously, I advocated using CheapestSSLs.com, but I've discovered that they can have slow customer service and weaker encryption. It's unclear if they support SHA-2. CheapestSSLs.com can be a little cheaper than ClickSSL.com if that's important.
+Previously, I advocated using CheapestSSLs.com, but I've discovered that they can have slow customer service and weaker encryption. It's unclear if they support SHA-2. CheapestSSLs.com is a little cheaper than ClickSSL.com.
 
-With either reseller, the main criteria for a certificate are:
+With either reseller, my main criteria for a certificate are:
 
  1. **SHA-2** (sometimes also called "SHA-256") -- Chrome and Firefox have pledged to start showing really scary security warnings to users for sites using the older SHA-1 signing algorithm by 2017. They already print warnings in the console today.
  2. **Domain Validation** (aka "DV") -- this means you can get the certificate right away through a self-service process. This option is only available for single domain certificates.
@@ -80,7 +79,7 @@ At my renewal time, I chose the RapidSSL certificate for this domain because I o
 
 ### Step 3.B: Generate a matching private key and CSR
 
-Once you've paid for a certificate, you'll need to generate two cryptographic files: a private key, and a certificate signing request (CSR).
+Once you've paid for a certificate, generate a private key and a certificate signing request (CSR) using this command in the terminal:
 
 {% highlight bash %}
 $ openssl req \
@@ -103,7 +102,7 @@ Openssl will ask you a series of questions once you enter the command above:
  6. **Common Name** - This is the one you MUST get right. Use the domain name you want to serve over HTTPS. E.g. "bryce.fisher-fleig.org"
  7. **Email address** - This is the email that will be exposed to spammers on the public certificate. You must have it, but consider creating a dedicated email address here for spam to collect in. E.g. "bff.dns.spam@gmail.com"
 
-Later on, we'll provide this private key to CloudFront, but it's vital that you keep the private key very, very private. The security of your website depends on the private key being accessible only to you and CloudFront. You should never email or share this file with anyone for any reason, and you shouldn't store this file Dropbox or Google Drive. If the key is ever compromised, many CA's will provide allow you regenerate your certificate from a new key for free.
+Later on, we'll provide this private key to CloudFront, but it's vital that you keep the private key very, very private. The security of your website depends on the private key being accessible only to you and CloudFront. You should never email or share this file with anyone for any reason, and you shouldn't store this file Dropbox or Google Drive. If the key is ever compromised, many CA's will allow you regenerate your certificate for free.
 
 ### Step 3.C: Upload the CSR to your Certificate Authority
 
@@ -126,7 +125,7 @@ If you don't hear anything right away, you failed the domain validation. Don't w
 Amazon stores all of the SSL certificates used by any of the AWS services inside it's Identity Access and Management (IAM) service. In order to upload an SSL certificate you **must create an IAM user with sufficient permissions**. The root account user will not work.
 
 
-**Create an admin IAM user:**
+### Create an admin IAM user:
 
  1. On the AWS Web Console, go to the IAM service
  2. Click on the "Users" tab
@@ -152,7 +151,9 @@ Amazon stores all of the SSL certificates used by any of the AWS services inside
 
 The JSON snippet above gives this user all privileges, so be careful!
 
-**Setup AWS Cli** For Mac just use homebrew:
+### Setup AWS Cli
+
+For Mac just use homebrew:
 
 {% highlight bash %}
 $ brew up
@@ -168,7 +169,7 @@ $ sudo pip install awscli
 
 For other platforms, see the [official AWS documentation](http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-set-up.html)
 
-**Configure the AWS Cli:**
+### Configure the AWS Cli:
 
 {% highlight bash %}
 $ aws configure
@@ -176,7 +177,7 @@ $ aws configure
 
 The only tricky part here is to make sure you enter the IAM credentials for our SslKingPin user. The other settings are a matter of preference.
 
-**Finally! Upload the Damn Certificate:**
+### Finally! Upload the Damn Certificate:
 
  1. Download the zip file from Comodo containing your new SSL certificate.
  2. Unzip all the files into the same directory you have the CSR and private key files.
