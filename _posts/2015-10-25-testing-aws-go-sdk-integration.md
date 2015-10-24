@@ -1,12 +1,12 @@
 ---
 title: "Testing AWS Go SDK Integrations"
-excerpt: "If you're using Testify and Mockery, getting units to work with some AWS Go SDK pagination methods can be hairy. I'll show my (somewhat unconventional) strategy to cover ALL the code paths in your application."
+excerpt: "If you're using Testify, getting test coverage over your AWS Go SDK integration code can be really hard. I'll show my (somewhat unconventional) strategy to cover ALL the code paths in your application."
 category: golang
 tags: testing, golang
 layout: post
 ---
 
-When programming in Golang, the Mockery project painlessly generates Testify mocks from any interface. But very rarely (and specifically in the AWS Go SDK), you run into situations that Mockery + Testify doesn't handle well. If you're sure that Testify has failed you, you must then navigate a minefield of horrors.
+When programming in Golang, the Mockery project painlessly generates Testify mocks from any interface. But very rarely (and specifically in the AWS Go SDK), you run into situations that Testify doesn't handle well. If you think that Testify has failed you, then prepare to enter... _a minefield of horrors_!
 
 <p class="responsive-image"><a href="https://www.flickr.com/photos/andyandorla/362709263/">
 <img alt="A sign labeled Minefield hangs on a forlorn barbed wire fence" src="/img/2015/minefield.jpg">
@@ -14,11 +14,11 @@ When programming in Golang, the Mockery project painlessly generates Testify moc
 
 ## The Post-Testify Minefield of Horrors
 
-The post-Testify Minefield of Horrors is a trilemma:
+This "Post-Testify Minefield of Horrors" I speak of is a simple trilemma. You must decide between one of the following tradeoffs:
 
- 1. Don't unit test this code -- what could go wrong?
- 2. Abandon Testify for this package -- hand write ALL the mocks!
- 3. Keep using Testify -- rewrite the mocks EVERY time your regenerate your mocks.
+ 1. **Don't unit test this code** -- what could go wrong?
+ 2. **Abandon Testify for this package** -- hand write ALL the mocks!
+ 3. Keep using Testify -- **rewrite the mocks EVERY time your regenerate your mocks**.
 
 None of these are great options. What if there was a way to use Testify mocks 99.99999% of the time, but handcraft _only_ the special cases it doesn't cover? That's what I aim to offer you by the end of this post -- a way through this minefield.
 
@@ -26,13 +26,20 @@ None of these are great options. What if there was a way to use Testify mocks 99
 
 ![Elf says 'You sit on a throne of lies!'](/img/2015/throne-of-lies.gif)
 
-Consider the AWS DynamoDB package. Let's say you want to query one of your DynamoDB tables, but the total amount of data you want to retrieve could become greater than 1 MB. According to [the documentation](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/QueryAndScan.html#Pagination):
+For AWS APIs which aren't paginated, Testify works swimmingly, and Mockery does a fantastic job of writing all the tedious mocks for us.
+
+However, as a prime example where Testify seems to break down, consider the DynamoDB package with the AWS Go SDK. Let's say you want to query one of your DynamoDB tables, but the total amount of data you want to retrieve could become greater than 1 MB. According to the documentation:
 
 > If you query or scan for specific attributes that match values that amount to more than 1 MB of data, you'll need to perform another Query or Scan request for the next 1 MB of data.
 
 To ensure that your application retrieves _all_ the query results, you need to call `DynamoDB.Query()` repeatedly with different inputs and outputs. That's all very simple, but to unit test this code you'll need a mock implementation of `DynamoDB.Query()` which can **return different values on each call**. Although Mockery shows some examples of this in their README, returning dynamic values seems not to work at time of writing (late October 2015).
 
-For API responses which aren't paginated, we should be able to have unchanging return values in our unit tests, so we want Mockery to generate all those Testify mocks.
+So, this ideal solution I've promised you should both:
+
+ * Use Testify mocks generated painlessly by Mockery for most of the AWS Go SDK
+ * Allow us to handcraft select pieces of highly dynamic AWS Go SDK code
+
+So how can we achieve both?
 
 ## The Solution: Separate Interfaces
 
@@ -40,7 +47,47 @@ For API responses which aren't paginated, we should be able to have unchanging r
 <img alt="The starship Enterprise separating the saucer from the ship" src="/img/2015/separate-starship.jpg">
 </a></p><br>
 
-If we have a dedicated interface for the handcrafted mocks, we can choose to generate mocks for only one interface. Furthermore, since Mockery puts its generated code in a subdirectory `./mocks`, we can ensure our handcrafted mocks will survive by keeping them out of `./mocks`.
+We'll write one interface that acts as a contract between our code and AWS Go SDK _in general_, and we'll let Mockery generate mocks for this interface. Then, we write a very small dedicated interface for the handcrafted mocks. Any of the non-paginated AWS APIs we use in our code will go through the general interface, but our application will `Query()` only through the handcrafted interface. Since Mockery puts its generated code in a subdirectory `./mocks`, we can ensure our handcrafted mocks will survive by keeping them out of `./mocks`.
+
+### The Big, General Interface Interface
+
+Since `DynamoDBer` stutters, let's just call it `DBer`. The general interface `DBer` should look something like this:
+
+{% highlight go %}
+import "github.com/aws/aws-go-sdk/services/dynamodb"
+
+type DBer interface {
+    GetItem (/*argument*/) (/*return values*/)
+    DeleteItem (/*argument*/) (/*return values*/)
+    UpdateItem (/*argument*/) (/*return values*/)
+    // ...
+}
+
+var _ DBer = (*dynamodb.DynamoDB)(nil)
+{% endhighlight %}
+
+Then to call any method in AWS Go SDK, we always make sure that method has been added to `DBer` and use the `DBer` interface in our code, something like this:
+
+{% highlight go %}
+func Get(id int) (Item, error) {
+    var db DBer = dynamodb.NewDynamoDB()
+    item, error := db.GetItem(id)
+    return item, error
+}
+{% endhighlight %}
+
+Don't try to compile that, but you get the gist. Now, to get all our mock objects for free, we'll install Mockery. Then, we'll cd into the code directory and run Mockery:
+
+{% highlight go %}
+$ go get github.com/vektra/mockery
+$ mockery . -name=DBer
+{% endhighlight %}
+
+At the end of the process, I'll have a shiny new directoy `./mocks` containing all the Testify mocks for me. Sweet! Okay, that's the big `DBer` interface. Let's move on to the other interface.
+
+<p class="responsive-image"><a href="https://www.flickr.com/photos/evelinaa/8507282095/">
+<img alt="A barber carefully shaves an enormous beard" src="/img/2015/handcrafted-beard.jpg">
+</a></p><br>
 
 ### The Small, Handcrafted Queryer Interface
 
@@ -173,9 +220,7 @@ func (s *MySuite) TestRetrieveEverytingPropagatesErrors() {
 
 In a similar fashion, we can replace `paginatedQuery()` with mocks that will return nil errors, improperly formatted data, a slice of results, an empty slice, or any other scenario that could conceivable happen.
 
-### Damn Your Smoke and Mirrors!
-
-![Why Do you want to annoy me when things are going so well?](/img/2015/why-annoy-me.gif)
+### Damn Your Smoke and Mirrors Lambdas!
 
 The downside of this approach is that any part of your codebase could overwrite the func pointed to by `paginatedQuery()` which seems a bit unsafe. If any unit tests replace it with a mock, you'll need to reset it to `paginatedQueryImpl()` as discussed earlier.
 
@@ -185,6 +230,7 @@ However if global mutable lambdas makes you uncomfortable, you can use Mockery t
 
  * The [Mockery Project](https://github.com/vektra/mockery) is well worth a look if you haven't seen it before.
  * Nearly everything I've said here applies equally to any other paginated function in the AWS Go SDK (and that's a lot of functions). If you use this sort of technique a lot, it might make sense to write a code generator that can DRY up repeated logic and tests around this functions.
+ * If you're curious about DynamoDB, see the [AWS documentation for Query](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/QueryAndScan.html#Pagination)
  * Consider using AWS's [DynamoDB QueryPages() method](http://docs.aws.amazon.com/sdk-for-go/api/service/dynamodb/DynamoDB.html#QueryPages-instance_method) instead of `Query()` in your own code since it handles lots of pagination messiness for you.
  * I omitted the definition of the `MySuite` struct in one of the examples above for brevity. See the [Testify suites godoc](https://godoc.org/github.com/stretchr/testify/suite) if you need a refresher.
  * If you need to rerun just one test several times while you're debugging or writing tests, use `go test ./path/to/package -run TestFunc` where "TestFunc" is the name of the test that go knows how to run (ex: the func that starts your Testify suite).
