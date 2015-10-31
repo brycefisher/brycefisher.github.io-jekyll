@@ -1,0 +1,17 @@
+sudo: required
+
+services:
+  - docker
+
+before_install:
+ - curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
+ - unzip awscli-bundle.zip
+ - sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
+ - rm -rf ./awscli-bundle*
+ - which aws
+
+script:
+- docker pull grahamc/jekyll
+- docker run --rm -v "$(pwd):/src" grahamc/jekyll build
+- ls -lah _site
+- ./publish.sh

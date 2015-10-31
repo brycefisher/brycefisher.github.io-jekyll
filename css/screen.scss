@@ -1,13 +1,14 @@
+---
+---
+
 /* Welcome to Compass.
  * In this file you should write your main styles. (or centralize your imports)
  * Import this file using the following HTML or equivalent:
  * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
 
-@import "compass/reset";
-@import "compass";
-@import "pygments.fruity";
-@import "_variables";
-@import "_video-js";
+@import "_pygments.fruity.scss";
+@import "_variables.scss";
+@import "_video-js.scss";
 
 /////////////////////
 // Responsive Mixins
@@ -152,8 +153,8 @@ video, .video, .video .vjs-tech { display:block; position:static; @include cente
       	width: 200px;
       	text-decoration: none;
       	background-color: #7db9e8;
-      	@include filter-gradient(#7db9e8, #1e5799, vertical);
-      	@include background-image(linear-gradient(top,  #7db9e8 0%,#2989d8 50%,#1e5799 100%));
+      	//@include filter-gradient(#7db9e8, #1e5799, vertical);
+      	//@include background-image(linear-gradient(top,  #7db9e8 0%,#2989d8 50%,#1e5799 100%));
       	-webkit-box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.75);
       	-moz-box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.75);
       	box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.75); }
