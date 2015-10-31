@@ -6,5 +6,4 @@ services:
 script:
 - docker pull grahamc/jekyll
 - docker run --name=jekyll -v "$(pwd):/src" grahamc/jekyll build
-- docker logs jekyll
-- ls -lah
+- ls -lah _site
