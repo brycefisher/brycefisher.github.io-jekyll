@@ -13,4 +13,4 @@ script:
 - docker pull grahamc/jekyll
 - docker run --name=jekyll -v "$(pwd):/src" grahamc/jekyll build
 - ls -lah _site
-- ./publish
+- ./publish.sh
