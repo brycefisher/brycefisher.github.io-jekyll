@@ -21,7 +21,7 @@ STAGE_URL="http://bryce-fisher-fleig-org-stage.s3-website-us-west-1.amazonaws.co
 
 OUTPUT_URL=STAGE_URL
 DEST_BUCKET=STAGE_BUCKET
-if $1=="prod" then
+if [ $1 = "prod" ]; then
     DEST_BUCKET=PROD_BUCKET
     OUTPUT_URL=PROD_URL
 fi
