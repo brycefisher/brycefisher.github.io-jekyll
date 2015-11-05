@@ -23,7 +23,7 @@ include:
 - favicon.ico
 - .well-known
 
-permalink: /blog/:title
+permalink: /blog/:title/index.html
 relative_permalinks: false
 highlighter: true
 paginate: 10
