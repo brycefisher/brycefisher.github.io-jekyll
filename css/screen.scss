@@ -26,11 +26,11 @@
 // Fonts
 @font-face {
   font-family: 'liberation_serifregular';
-  src: url('../fonts/LiberationSerif-Regular-webfont.eot');
-  src: url('../fonts/LiberationSerif-Regular-webfont.eot?#iefix') format('embedded-opentype'),
-       url('../fonts/LiberationSerif-Regular-webfont.woff') format('woff'),
-       url('../fonts/LiberationSerif-Regular-webfont.ttf') format('truetype'),
-       url('../fonts/LiberationSerif-Regular-webfont.svg#liberation_serifregular') format('svg');
+  src: url('/fonts/LiberationSerif-Regular-webfont.eot');
+  src: url('/fonts/LiberationSerif-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+       url('/fonts/LiberationSerif-Regular-webfont.woff') format('woff'),
+       url('/fonts/LiberationSerif-Regular-webfont.ttf') format('truetype'),
+       url('/fonts/LiberationSerif-Regular-webfont.svg#liberation_serifregular') format('svg');
 }
 
 @mixin heading {
@@ -95,7 +95,7 @@ video, .video, .video .vjs-tech { display:block; position:static; @include cente
 
 // Site Header
 #header, #site-footer {
-  height: 36px; background: url('../img/header.jpg') repeat-x;
+  height: 36px; background: url('/img/header.jpg') repeat-x;
 
   #logo img { height: 24px; width: auto; margin: 6px; float: left; }
   p, #site-title { margin: 0; color: white; text-shadow: 1px 1px black; width: auto; }
