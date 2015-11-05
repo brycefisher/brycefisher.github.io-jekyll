@@ -13,7 +13,7 @@
   <link href="{{ site.url }}{{ page.url }}" rel="canonical">
   <link href="{{ site.url }}/feed.xml" rel="alternate" type="application/rss+xml" title="Bryce Fisher-Fleig's Blog">
 </head>
-<body id="{{ page.css_id }}">
+<body{% if page.css_id %} id="{{ page.css_id }}"{% endif %}>
   <nav id="header">
     <a href="/" id="logo"><img src="/img/logo.png" alt="B" /></a>
     <h2 id="site-title">Bryce Fisher-Fleig</h2>
