@@ -3,6 +3,8 @@ rss_url: "http://bryce.fisher-fleig.org"
 name: "Bryce Fisher-Fleig"
 description: "Full Stack Forays into Web Development"
 
+gems: [jekyll-paginate]
+
 safe: false
 timezone: America/Los_Angelos
 encoding: utf-8
