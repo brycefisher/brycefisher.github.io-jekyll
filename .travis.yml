@@ -12,8 +12,6 @@ before_install:
 
 script:
 - docker pull grahamc/jekyll
-- docker pull ustwo/sass
-- docker run --rm -t -v $(PWD)/sass:/home/ustwo ustwo/sass:3.2.5 --style compressed screen.scss screen.css
-- docker run --name=jekyll -v "$(pwd):/src" grahamc/jekyll build
+- docker run --rm -v "$(pwd):/src" grahamc/jekyll build
 - ls -lah _site
 - ./publish.sh

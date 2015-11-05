@@ -7,12 +7,14 @@ safe: false
 timezone: America/Los_Angelos
 encoding: utf-8
 exclude:
-- sass
 - README.md
-- LICENSE
 - config.rb
 - publish.sh
 - list-categories.sh
+- awscli
+- .gitignore
+- .travis.yml
+- .jekyll-metadata
 
 include:
 - css
@@ -25,3 +27,6 @@ highlighter: true
 paginate: 10
 paginate_path: /blog/:num
 markdown: kramdown
+
+sass:
+    sass_dir: css
