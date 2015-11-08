@@ -18,7 +18,7 @@ set -eu
 DEST_BUCKET="bryce-fisher-fleig-org-$TRAVIS_BRANCH"
 DEST_URL="http://$DEST_BUCKET.s3-website-us-west-1.amazonaws.com/"
 
-if ["$TRAVIS_BRANCH" = "master"]; then
+if [ "$TRAVIS_BRANCH" = "master" ]; then
   echo "****Publishing changes to production blog******"
   DEST_BUCKET="bryce-fisher-fleig-org"
   DEST_URL="https://bryce.fisher-fleig.org"
