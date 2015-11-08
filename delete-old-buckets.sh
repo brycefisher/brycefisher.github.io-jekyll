@@ -11,6 +11,6 @@ OLD_BUCKETS=$(aws s3 ls \
 for BUCKET in $OLD_BUCKETS
 do
   echo "Deleting s3 bucket $BUCKET"
-  aws s3 rb s3://$BUCKET --force
+  aws s3 rb s3://$BUCKET --force > /dev/null
 done
 echo "Done deleting buckets"
