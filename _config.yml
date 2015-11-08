@@ -11,6 +11,7 @@ encoding: utf-8
 exclude:
 - README.md
 - config.rb
+- delete-old-buckets.sh
 - publish.sh
 - list-categories.sh
 - awscli
