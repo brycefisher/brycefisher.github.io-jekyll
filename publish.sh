@@ -18,8 +18,10 @@ set -eu
 DEST_BUCKET="bryce-fisher-fleig-org-$TRAVIS_BRANCH"
 DEST_URL="http://$DEST_BUCKET.s3-website-us-west-1.amazonaws.com/"
 
+echo "Creating bucket $DEST_BUCKET"
+aws s3 mb s3://$DEST_BUCKET --region us-west-1 || echo "Bucket already exists!"
+
 echo "Publishing files from ./_site/ to S3 Bucket $DEST_BUCKET"
-aws s3 mb s3://$DEST_BUCKET --region us-west-1
 aws s3 website s3://$DEST_BUCKET --index-document "index.html"
 aws s3 sync \
     --delete \
