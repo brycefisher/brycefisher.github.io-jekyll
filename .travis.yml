@@ -12,3 +12,4 @@ before_install:
 script:
 - docker pull grahamc/jekyll
 - docker run --rm -v "$(pwd):/src" grahamc/jekyll build && ./list-categories.sh && ./publish.sh
+- ./delete-old-buckets.sh
