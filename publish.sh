@@ -18,6 +18,12 @@ set -eu
 DEST_BUCKET="bryce-fisher-fleig-org-$TRAVIS_BRANCH"
 DEST_URL="http://$DEST_BUCKET.s3-website-us-west-1.amazonaws.com/"
 
+if ["$TRAVIS_BRANCH" = "master"] then
+  echo "****Publishing changes to production blog******"
+  DEST_BUCKET="bryce-fisher-fleig-org"
+  DEST_URL="https://bryce.fisher-fleig.org"
+fi
+
 echo "Creating bucket $DEST_BUCKET"
 aws s3 mb s3://$DEST_BUCKET --region us-west-1 2> /dev/null \
   || echo "Bucket already exists!"
