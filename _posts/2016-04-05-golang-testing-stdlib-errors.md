@@ -1,11 +1,11 @@
 ---
 title: "Golang Testing stdlib Errors"
 layout: "post"
-excerpt: ""
+excerpt: "Getting 100% test coverage in golang can be tricky when using the stdlib. Here's a list of ways to error several commonly used builtin funcs."
 category: golang
 ---
 
-It can be tough to get anywhere close to 100% code coverage when funcs in the "stdlib" can't be forced to error. This post takes you through several of the common funcs built in to golang and shows you how to trigger an error to help you bump up your code coverage.
+It can be tough to get anywhere close to 100% code coverage when funcs in the "stdlib" can't be forced to error. This post takes you through several of the common funcs built in to golang and shows you how to trigger an error to help you bump up your code coverage. This list is short and skews heavily toward http, where I spend most of my time.
 
 ## encoding/json.Marshal
 
@@ -48,15 +48,16 @@ We can pass an invalid port number to trip up `ListenAndServe()`. Full working e
 package main
 
 import (
-	"net/http"
-	"log"
+  "net/http"
+  "log"
 )
 
 func main() {
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte(`Hello World`))
-	})
-	log.Fatal(http.ListenAndServe(":9999999", nil))
+  h := func(w http.ResponseWriter, r *http.Request) {
+    w.Write([]byte(`Hello World`))
+  }
+  http.HandleFunc("/", h)
+  log.Fatal(http.ListenAndServe(":9999999", nil))
 }
 {% endhighlight %}
 
@@ -66,30 +67,64 @@ If choosing the port is not an option, we can **cheat** on our unit test, and bl
 package main
 
 import (
-	"net/http"
-	"log"
+  "fmt"
+  "net/http"
 
-	"gopkg.in/tylerb/graceful.v1"
+  "gopkg.in/tylerb/graceful.v1"
 )
 
 func main() {
-	// First block the port we care about
-	blockHandler := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]bytes(`Blocked`))
-	})
-	srv := &graceful.Server{
-		Timeout: 5 * time.Second,
-		Server: &http.Server{Addr: ":1234", Handler: blockHandler},
-	}
-	srv.ListenAndServe()
+  // First block the port we care about
+  h1 := func(w http.ResponseWriter, r *http.Request) {
+    w.Write([]bytes(`Blocked`))
+  }
+  srv := &graceful.Server{
+    Timeout: 5 * time.Second,
+    Server: &http.Server{
+      Addr: ":1234",
+      Handler: http.HandlerFunc(h1)
+    },
+  }
+  srv.ListenAndServe()
 
-	// Now try to use the blocked port
-	testHandler := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]bytes(`Blocked`))
-	})
-	log.Fatal(http.ListenAndServe(":1234", testHandler))
+  // Now try to use the blocked port
+  h2 := func(w http.ResponseWriter, r *http.Request) {
+    w.Write([]bytes(`Blocked`))
+  }
+  fmt.Println(http.ListenAndServe(":1234", http.HandlerFunc(h2))
 
-	// Stop the blocking server
-	srv.Stop()
+  // Stop the blocking server
+  srv.Stop()
 }
 {% endhighlight %}
+
+## net/http.Client
+
+Often, you want a way to force a connection error to simulate problems with some API you're consuming as part of your service. Golang's stdlib provides the `RoundTripper` interface to allow us to customize interaction with the network.
+
+{% highlight golang %}
+package main
+
+import (
+  "errors"
+  "fmt"
+  "net/http"
+)
+
+// Force errors or responses of our choosing to be returned
+type mock struct {}
+func (s *mock) RoundTrip(r *http.Request) (*http.Response, error) {
+  return nil, errors.New("Unable to connect")
+}
+
+func main() {
+  client := &http.Client{ &mockRoundTripper{}, nil, nil, 0 }
+  resp, err := client.Get("https://www.google.com")
+  fmt.Println("resp=", resp)
+  fmt.Println("err=", err)
+}
+{% endhighlight %}
+
+## What Else?
+
+If you run into a golang func that you can't break, post it in the comments here or tweet it to me.
