@@ -9,11 +9,11 @@ It can be tough to get anywhere close to 100% code coverage when funcs in the "s
 
 ## encoding/json.Marshal
 
-Pass any `func`, `chan`, or `complex` into `json.Marshal()`:
+Marshal any `func`, `chan`, or `complex`:
 
-```go
+{% highlight golang %}
 serialized, err := json.Marshal(func(){})
-```
+{% endhighlight %}
 
 [See in the playground](http://play.golang.org/p/FuQyHNHYNY)
 
@@ -21,9 +21,9 @@ serialized, err := json.Marshal(func(){})
 
 Pass invalid hex strings:
 
-```go
+{% highlight golang %}
 u, err := url.Parse("%zzzzz")
-```
+{% endhighlight %}
 
 [See in the playground](http://play.golang.org/p/OJk3B-86c3)
 
@@ -33,9 +33,9 @@ u, err := url.Parse("%zzzzz")
 
 The url in `NewRequest()` also goes through `url.Parse()`, so we can reuse our url breaking tricks.
 
-```go
+{% highlight golang %}
 r, err := http.NewRequest("GET","/%zz", nil)
-```
+{% endhighlight %}
 
 [See in the playground](http://play.golang.org/p/Xkr8IAYo8S)
 
@@ -44,7 +44,7 @@ r, err := http.NewRequest("GET","/%zz", nil)
 
 We can pass an invalid port number to trip up `ListenAndServe()`. Full working example this time since this won't run in the playground.
 
-```go
+{% highlight golang %}
 package main
 
 import (
@@ -58,11 +58,11 @@ func main() {
 	})
 	log.Fatal(http.ListenAndServe(":9999999", nil))
 }
-```
+{% endhighlight %}
 
 If choosing the port is not an option, we can **cheat** on our unit test, and block that port on the host. However, the stdlib doesn't support this in any form, so you'd have to pick a stoppable http server like [tylerb/graceful](https://github.com/tylerb/graceful), like so:
 
-```go
+{% highlight golang %}
 package main
 
 import (
@@ -92,4 +92,4 @@ func main() {
 	// Stop the blocking server
 	srv.Stop()
 }
-```
+{% endhighlight %}
