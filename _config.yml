@@ -13,6 +13,7 @@ exclude:
 - config.rb
 - delete-old-buckets.sh
 - publish.sh
+- preview.sh
 - list-categories.sh
 - awscli
 - .gitignore
