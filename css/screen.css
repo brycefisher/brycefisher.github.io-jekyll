@@ -159,6 +159,21 @@ table {
 
 h1, h2, h3, h4, h5, h6 { font-weight: bold; color: #000; }
 
+@font-face {
+  font-family: 'Icons';
+  src: url('../fonts/open-iconic.eot');
+  src: url('../fonts/open-iconic.eot?#iconic-sm') format('embedded-opentype'), url('../fonts/open-iconic.woff') format('woff'), url('../fonts/open-iconic.ttf') format('truetype'), url('../fonts/open-iconic.otf') format('opentype'), url('../fonts/open-iconic.svg#iconic-sm') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+#edit-page {
+  font-family: 'Icons';
+  color: white;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
 
 /* --------- Typography ----------------- */
 html { font-family: 'liberation_serifregular'; font-size: 16px; line-height: 30px; color: #333; }
