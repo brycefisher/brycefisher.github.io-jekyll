@@ -37,3 +37,9 @@ aws s3 sync \
     _site/ "s3://$DEST_BUCKET"
 echo "Finished publishing to $DEST_BUCKET. See results at:"
 echo $DEST_URL
+
+if [ "$TRAVIS_BRANCH" = "master" ]; then
+  echo 'Creating invalidation for production cloudfront'
+  aws configure set preview.cloudfront true
+  aws cloudfront create-invalidation --distribution-id EG9J3WOGWV9T2 --paths / /blog2/ /blog3/ /blog4/ /blog5/ /blog6/ /css/screen.css
+fi
