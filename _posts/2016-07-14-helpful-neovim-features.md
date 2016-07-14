@@ -13,7 +13,7 @@ category: vim
 
 [Semi-official Wikia Entry](http://vim.wikia.com/wiki/Mapping_keys_in_Vim_-_Tutorial_(Part_2)#Key_notation)
 
-## Vim's Ctags, Tags, Jumping
+## Vim's Ctags, Tags
 
 _TODO_
 
@@ -27,7 +27,9 @@ _TODO_
 
 ## Vim's Ways of Moving
 
-In particular, larger motion commands like `[`
-
  * Go to line (normal mode). Type the line number then capital G. Ex: `200G`
  * Ignore case for only one search. Add `\c` to the end (for "case"). Ex: `/FOOBAR\c`
+ * Jump a paragraph forward `}`
+ * Jump a section forward `]]`
+ * Jump back to a previous jump - `CTRL-O`
+ * Jump forward to a previous jump - `CTRL-I`
