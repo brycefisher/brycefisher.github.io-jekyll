@@ -20,13 +20,14 @@ _TODO_
 ## Neovim's Visual Mode
 
  * Block edit (_TODO_ -- find the correct name)
- * Search n' replace within a selection:
+ * Search & replace within a selection:
    * Use the cursor to select (or press `v` and use motion commands) to select a block of text
    * Press `:`. You should the statusline show `:'<,'>` which simply means the selection
    * Type `:s/old/new/g` and press `<ENTER>`
 
-## Some Motion Commands
+## Vim's Ways of Moving
 
 In particular, larger motion commands like `[`
 
- * Go to line (normal mode) - `[number]G`. Ex: `200G`
+ * Go to line (normal mode). Type the line number then capital G. Ex: `200G`
+ * Ignore case for only one search. Add `\c` to the end (for "case"). Ex: `/FOOBAR\c`
