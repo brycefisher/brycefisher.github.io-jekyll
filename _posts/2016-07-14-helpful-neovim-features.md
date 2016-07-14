@@ -17,10 +17,16 @@ category: vim
 
 _TODO_
 
-## Vim's Visual Block
+## Neovim's Visual Mode
 
-_TODO_
+ * Block edit (_TODO_ -- find the correct name)
+ * Search n' replace within a selection:
+   * Use the cursor to select (or press `v` and use motion commands) to select a block of text
+   * Press `:`. You should the statusline show `:'<,'>` which simply means the selection
+   * Type `:s/old/new/g` and press `<ENTER>`
 
 ## Some Motion Commands
 
 In particular, larger motion commands like `[`
+
+ * Go to line (normal mode) - `[number]G`. Ex: `200G`
