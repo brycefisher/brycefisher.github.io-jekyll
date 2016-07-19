@@ -58,13 +58,21 @@ Additionally, you can always escape a single key stroke in insert or normal mode
 
 _TODO_
 
-## Neovim's Visual Mode
+## Vim's Visual Blockwise Edit
 
- * Block edit (_TODO_ -- find the correct name)
- * Search & replace within a selection:
-   * Use the cursor to select (or press `v` and use motion commands) to select a block of text
-   * Press `:`. You should the statusline show `:'<,'>` which simply means the selection
-   * Type `:s/old/new/g` and press `<ENTER>`
+Seriously...how did I not know about this? How?! Basically, you can _visually_ select a rectangular region of the current buffer and make the same change to all of them simultaneously. This is a really fast way to change a list of items that start with a single quote into a list of items that start with double quotes, or other tedious tasks which are difficult to change by using regex. Here's a quick example of visual blockwise edit in action:
+
+![Visual blockwise edit in vim](/img/2016/vim-blockwise-edit.gif)
+
+In that gif, I pressed `CTRL-V` (sorry, using the mouse doesn't work by default) in insert mode to start visually selecting. Next I pressed `l` three times. Then I pressed `j` repeatedly to select down several rows. Instead of the selection wrapping around the end of the current line, a "block" of text is selected straight down. Any operator will be previewed on the first line but applied to all lines of the block selection. I pressed `x` to delete the entire selection.
+
+Another idea that you might try is changing the whole selection with `c` followed by `ESC` after your changes.
+
+## Search and Replace Within a Selection
+
+ * Use the cursor to select (or press `v` and use motion commands) to select a block of text
+ * Press `:`. You should the statusline show `:'<,'>` which simply means the selection
+ * Type `:s/old/new/g` and press `<ENTER>`
 
 ## Vim's Ways of Moving
 
