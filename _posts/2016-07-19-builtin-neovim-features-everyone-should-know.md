@@ -1,17 +1,17 @@
 ---
 title: "Builtin Neovim Features Everyone Should Know"
 layout: "post"
-excerpt: "I've been using vim and now neovim for several years, but I've never felt like I was taking full advantage of even the basic feature set. Here's my attempt to learn and record some really useful features of (neo)vim that I should have picked up ages ago."
+excerpt: "I've been using Vim and now Neovim for several years, but I've never felt like I was taking full advantage of even the basic feature set. Here's my attempt to learn and record some really useful features of (neo)Vim that I should have picked up ages ago."
 category: vim
 ---
 
-For longtime (Neo)Vim enthusiasts, nothing here will blow your mind. However, if you've always felt like there are more builtin features of vim you're missing out on, here's a handful of useful features I'd overlooked for years which don't require any plugins.
+For longtime (Neo)Vim enthusiasts, nothing here will blow your mind. However, if you've always felt like there are more builtin features of Vim you're missing out on, here's a handful of useful features I'd overlooked for years which don't require any plugins.
 
 ## Neovim's Builtin Terminal Emulator
 
 This is probably the most killer built-in upgrade that Neovim offers over standard Vim. Basically, Neovim exposes a new "terminal" mode that forwards all your keystrokes to an underlying terminal (which is handled by a cross-platform terminal emulator library).
 
-Compared to using tmux + vim, neovim's terminal editor lets you keep all your buffers (and terminal) in a single vim instance. So your jump list, yanks, and global state are shared. For folks like me too lazy to learn tmux, I can cross that off my list.
+Compared to using tmux + Vim, Neovim's terminal editor lets you keep all your buffers (and terminal) in a single Vim instance. So your jump list, yanks, and global state are shared. For folks like me too lazy to learn tmux, I can cross that off my list.
 
 ### Starting Terminal Mode in the Current Buffer
 
@@ -19,7 +19,7 @@ Compared to using tmux + vim, neovim's terminal editor lets you keep all your bu
 :terminal
 ```
 
-And then type anything that will put you into insert mode (`a`, `o`, `i` etc).
+And then type anything that will put you into insert mode (`a`, `o`, `i`, etc).
 
 ### Start Terminal Mode in a New Buffer
 
