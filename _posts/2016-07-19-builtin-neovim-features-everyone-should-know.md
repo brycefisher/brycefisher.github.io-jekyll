@@ -1,5 +1,5 @@
 ---
-title: "Helpful Neovim Features"
+title: "Builtin Neovim Features Everyone Should Know"
 layout: "post"
 excerpt: "I've been using vim and now neovim for several years, but I've never felt like I was taking full advantage of even the basic feature set. Here's my attempt to learn and record some really useful features of (neo)vim that I should have picked up ages ago."
 category: vim
@@ -10,6 +10,8 @@ For longtime (Neo)Vim enthusiasts, nothing here will blow your mind. However, if
 ## Neovim's Builtin Terminal Emulator
 
 This is probably the most killer built-in upgrade that Neovim offers over standard Vim. Basically, Neovim exposes a new "terminal" mode that forwards all your keystrokes to an underlying terminal (which is handled by a cross-platform terminal emulator library).
+
+Compared to using tmux + vim, neovim's terminal editor lets you keep all your buffers (and terminal) in a single vim instance. So your jump list, yanks, and global state are shared. For folks like me too lazy to learn tmux, I can cross that off my list.
 
 ### Starting Terminal Mode in the Current Buffer
 
@@ -80,3 +82,7 @@ Another idea that you might try is changing the whole selection with `c` followe
  * Jump forward to a previous jump - `CTRL-I`
 
 A "jump" can be triggered by using `/`, `}`, `]]` and other forms of movement. See `:help jumps`.
+
+## Conclusion
+
+Writing this article made me realize how much of Vim I'm not taking advantage of, and that it always pays to invest a little more time and effort into your tools. What's your favorite builtin features of (neo)vim? I'd love to hear in the comments. Better yet, open a PR against this article with your corrections and additions.
