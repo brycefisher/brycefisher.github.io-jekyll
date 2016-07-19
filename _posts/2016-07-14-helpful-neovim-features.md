@@ -43,9 +43,18 @@ Personally, I find that a bit too cumbersome, so I'm definitely going to remap t
 
 ## Deciphering Vim's Key Notation
 
-[Semi-official Wikia Entry](http://vim.wikia.com/wiki/Mapping_keys_in_Vim_-_Tutorial_(Part_2)#Key_notation)
+I found myself perpetually confused by the key notation I'd see everywhere online and in the builtin docs. Finally, I determined to search until I found an explanation. Here's a [semi-official wikia entry](http://vim.wikia.com/wiki/Mapping_keys_in_Vim_-_Tutorial_(Part_2)#Key_notation) which does a great job of explaining. Here's the major takeaways:
 
-## Vim's Ctags, Tags
+ * `<C-...>` means CTRL and ... at the same time. Ex: `<C-k>` = CTRL+k
+ * `<S-...>` means Shift and ... at the same time.
+ * `<A-...>` means Alt and ... at the same time.
+ * `<BS>` is backspace (not profanity...silly I know).
+ * `<F1>` is the F1 key. No shocker there, just mentioning it in case you can't easily access your function keys.
+ * `<ENTER>` is the enter key.
+
+Additionally, you can always escape a single key stroke in insert or normal mode (and possibly other modes too) by pressing CTRL-V first. For example, CTRL-V and ENTER becomes  which is the same as `<ENTER>` but a lot fewer keystrokes.
+
+## Ctags & Tags
 
 _TODO_
 
