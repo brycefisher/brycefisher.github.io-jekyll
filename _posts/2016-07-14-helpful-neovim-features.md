@@ -9,6 +9,36 @@ For longtime (Neo)Vim enthusiasts, nothing here will blow your mind. However, if
 
 ## Neovim's Builtin Terminal Emulator
 
+This is probably the most killer built-in upgrade that Neovim offers over standard Vim. Basically, Neovim exposes a new "terminal" mode that forwards all your keystrokes to an underlying terminal (which is handled by a cross-platform terminal emulator library).
+
+### Starting Terminal Mode in the Current Buffer
+
+```sh
+:terminal
+```
+
+And then type anything that will put you into insert mode (`a`, `o`, `i` etc).
+
+### Start Terminal Mode in a New Buffer
+
+If you'd rather split the current buffer and start a terminal in that, type this:
+
+```sh
+:sp term://bash
+```
+
+Then click or `<C-W>h` into the new terminal buffer and use insert mode.
+
+### Exiting Terminal Mode
+
+```sh
+<C-\><C-n>
+```
+
+Personally, I find that a bit too cumbersome, so I'm definitely going to remap that to something else.
+
+### Learn More about Terminal Mode
+
 [Official Docs](https://neovim.io/doc/user/nvim_terminal_emulator.html)
 
 ## Deciphering Vim's Key Notation
