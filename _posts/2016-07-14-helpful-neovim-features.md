@@ -1,9 +1,11 @@
 ---
 title: "Helpful Neovim Features"
 layout: "post"
-excerpt: "I've been using vim and now neovim for several years, but I've never felt like I was taking full advantage of even the basic feature set. Here's my attempt to learn and record some really useful features of (neo)vim that I should have picked ages ago."
+excerpt: "I've been using vim and now neovim for several years, but I've never felt like I was taking full advantage of even the basic feature set. Here's my attempt to learn and record some really useful features of (neo)vim that I should have picked up ages ago."
 category: vim
 ---
+
+For longtime (Neo)Vim enthusiasts, nothing here will blow your mind. However, if you've always felt like there are more builtin features of vim you're missing out on, here's a handful of useful features I'd overlooked for years which don't require any plugins.
 
 ## Neovim's Builtin Terminal Emulator
 
