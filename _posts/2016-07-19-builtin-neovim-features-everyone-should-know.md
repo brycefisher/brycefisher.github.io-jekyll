@@ -39,9 +39,7 @@ Then click or `<C-W>h` into the new terminal buffer and use insert mode.
 
 Personally, I find that a bit too cumbersome, so I'm definitely going to remap that to something else.
 
-### Learn More about Terminal Mode
-
-[Official Docs](https://neovim.io/doc/user/nvim_terminal_emulator.html)
+To learn more about terminal mode, see the [official docs](https://neovim.io/doc/user/nvim_terminal_emulator.html).
 
 ## Deciphering Vim's Key Notation
 
