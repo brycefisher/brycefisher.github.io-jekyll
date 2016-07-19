@@ -82,3 +82,5 @@ Another idea that you might try is changing the whole selection with `c` followe
  * Jump a section forward `]]`
  * Jump back to a previous jump - `CTRL-O`
  * Jump forward to a previous jump - `CTRL-I`
+
+A "jump" can be triggered by using `/`, `}`, `]]` and other forms of movement. See `:help jumps`.
