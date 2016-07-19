@@ -54,10 +54,6 @@ I found myself perpetually confused by the key notation I'd see everywhere onlin
 
 Additionally, you can always escape a single key stroke in insert or normal mode (and possibly other modes too) by pressing CTRL-V first. For example, CTRL-V and ENTER becomes  which is the same as `<ENTER>` but a lot fewer keystrokes.
 
-## Ctags & Tags
-
-_TODO_
-
 ## Vim's Visual Blockwise Edit
 
 Seriously...how did I not know about this? How?! Basically, you can _visually_ select a rectangular region of the current buffer and make the same change to all of them simultaneously. This is a really fast way to change a list of items that start with a single quote into a list of items that start with double quotes, or other tedious tasks which are difficult to change by using regex. Here's a quick example of visual blockwise edit in action:
