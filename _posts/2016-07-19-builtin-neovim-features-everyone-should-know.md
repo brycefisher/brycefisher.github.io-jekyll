@@ -52,7 +52,7 @@ I found myself perpetually confused by the key notation I'd see everywhere onlin
  * `<F1>` is the F1 key. No shocker there, just mentioning it in case you can't easily access your function keys.
  * `<ENTER>` is the enter key.
 
-Additionally, you can always escape a single key stroke in insert or normal mode (and possibly other modes too) by pressing CTRL-V first. For example, CTRL-V and ENTER becomes  which is the same as `<ENTER>` but a lot fewer keystrokes.
+Additionally, you can always escape a single key stroke in insert or normal mode (and possibly other modes too) by pressing CTRL-V first. For example, CTRL-V and ENTER becomes `` which is the same as `<ENTER>` but a lot fewer keystrokes.
 
 ## Vim's Visual Blockwise Edit
 
