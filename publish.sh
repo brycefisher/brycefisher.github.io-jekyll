@@ -3,16 +3,18 @@ set -eu
 
 #######################################################
 # Requirements:
-# - valid S3 credentials with write permissions
+# - valid AWS credentials with permissions for
+#   - S3: object PUT, bucket LIST, bucket create, bucket delete
+#   - CloudFront: create invalidation
 # - the aws cli (http://docs.aws.amazon.com/cli/latest/userguide/installing.html)
 #
 # Usage:
 #
-#   ./publish.sh
+#   TRAVIS_BRANCH='branch-in-git' ./publish.sh
 #
 # Publish to production:
 #
-#   ./publish.sh prod
+#   TRAVIS_BRANCH='master' ./publish.sh
 #######################################################
 
 DEST_BUCKET="bryce-fisher-fleig-org-$TRAVIS_BRANCH"
