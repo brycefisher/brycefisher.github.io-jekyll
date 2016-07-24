@@ -39,7 +39,7 @@ aws s3 sync \
 if [ "$TRAVIS_BRANCH" = "master" ]; then
   echo 'Creating invalidation for production cloudfront'
   aws configure set preview.cloudfront true
-  aws cloudfront create-invalidation --distribution-id EG9J3WOGWV9T2 --paths /*
+  aws cloudfront create-invalidation --distribution-id EG9J3WOGWV9T2 --paths '/*'
 fi
 
 echo "Finished publishing to $DEST_BUCKET. See results at:"
